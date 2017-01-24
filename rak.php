@@ -57,7 +57,7 @@ if (isset($resource) && !empty($resource[401])) {
 			$select_owner = doquery("SELECT military_tech FROM {{table}} WHERE
 								id = '" . $selected_row['owner'] . "'", 'users');
 
-			if (mysql_num_rows($planetrow) != 1 OR mysql_num_rows($select_ziel) != 1) {
+			if (mysqli_num_rows($planetrow) != 1 OR mysqli_num_rows($select_ziel) != 1) {
 				doquery("DELETE FROM {{table}} WHERE id = '" . $selected_row['id'] . "'", 'iraks');
 			} else {
 				$verteidiger = mysqli_fetch_array($select_ziel, MYSQLI_ASSOC);
@@ -140,7 +140,7 @@ if (isset($resource) && !empty($resource[401])) {
 								system = '" . $selected_row['system_angreifer'] . "' AND
 								planet = '" . $selected_row['planet_angreifer'] . "'", 'planets');
 
-				if (mysql_num_rows($planet_) == 1) {
+				if (mysqli_num_rows($planet_) == 1) {
 					$array = mysqli_fetch_array($planet_, MYSQLI_ASSOC);
 
 					$name = $array['name'];
@@ -151,7 +151,7 @@ if (isset($resource) && !empty($resource[401])) {
 								system = '" . $selected_row['system'] . "' AND
 								planet = '" . $selected_row['planet'] . "'", 'planets');
 
-				if (mysql_num_rows($planet_2) == 1) {
+				if (mysqli_num_rows($planet_2) == 1) {
 					$array = mysqli_fetch_array($planet_2, MYSQLI_ASSOC);
 
 					$name_deffer = $array['name'];

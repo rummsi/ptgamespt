@@ -302,7 +302,7 @@ switch ($mode) {
 						planet = '" . $irak['planet_angreifer'] . "' AND
 						planet_type = '1'", 'planets', true);
 
-                    if (mysql_num_rows($planet_start) == 1) {
+                    if (mysqli_num_rows($planet_start) == 1) {
                         $planet = mysqli_fetch_array($planet_start, MYSQLI_ASSOC);
                     }
 
