@@ -142,10 +142,10 @@ EOF;
             `error_time` = '".time()."' ,
             `error_type` = '{$title}' ,
             `error_text` = '".mysql_escape_string($message)."';";
-        $sqlquery = mysql_query(str_replace("{{table}}", $dbsettings["prefix"].'errors',$query))
+        $sqlquery = mysqli_query(Database::$dbHandle,str_replace("{{table}}", $dbsettings["prefix"].'errors',$query))
             or die('error fatal');
         $query = "explain select * from {{table}}";
-        $q = mysql_fetch_array(mysql_query(str_replace("{{table}}", $dbsettings["prefix"].
+        $q = mysql_fetch_array(mysqli_query(Database::$dbHandle,str_replace("{{table}}", $dbsettings["prefix"].
             'errors', $query))) or die('error fatal: ');
 
         if (!function_exists('message')) {
