@@ -141,7 +141,7 @@ EOF;
             `error_sender` = '{$user['id']}' ,
             `error_time` = '".time()."' ,
             `error_type` = '{$title}' ,
-            `error_text` = '".mysql_escape_string($message)."';";
+            `error_text` = '".mysqli_real_escape_string(Database::$dbHandle, $message)."';";
         $sqlquery = mysqli_query(Database::$dbHandle,str_replace("{{table}}", $dbsettings["prefix"].'errors',$query))
             or die('error fatal');
         $query = "explain select * from {{table}}";

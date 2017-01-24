@@ -97,7 +97,7 @@ class Legacies_Empire_Shipyard
             $sql .= "{$field}='{$this->_currentPlanet[$field]}',";
         }
 
-        $escapedQueue = mysql_real_escape_string($this->_currentPlanet['b_hangar_id']);
+        $escapedQueue = mysqli_real_escape_string(Database::$dbHandle, $this->_currentPlanet['b_hangar_id']);
 $sql .=<<<SQL_EOF
   b_hangar_id = "{$escapedQueue}",
   b_hangar    = "{$this->_now()}"

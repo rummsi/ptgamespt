@@ -38,7 +38,7 @@ $lunarow = doquery("SELECT * FROM {{table}} WHERE `id_owner` = '" . $planetrow['
 
 $mode = isset($_GET['mode']) ? $_GET['mode'] : '';
 $_POST['deleteid'] = intval($_POST['deleteid']);
-$pl = mysql_real_escape_string(isset($_GET['pl']) ? $_GET['pl'] : 0);
+$pl = mysqli_real_escape_string(Database::$dbHandle, isset($_GET['pl']) ? $_GET['pl'] : 0);
 
 includeLang('resources');
 includeLang('overview');
@@ -49,7 +49,7 @@ switch ($mode) {
         if ($_POST['action'] == $lang['namer']) {
             // Reponse au changement de nom de la planete
             $UserPlanet = addslashes(CheckInputStrings ($_POST['newname']));
-            $newname = mysql_escape_string(trim($UserPlanet));
+            $newname = mysqli_real_escape_string(Database::$dbHandle, trim($UserPlanet));
             if ($newname != "") {
                 // Deja on met jour la planete qu'on garde en memoire (pour le nom)
                 $planetrow['name'] = $newname;

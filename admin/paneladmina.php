@@ -50,7 +50,7 @@ require_once dirname(dirname(__FILE__)) .'/common.php';
 
         switch ($_GET['result']){
             case 'usr_search':
-                $pattern = mysql_real_escape_string($_GET['player']);
+                $pattern = mysqli_real_escape_string(Database::$dbHandle, $_GET['player']);
                 $SelUser = doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%". $pattern ."%' LIMIT 1;", 'users', true);
                 $UsrMain = doquery("SELECT `name` FROM {{table}} WHERE `id` = '". $SelUser['id_planet'] ."';", 'planets', true);
 
@@ -68,7 +68,7 @@ require_once dirname(dirname(__FILE__)) .'/common.php';
                 break;
 
             case 'usr_data':
-                $pattern = mysql_real_escape_string($_GET['player']);
+                $pattern = mysqli_real_escape_string(Database::$dbHandle, $_GET['player']);
                 $SelUser = doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%". $pattern ."%' LIMIT 1;", 'users', true);
                 $UsrMain = doquery("SELECT `name` FROM {{table}} WHERE `id` = '". $SelUser['id_planet'] ."';", 'planets', true);
 
@@ -116,8 +116,8 @@ require_once dirname(dirname(__FILE__)) .'/common.php';
                     break;
                 }
 
-                $player = isset($_GET['player']) ? mysql_real_escape_string($_GET['player']) : '';
-                $level  = isset($_GET['authlvl']) ? mysql_real_escape_string($_GET['authlvl']) : '';
+                $player = isset($_GET['player']) ? mysqli_real_escape_string(Database::$dbHandle, $_GET['player']) : '';
+                $level  = isset($_GET['authlvl']) ? mysqli_real_escape_string(Database::$dbHandle, $_GET['authlvl']) : '';
 
                 if ($level >= $user['authlevel'] && $user['authlevel'] != LEVEL_ADMIN) {
                     AdminMessage('Not enough privilleges to promote user.', $lang['adm_mod_level']);
@@ -138,7 +138,7 @@ require_once dirname(dirname(__FILE__)) .'/common.php';
                 break;
 
             case 'ip_search':
-                $pattern = isset($_GET['ip']) ? mysql_real_escape_string($_GET['ip']) : '';
+                $pattern = isset($_GET['ip']) ? mysqli_real_escape_string(Database::$dbHandle, $_GET['ip']) : '';
                 $SelUser    = doquery("SELECT * FROM {{table}} WHERE `user_lastip` = '". $pattern ."' LIMIT 10;", 'users');
                 $bloc                   = $lang;
                 $bloc['adm_this_ip']    = $pattern;

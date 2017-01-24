@@ -68,9 +68,9 @@ EOF;
     }
 
     $sessionData = array(
-        'request_uri' => mysql_real_escape_string($_SERVER['REQUEST_URI']),
-        'remote_addr' => mysql_real_escape_string($_SERVER['REMOTE_ADDR']/* . (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? '|' . $_SERVER['HTTP_X_FORWARDED_FOR'] : '')*/),
-        'user_agent' => mysql_real_escape_string($_SERVER['HTTP_USER_AGENT'])
+        'request_uri' => mysqli_real_escape_string(Database::$dbHandle, $_SERVER['REQUEST_URI']),
+        'remote_addr' => mysqli_real_escape_string(Database::$dbHandle, $_SERVER['REMOTE_ADDR']/* . (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? '|' . $_SERVER['HTTP_X_FORWARDED_FOR'] : '')*/),
+        'user_agent' => mysqli_real_escape_string(Database::$dbHandle, $_SERVER['HTTP_USER_AGENT'])
         );
     $now = time();
     $sql =<<<EOF
