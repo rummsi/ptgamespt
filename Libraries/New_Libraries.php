@@ -37,3 +37,8 @@ use Tracy\Debugger;
 
 Debugger::enable();
 //Debugger::$strictMode = TRUE;
+
+require realpath(ROOT_PATH . 'Libraries/Smarty/Smarty.class.php');
+
+$tplObj = new Smarty();
+//$tplObj->testinstall();
