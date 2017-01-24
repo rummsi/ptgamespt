@@ -56,7 +56,7 @@ function doquery($query, $table, $fetch = false)
     }
 
     if($fetch) {
-        return mysql_fetch_array($sqlQuery);
+        return mysqli_fetch_array($sqlQuery, MYSQLI_BOTH);
     }else{
         return $sqlQuery;
     }

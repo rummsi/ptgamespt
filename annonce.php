@@ -44,7 +44,7 @@ if ($action == 5) {
 	$cristalsouhait = $_POST['cristalsouhait'];
 	$deutsouhait = $_POST['deutsouhait'];
 
-	while ($v_annonce = mysql_fetch_array($users)) {
+	while ($v_annonce = mysqli_fetch_array($users, MYSQLI_ASSOC)) {
 		$user = $v_annonce['username'];
 		$galaxie = $v_annonce['galaxy'];
 		$systeme = $v_annonce['system'];
@@ -87,7 +87,7 @@ if ($action != 5) {
 
 
 ";
-	while ($b = mysql_fetch_array($annonce)) {
+	while ($b = mysqli_fetch_array($annonce, MYSQLI_ASSOC)) {
 		$page2 .= '<tr><th> ';
 		$page2 .= $b["user"] ;
 		$page2 .= '</th><th>';

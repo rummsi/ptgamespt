@@ -44,7 +44,7 @@ if (file_exists(ROOT_PATH . "includes/raketenangriff.php")) {
 if (isset($resource) && !empty($resource[401])) {
 	$iraks = doquery("SELECT * FROM {{table}} WHERE zeit <= '" . time() . "'", 'iraks');
 
-	while ($selected_row = mysql_fetch_array($iraks)) {
+	while ($selected_row = mysqli_fetch_array($iraks, MYSQLI_ASSOC)) {
 		if ($selected_row['zeit'] != '' && $selected_row['galaxy'] != '' && $selected_row['system'] != '' && $selected_row['planet'] != '' && is_numeric($selected_row['owner']) && is_numeric($selected_row['zielid']) && is_numeric($selected_row['anzahl']) && !empty($selected_row['anzahl'])) {
 			$planetrow = doquery("SELECT * FROM {{table}} WHERE
 								galaxy = '" . $selected_row['galaxy'] . "' AND
@@ -60,9 +60,9 @@ if (isset($resource) && !empty($resource[401])) {
 			if (mysql_num_rows($planetrow) != 1 OR mysql_num_rows($select_ziel) != 1) {
 				doquery("DELETE FROM {{table}} WHERE id = '" . $selected_row['id'] . "'", 'iraks');
 			} else {
-				$verteidiger = mysql_fetch_array($select_ziel);
-				$angreifer = mysql_fetch_array($select_owner);
-				$planet = mysql_fetch_array($planetrow);
+				$verteidiger = mysqli_fetch_array($select_ziel, MYSQLI_ASSOC);
+				$angreifer = mysqli_fetch_array($select_owner, MYSQLI_ASSOC);
+				$planet = mysqli_fetch_array($planetrow, MYSQLI_ASSOC);
 
 				$ids = array(0 => 401,
 					1 => 402,
@@ -141,7 +141,7 @@ if (isset($resource) && !empty($resource[401])) {
 								planet = '" . $selected_row['planet_angreifer'] . "'", 'planets');
 
 				if (mysql_num_rows($planet_) == 1) {
-					$array = mysql_fetch_array($planet_);
+					$array = mysqli_fetch_array($planet_, MYSQLI_ASSOC);
 
 					$name = $array['name'];
 				}
@@ -152,7 +152,7 @@ if (isset($resource) && !empty($resource[401])) {
 								planet = '" . $selected_row['planet'] . "'", 'planets');
 
 				if (mysql_num_rows($planet_2) == 1) {
-					$array = mysql_fetch_array($planet_2);
+					$array = mysqli_fetch_array($planet_2, MYSQLI_ASSOC);
 
 					$name_deffer = $array['name'];
 				}

@@ -62,7 +62,7 @@ for ($MessType = 0; $MessType < 101; $MessType++) {
 	}
 }
 
-while ($CurMess = mysql_fetch_array($UsrMess)) {
+while ($CurMess = mysqli_fetch_array($UsrMess, MYSQLI_ASSOC)) {
 	$MessType              = $CurMess['message_type'];
 	$TotalMess[$MessType] += 1;
 	$TotalMess[100]       += 1;
@@ -221,7 +221,7 @@ $Message = trim ( nl2br ( strip_tags ( $_POST['text'], '<br>' ) ) ); }
 				$QryUpdateUser .= "`id` = '".$user['id']."';";
 				doquery ( $QryUpdateUser, 'users' );
 
-				while ($CurMess = mysql_fetch_array($UsrMess)) {
+				while ($CurMess = mysqli_fetch_array($UsrMess, MYSQLI_ASSOC)) {
 					$page .= "\n<tr>";
 					$page .= "<input name=\"showmes". $CurMess['message_id'] . "\" type=\"hidden\" value=\"1\">";
 					$page .= "<th><input name=\"delmes". $CurMess['message_id'] . "\" type=\"checkbox\"></th>";
@@ -249,7 +249,7 @@ $Message = trim ( nl2br ( strip_tags ( $_POST['text'], '<br>' ) ) ); }
 					$QryUpdateUser .= "`id` = '".$user['id']."';";
 					doquery ( $QryUpdateUser, 'users' );
 				}
-				while ($CurMess = mysql_fetch_array($UsrMess)) {
+				while ($CurMess = mysqli_fetch_array($UsrMess, MYSQLI_ASSOC)) {
 					if ($CurMess['message_type'] == $MessCategory) {
 						$page .= "\n<tr>";
 						$page .= "<input name=\"showmes". $CurMess['message_id'] . "\" type=\"hidden\" value=\"1\">";

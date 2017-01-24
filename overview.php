@@ -173,7 +173,7 @@ switch ($mode) {
             // Toutes de vert vetues
             $OwnFleets = doquery("SELECT * FROM {{table}} WHERE `fleet_owner` = '" . $user['id'] . "';", 'fleets');
             $Record = 0;
-            while ($FleetRow = mysql_fetch_array($OwnFleets)) {
+            while ($FleetRow = mysqli_fetch_array($OwnFleets, MYSQLI_ASSOC)) {
                 $Record++;
 
                 $StartTime = $FleetRow['fleet_start_time'];
@@ -204,7 +204,7 @@ switch ($mode) {
             $OtherFleets = doquery("SELECT * FROM {{table}} WHERE `fleet_target_owner` = '" . $user['id'] . "';", 'fleets');
 
             $Record = 2000;
-            while ($FleetRow = mysql_fetch_array($OtherFleets)) {
+            while ($FleetRow = mysqli_fetch_array($OtherFleets, MYSQLI_ASSOC)) {
                 if ($FleetRow['fleet_owner'] != $user['id']) {
                     if ($FleetRow['fleet_mission'] != 8) {
                         $Record++;
@@ -242,7 +242,7 @@ switch ($mode) {
             $planets_query = doquery ($QryPlanets, 'planets');
             $Colone = 1;
             $AllPlanets = "<tr>";
-            while ($UserPlanet = mysql_fetch_array($planets_query)) {
+            while ($UserPlanet = mysqli_fetch_array($planets_query, MYSQLI_ASSOC)) {
                 PlanetResourceUpdate ($user, $UserPlanet, time());
                 if ($UserPlanet["id"] != $user["current_planet"] && $UserPlanet['planet_type'] != 3) {
                     $AllPlanets .= "<th>" . $UserPlanet['name'] . "<br>";
@@ -281,7 +281,7 @@ switch ($mode) {
             // --- Gestion des attaques missiles -------------------------------------------------------------
             $iraks_query = doquery("SELECT * FROM {{table}} WHERE owner = '" . $user['id'] . "'", 'iraks');
             $Record = 4000;
-            while ($irak = mysql_fetch_array ($iraks_query)) {
+            while ($irak = mysqli_fetch_array ($iraks_query, MYSQLI_ASSOC)) {
                 $Record++;
                 $fpage[$irak['zeit']] = '';
 
@@ -303,7 +303,7 @@ switch ($mode) {
 						planet_type = '1'", 'planets', true);
 
                     if (mysql_num_rows($planet_start) == 1) {
-                        $planet = mysql_fetch_array($planet_start);
+                        $planet = mysqli_fetch_array($planet_start, MYSQLI_ASSOC);
                     }
 
                     $fpage[$irak['zeit']] .= "<tr><th><div id=\"bxxfs$i\" class=\"z\"></div><font color=\"lime\">" . gmdate("H:i:s", $irak['zeit'] + 1 * 60 * 60) . "</font> </th><th colspan=\"3\"><font color=\"#0099FF\">Une attaque de missiles (" . $irak['anzahl'] . ") de " . $user_planet['name'] . " ";

@@ -145,8 +145,8 @@ EOF;
         $sqlquery = mysqli_query(Database::$dbHandle,str_replace("{{table}}", $dbsettings["prefix"].'errors',$query))
             or die('error fatal');
         $query = "explain select * from {{table}}";
-        $q = mysql_fetch_array(mysqli_query(Database::$dbHandle,str_replace("{{table}}", $dbsettings["prefix"].
-            'errors', $query))) or die('error fatal: ');
+        $q = mysqli_fetch_array(mysqli_query(Database::$dbHandle,str_replace("{{table}}", $dbsettings["prefix"].
+            'errors', $query)), MYSQLI_BOTH) or die('error fatal: ');
 
         if (!function_exists('message')) {
             echo "Erreur, merci de contacter l'admin. Erreur n�: <b>".$q['rows']."</b>";

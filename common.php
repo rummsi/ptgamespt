@@ -110,7 +110,7 @@ SELECT
 SQL_EOF;
 
 $_fleets = doquery($sql, 'fleets');
-while ($row = mysql_fetch_array($_fleets)) {
+while ($row = mysqli_fetch_array($_fleets, MYSQLI_BOTH)) {
     FlyingFleetHandler($row);
 }
 

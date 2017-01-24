@@ -146,7 +146,7 @@ if ( $a == 1 ) {
 }
 $buddyrow = doquery( "SELECT * FROM {{table}} " . $query, 'buddy' );
 
-while ( $b = mysql_fetch_array( $buddyrow ) ) {
+while ( $b = mysqli_fetch_array( $buddyrow, MYSQLI_ASSOC ) ) {
 	// para solicitudes
 	if ( !isset( $i ) && isset( $a ) ) {
 		$page .= "

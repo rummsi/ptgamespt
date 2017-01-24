@@ -74,7 +74,7 @@ switch($type){
 */
 if(isset($searchtext) && isset($type)){
 
-	while($r = mysql_fetch_array($search, MYSQL_BOTH)){
+	while($r = mysqli_fetch_array($search, MYSQL_BOTH)){
 
 		if($type=='playername'||$type=='planetname'){
 			$s=$r;
@@ -82,7 +82,7 @@ if(isset($searchtext) && isset($type)){
 			if ($type == "planetname")
 			{
 			$pquery = doquery("SELECT * FROM {{table}} WHERE id = {$s['id_owner']}","users",true);
-/*			$farray = mysql_fetch_array($pquery);*/
+/*			$farray = mysqli_fetch_array($pquery, MYSQLI_BOTH);*/
 			$s['planet_name'] = $s['name'];
 			$s['username'] = $pquery['username'];
 			$s['ally_name'] = ($pquery['ally_name']!='')?"<a href=\"alliance.php?mode=ainfo&tag={$pquery['ally_name']}\">{$pquery['ally_name']}</a>":'';

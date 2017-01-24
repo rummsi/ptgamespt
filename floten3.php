@@ -106,7 +106,7 @@ require_once dirname(__FILE__) .'/common.php';
 		}
 	}
 
-	$select = mysql_fetch_array($select);
+	$select = mysqli_fetch_array($select, MYSQLI_ASSOC);
 
 	if ($select['id_owner'] == $user['id']) {
 		$YourPlanet = true;
