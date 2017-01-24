@@ -70,7 +70,7 @@ include(ROOT_PATH . 'includes/db.' . PHPEXT);
 include(ROOT_PATH . 'includes/strings.' . PHPEXT);
 
 $query = doquery('SELECT * FROM {{table}}', 'config');
-while($row = mysql_fetch_assoc($query)) {
+while($row = mysqli_fetch_assoc($query)) {
     $game_config[$row['config_name']] = $row['config_value'];
 }
 

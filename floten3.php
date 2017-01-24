@@ -248,7 +248,7 @@ require_once dirname(__FILE__) .'/common.php';
 		message("<font color=\"lime\"><b>".$lang['fl_vacation_pla']."</b></font>", $lang['fl_vacation_ttl'], "fleet." . PHPEXT, 2);
 	}
 
-	$FlyingFleets = mysql_fetch_assoc(doquery("SELECT COUNT(fleet_id) as Number FROM {{table}} WHERE `fleet_owner`='{$user['id']}'", 'fleets'));
+	$FlyingFleets = mysqli_fetch_assoc(doquery("SELECT COUNT(fleet_id) as Number FROM {{table}} WHERE `fleet_owner`='{$user['id']}'", 'fleets'));
 	$ActualFleets = $FlyingFleets["Number"];
 	if (($user[$resource[108]] + 1) <= $ActualFleets) {
 		message("Pas de slot disponible", "Erreur", "fleet." . PHPEXT, 1);

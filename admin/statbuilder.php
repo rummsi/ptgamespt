@@ -47,7 +47,7 @@ if (strtolower(substr(PHP_SAPI, 0, 3)) == 'cli' || in_array($user['authlevel'], 
 
 	$GameUsers  = doquery("SELECT * FROM {{table}} WHERE authlevel<3", 'users');
 
-	while ($CurUser = mysql_fetch_assoc($GameUsers)) {
+	while ($CurUser = mysqli_fetch_assoc($GameUsers)) {
 		// Recuperation des anciennes statistiques
 		$OldStatRecord  = doquery ("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `id_owner` = '".$CurUser['id']."';",'statpoints');
 		if ($OldStatRecord) {
@@ -81,7 +81,7 @@ if (strtolower(substr(PHP_SAPI, 0, 3)) == 'cli' || in_array($user['authlevel'], 
 		$GCount         = $TTechCount;
 		$GPoints        = $TTechPoints;
 		$UsrPlanets     = doquery("SELECT * FROM {{table}} WHERE `id_owner` = '". $CurUser['id'] ."';", 'planets');
-		while ($CurPlanet = mysql_fetch_assoc($UsrPlanets) ) {
+		while ($CurPlanet = mysqli_fetch_assoc($UsrPlanets) ) {
 			$Points           = GetBuildPoints ( $CurPlanet );
 			$TBuildCount     += $Points['BuildCount'];
 			$GCount          += $Points['BuildCount'];
@@ -134,7 +134,7 @@ if (strtolower(substr(PHP_SAPI, 0, 3)) == 'cli' || in_array($user['authlevel'], 
 
 	$Rank           = 1;
 	$RankQry        = doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `stat_code` = '1' ORDER BY `tech_points` DESC;", 'statpoints');
-	while ($TheRank = mysql_fetch_assoc($RankQry) ) {
+	while ($TheRank = mysqli_fetch_assoc($RankQry) ) {
 		$QryUpdateStats  = "UPDATE {{table}} SET ";
 		$QryUpdateStats .= "`tech_rank` = '". $Rank ."' ";
 		$QryUpdateStats .= "WHERE ";
@@ -145,7 +145,7 @@ if (strtolower(substr(PHP_SAPI, 0, 3)) == 'cli' || in_array($user['authlevel'], 
 
 	$Rank           = 1;
 	$RankQry        = doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `stat_code` = '1' ORDER BY `build_points` DESC;", 'statpoints');
-	while ($TheRank = mysql_fetch_assoc($RankQry) ) {
+	while ($TheRank = mysqli_fetch_assoc($RankQry) ) {
 		$QryUpdateStats  = "UPDATE {{table}} SET ";
 		$QryUpdateStats .= "`build_rank` = '". $Rank ."' ";
 		$QryUpdateStats .= "WHERE ";
@@ -156,7 +156,7 @@ if (strtolower(substr(PHP_SAPI, 0, 3)) == 'cli' || in_array($user['authlevel'], 
 
 	$Rank           = 1;
 	$RankQry        = doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `stat_code` = '1' ORDER BY `defs_points` DESC;", 'statpoints');
-	while ($TheRank = mysql_fetch_assoc($RankQry) ) {
+	while ($TheRank = mysqli_fetch_assoc($RankQry) ) {
 		$QryUpdateStats  = "UPDATE {{table}} SET ";
 		$QryUpdateStats .= "`defs_rank` = '". $Rank ."' ";
 		$QryUpdateStats .= "WHERE ";
@@ -167,7 +167,7 @@ if (strtolower(substr(PHP_SAPI, 0, 3)) == 'cli' || in_array($user['authlevel'], 
 
 	$Rank           = 1;
 	$RankQry        = doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `stat_code` = '1' ORDER BY `fleet_points` DESC;", 'statpoints');
-	while ($TheRank = mysql_fetch_assoc($RankQry) ) {
+	while ($TheRank = mysqli_fetch_assoc($RankQry) ) {
 		$QryUpdateStats  = "UPDATE {{table}} SET ";
 		$QryUpdateStats .= "`fleet_rank` = '". $Rank ."' ";
 		$QryUpdateStats .= "WHERE ";
@@ -178,7 +178,7 @@ if (strtolower(substr(PHP_SAPI, 0, 3)) == 'cli' || in_array($user['authlevel'], 
 
 	$Rank           = 1;
 	$RankQry        = doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `stat_code` = '1' ORDER BY `total_points` DESC;", 'statpoints');
-	while ($TheRank = mysql_fetch_assoc($RankQry) ) {
+	while ($TheRank = mysqli_fetch_assoc($RankQry) ) {
 		$QryUpdateStats  = "UPDATE {{table}} SET ";
 		$QryUpdateStats .= "`total_rank` = '". $Rank ."' ";
 		$QryUpdateStats .= "WHERE ";
@@ -190,7 +190,7 @@ if (strtolower(substr(PHP_SAPI, 0, 3)) == 'cli' || in_array($user['authlevel'], 
 	// Statistiques des alliances ...
 	$GameAllys  = doquery("SELECT * FROM {{table}}", 'alliance');
 
-	while ($CurAlly = mysql_fetch_assoc($GameAllys)) {
+	while ($CurAlly = mysqli_fetch_assoc($GameAllys)) {
 		// Recuperation des anciennes statistiques
 		$OldStatRecord  = doquery ("SELECT * FROM {{table}} WHERE `stat_type` = '2' AND `id_owner` = '".$CurAlly['id']."';",'statpoints');
 		if ($OldStatRecord) {
