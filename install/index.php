@@ -278,7 +278,7 @@ EOF;
             $prefix = $_POST['prefix'];
             $db     = $_POST['db'];
 
-            if (!mysql_connect($host, $user, $pass, $db)) {
+            if (!mysqli_connect($host, $user, $pass, $db)) {
                 header("Location: ?mode=goto&page=2&error=1");
                 exit();
             }
