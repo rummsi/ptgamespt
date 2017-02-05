@@ -54,6 +54,7 @@ body
   background-attachment: fixed;
   background-repeat    : no-repeat;
   background-position  : top left;
+  background-size      : cover;
   scrollbar-arrow-color: #FFFFFF;
   scrollbar-base-color: #344566;
   scrollbar-track-color: #344566;
@@ -66,8 +67,10 @@ body
   font-family          : Tahoma,sans-serif;
 }
 
-body.style{
-  background-image     : url(img/background1.jpg);
+div#menu{
+    padding-left:50px;
+    float:left;
+    position:auto;
 }
 
 body.style table {

@@ -42,3 +42,5 @@ require realpath(ROOT_PATH . 'Libraries/Smarty/Smarty.class.php');
 
 $tplObj = new Smarty();
 //$tplObj->testinstall();
+
+include(ROOT_PATH . 'includes/classes/Ptgames/Game.php');

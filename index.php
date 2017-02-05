@@ -39,7 +39,6 @@ if (empty($page)) {
 includeLang('login');
 
 // Added Autoload in feature Versions
-//require(ROOT_PATH . $pageClass . '.php');
 require(ROOT_PATH . 'includes/classes/Ptgames/Index/' . $pageClass . '.php');
 
 $pageObj = new $pageClass;
