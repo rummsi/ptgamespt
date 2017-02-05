@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 $searchtext = mysqli_real_escape_string(Database::$dbHandle, $_POST['searchtext']);
 $type = $_POST['type'];
 
@@ -85,11 +81,11 @@ if(isset($searchtext) && isset($type)){
 /*			$farray = mysqli_fetch_array($pquery, MYSQLI_BOTH);*/
 			$s['planet_name'] = $s['name'];
 			$s['username'] = $pquery['username'];
-			$s['ally_name'] = ($pquery['ally_name']!='')?"<a href=\"alliance.php?mode=ainfo&tag={$pquery['ally_name']}\">{$pquery['ally_name']}</a>":'';
+			$s['ally_name'] = ($pquery['ally_name']!='')?"<a href=\"game.php?page=alliance&mode=ainfo&tag={$pquery['ally_name']}\">{$pquery['ally_name']}</a>":'';
 			}else{
 			$pquery = doquery("SELECT name FROM {{table}} WHERE id = {$s['id_planet']}","planets",true);
 			$s['planet_name'] = $pquery['name'];
-			$s['ally_name'] = ($aquery['ally_name']!='')?"<a href=\"alliance.php?mode=ainfo&tag={$aquery['ally_name']}\">{$aquery['ally_name']}</a>":'';
+			$s['ally_name'] = ($aquery['ally_name']!='')?"<a href=\"game.php?page=alliance&mode=ainfo&tag={$aquery['ally_name']}\">{$aquery['ally_name']}</a>":'';
 			}
 			//ahora la alianza
 			if($s['ally_id']!=0&&$s['ally_request']==0){
@@ -100,7 +96,7 @@ if(isset($searchtext) && isset($type)){
 
 
 
-			$s['position'] = "<a href=\"stat.php?start=".$s['rank']."\">".$s['rank']."</a>";
+			$s['position'] = "<a href=\"game.php?page=stat&start=".$s['rank']."\">".$s['rank']."</a>";
 			$s['dpath'] = $dpath;
 			$s['coordinated'] = "{$s['galaxy']}:{$s['system']}:{$s['planet']}";
 			$s['buddy_request'] = $lang['buddy_request'];
@@ -111,7 +107,7 @@ if(isset($searchtext) && isset($type)){
 
 			$s['ally_points'] = pretty_number($s['ally_points']);
 
-			$s['ally_tag'] = "<a href=\"alliance.php?mode=ainfo&tag={$s['ally_tag']}\">{$s['ally_tag']}</a>";
+			$s['ally_tag'] = "<a href=\"game.php?page=alliance&mode=ainfo&tag={$s['ally_tag']}\">{$s['ally_tag']}</a>";
 			$result_list .= parsetemplate($row, $s);
 		}
 	}
@@ -130,5 +126,5 @@ $lang['searchtext'] = $searchtext;
 $lang['search_results'] = $search_results;
 //esto es algo repetitivo ... w
 $page = parsetemplate(gettemplate('search_body'), $lang);
-display($page,$lang['Search']);
+Game::display($page,$lang['Search']);
 ?>

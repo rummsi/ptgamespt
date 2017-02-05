@@ -39,25 +39,25 @@ function GalaxyRowMoon ( $GalaxyRow, $GalaxyRowPlanet, $GalaxyRowUser, $Galaxy, 
 		$MissionType6Link = "";
 	}
 	if ($GalaxyRowUser['id'] != $user['id']) {
-		$MissionType1Link = "<a href=fleet.php?galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."&amp;target_mission=1>". $lang['type_mission'][1] ."</a><br />";
+		$MissionType1Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."&amp;target_mission=1>". $lang['type_mission'][1] ."</a><br />";
 	} elseif ($GalaxyRowUser['id'] == $user['id']) {
 		$MissionType1Link = "";
 	}
 
 	if ($GalaxyRowUser['id'] != $user['id']) {
-		$MissionType5Link = "<a href=fleet.php?galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=5>". $lang['type_mission'][5] ."</a><br />";
+		$MissionType5Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=5>". $lang['type_mission'][5] ."</a><br />";
 	} elseif ($GalaxyRowUser['id'] == $user['id']) {
 		$MissionType5Link = "";
 	}
 	if ($GalaxyRowUser['id'] == $user['id']) {
-		$MissionType4Link = "<a href=fleet.php?galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=4>". $lang['type_mission'][4] ."</a><br />";
+		$MissionType4Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=4>". $lang['type_mission'][4] ."</a><br />";
 	} elseif ($GalaxyRowUser['id'] != $user['id']) {
 		$MissionType4Link = "";
 	}
 
 	if ($GalaxyRowUser['id'] != $user['id']) {
 		if ($CanDestroy > 0) {
-			$MissionType9Link = "<a href=fleet.php?galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=9>". $lang['type_mission'][9] ."</a>";
+			$MissionType9Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=9>". $lang['type_mission'][9] ."</a>";
 		} else {
 			$MissionType9Link = "";
 		}
@@ -65,7 +65,7 @@ function GalaxyRowMoon ( $GalaxyRow, $GalaxyRowPlanet, $GalaxyRowUser, $Galaxy, 
 		$MissionType9Link = "";
 	}
 
-	$MissionType3Link = "<a href=fleet.php?galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=3>". $lang['type_mission'][3] ."</a><br />";
+	$MissionType3Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=3>". $lang['type_mission'][3] ."</a><br />";
 
 	if ($GalaxyRow && $GalaxyRowPlanet["destruyed"] == 0 && $GalaxyRow["id_luna"] != 0) {
 		$Result .= "<a style=\"cursor: pointer;\"";

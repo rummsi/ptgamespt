@@ -46,7 +46,7 @@ function GalaxyRowPlanet ( $GalaxyRow, $GalaxyRowPlanet, $GalaxyRowUser, $Galaxy
 					$SystemLimitMax = $CurrentSystem + $Range;
 					if ($System <= $SystemLimitMax) {
 						if ($System >= $SystemLimitMin) {
-							$PhalanxTypeLink = "<a href=# onclick=fenster(&#039;phalanx.php?galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."&#039;) >".$lang['gl_phalanx']."</a><br />";
+							$PhalanxTypeLink = "<a href=# onclick=fenster(&#039;game.php?page=phalanx&galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."&#039;) >".$lang['gl_phalanx']."</a><br />";
 						} else {
 							$PhalanxTypeLink = "";
 						}
@@ -69,21 +69,21 @@ function GalaxyRowPlanet ( $GalaxyRow, $GalaxyRowPlanet, $GalaxyRowUser, $Galaxy
 			$MissionType6Link = "";
 		}
 		if ($GalaxyRowUser['id'] != $user['id']) {
-			$MissionType1Link = "<a href=fleet.php?galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."&amp;target_mission=1>". $lang['type_mission'][1] ."</a><br />";
+			$MissionType1Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."&amp;target_mission=1>". $lang['type_mission'][1] ."</a><br />";
 		} elseif ($GalaxyRowUser['id'] == $user['id']) {
 			$MissionType1Link = "";
 		}
 		if ($GalaxyRowUser['id'] != $user['id']) {
-			$MissionType5Link = "<a href=fleet.php?galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=5>". $lang['type_mission'][5] ."</a><br />";
+			$MissionType5Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=5>". $lang['type_mission'][5] ."</a><br />";
 		} elseif ($GalaxyRowUser['id'] == $user['id']) {
 			$MissionType5Link = "";
 		}
 		if ($GalaxyRowUser['id'] == $user['id']) {
-			$MissionType4Link = "<a href=fleet.php?galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=4>". $lang['type_mission'][4] ."</a><br />";
+			$MissionType4Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=4>". $lang['type_mission'][4] ."</a><br />";
 		} elseif ($GalaxyRowUser['id'] != $user['id']) {
 			$MissionType4Link = "";
 		}
-		$MissionType3Link = "<a href=fleet.php?galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=3>". $lang['type_mission'][3] ."</a>";
+		$MissionType3Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=3>". $lang['type_mission'][3] ."</a>";
 
 		$Result .= "<a style=\"cursor: pointer;\"";
 		$Result .= " onmouseover='return overlib(\"";

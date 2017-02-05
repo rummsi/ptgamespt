@@ -71,7 +71,7 @@ function GalaxyRowActions ( $GalaxyRow, $GalaxyRowPlanet, $GalaxyRowPlayer, $Gal
 			}
 			if ($user["settings_wri"] == "1" &&
 				$GalaxyRowPlayer['id']) {
-				$Result .= "<a href=messages.php?mode=write&id=".$GalaxyRowPlayer["id"].">";
+				$Result .= "<a href=game.php?page=messages&mode=write&id=".$GalaxyRowPlayer["id"].">";
 				$Result .= "<img src=". $dpath ."img/m.gif alt=\"".$lang['gl_sendmess']."\" title=\"".$lang['gl_sendmess']."\" border=0></a>";
                 $Result .= "&nbsp;";
 			}
@@ -84,7 +84,7 @@ function GalaxyRowActions ( $GalaxyRow, $GalaxyRowPlanet, $GalaxyRowPlayer, $Gal
 			if ($user["settings_mis"] == "1" AND
 				$MissileBtn == true          &&
 				$GalaxyRowPlayer['id']) {
-				$Result .= "<a href=galaxy.php?mode=2&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&current=".$user['current_planet']." >";
+				$Result .= "<a href=game.php?page=galaxy&mode=2&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&current=".$user['current_planet']." >";
 				$Result .= "<img src=". $dpath ."img/r.gif alt=\"".$lang['gl_mipattack']."\" title=\"".$lang['gl_mipattack']."\" border=0></a>";
 			}
 		}

@@ -99,7 +99,7 @@ function MissionCaseSpy ( $FleetRow ) {
 							$DestProba = "<font color=\"red\">".$lang['sys_mess_spy_destroyed']."</font>";
 						}
 						$AttackLink = "<center>";
-						$AttackLink .= "<a href=\"fleet.php?galaxy=". $FleetRow['fleet_end_galaxy'] ."&system=". $FleetRow['fleet_end_system'] ."";
+						$AttackLink .= "<a href=\"game.php?page=fleet&galaxy=". $FleetRow['fleet_end_galaxy'] ."&system=". $FleetRow['fleet_end_system'] ."";
 						$AttackLink .= "&planet=".$FleetRow['fleet_end_planet']."";
 						$AttackLink .= "&target_mission=1";
 						$AttackLink .= " \">". $lang['type_mission'][1] ."";

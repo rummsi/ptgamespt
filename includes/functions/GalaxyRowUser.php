@@ -45,10 +45,10 @@ function GalaxyRowUser ( $GalaxyRow, $GalaxyRowPlanet, $GalaxyRowUser, $Galaxy, 
 		$RowUserLevel  = $RowUserPoints * $NoobMulti['config_value'];
 		if       ($GalaxyRowUser['bana'] == 1 AND
 				  $GalaxyRowUser['urlaubs_modus'] == 1) {
-			$Systemtatus2 = $lang['vacation_shortcut']." <a href=\"banned.php\"><span class=\"banned\">".$lang['banned_shortcut']."</span></a>";
+			$Systemtatus2 = $lang['vacation_shortcut']." <a href=\"game.php?page=banned\"><span class=\"banned\">".$lang['banned_shortcut']."</span></a>";
 			$Systemtatus  = "<span class=\"vacation\">";
 		} elseif ($GalaxyRowUser['bana'] == 1) {
-			$Systemtatus2 = "<a href=\"banned.php\"><span class=\"banned\">".$lang['banned_shortcut']."</span></a>";
+			$Systemtatus2 = "<a href=\"game.php?page=banned\"><span class=\"banned\">".$lang['banned_shortcut']."</span></a>";
 			$Systemtatus  = "";
 		} elseif ($GalaxyRowUser['urlaubs_modus'] == 1) {
 			$Systemtatus2 = "<span class=\"vacation\">".$lang['vacation_shortcut']."</span>";
@@ -104,12 +104,12 @@ function GalaxyRowUser ( $GalaxyRow, $GalaxyRowPlanet, $GalaxyRowUser, $Galaxy, 
 		$Result .= "<td class=c colspan=2>".$lang['Player']." ".$GalaxyRowUser['username']." ".$lang['Place']." ".$Systemtatus4."</td>";
 		$Result .= "</tr><tr>";
 		if ($GalaxyRowUser['id'] != $user['id']) {
-			$Result .= "<td><a href=messages.php?mode=write&id=".$GalaxyRowUser['id'].">".$lang['gl_sendmess']."</a></td>";
+			$Result .= "<td><a href=game.php?page=messages&mode=write&id=".$GalaxyRowUser['id'].">".$lang['gl_sendmess']."</a></td>";
 			$Result .= "</tr><tr>";
 			$Result .= "<td><a href=game.php?page=buddy&a=2&u=".$GalaxyRowUser['id'].">".$lang['gl_buddyreq']."</a></td>";
 			$Result .= "</tr><tr>";
 		}
-		$Result .= "<td><a href=stat.php?who=player&start=".$Systemtart.">".$lang['gl_stats']."</a></td>";
+		$Result .= "<td><a href=game.php?page=stat&who=player&start=".$Systemtart.">".$lang['gl_stats']."</a></td>";
 		$Result .= "</tr>";
 		$Result .= "</table>\"";
 		$Result .= ", STICKY, MOUSEOFF, DELAY, 750, CENTER, OFFSETX, -40, OFFSETY, -40 );'";

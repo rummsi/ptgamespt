@@ -69,7 +69,7 @@ function InsertGalaxyScripts ( $CurrentPlanet ) {
 	$Script .= "}\n\n";
 
 	$Script .= "function doit (order, galaxy, system, planet, planettype, shipcount) {\n";
-	$Script .= "	ajax.requestFile = \"flotenajax.php?action=send\";\n";
+	$Script .= "	ajax.requestFile = \"game.php?page=flotenajax&action=send\";\n";
 	$Script .= "	ajax.runResponse = whenResponse;\n";
 	$Script .= "	ajax.execute = true;\n\n";
 	$Script .= "	ajax.setVar(\"thisgalaxy\", ". $CurrentPlanet["galaxy"] .");\n";

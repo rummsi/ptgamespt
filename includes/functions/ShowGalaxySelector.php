@@ -44,7 +44,7 @@ function ShowGalaxySelector ( $Galaxy, $System ) {
 		$System = 1;
 	}
 
-	$Result  = "<form action=\"galaxy.php?mode=1\" method=\"post\" id=\"galaxy_form\">";
+	$Result  = "<form action=\"game.php?page=galaxy&mode=1\" method=\"post\" id=\"galaxy_form\">";
 	$Result .= "<input type=\"hidden\" id=\"auto\" value=\"dr\" >";
 	$Result .= "<table border=\"0\">";
 	$Result .= "<tbody><tr><td>";

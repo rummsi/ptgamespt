@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 // ----------------------------------------------------------------------------------------------------------
 // Creation de la Liste de flotte disponible sur la lune
 //
@@ -351,7 +347,7 @@ function ShowBuildingInfoPage ($CurrentUser, $CurrentPlanet, $BuildID) {
 	$gid  = $_GET['gid'];
 	$page = ShowBuildingInfoPage ($user, $planetrow, $gid);
 
-	display ($page, $lang['nfo_page_title']);
+	Game::display ($page, $lang['nfo_page_title']);
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

@@ -57,7 +57,7 @@ function GalaxyRowPlanetName ( $GalaxyRow, $GalaxyRowPlanet, $GalaxyRowUser, $Ga
 				$Range = GetPhalanxRange ( $HavePhalanx );
 				if ($CurrentGalaxy + $Range <= $CurrentSystem AND
 					$CurrentSystem >= $CurrentGalaxy - $Range) {
-					$PhalanxTypeLink = "<a href=# onclick=fenster('phalanx.php?galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."')  title=\"".$lang['gl_phalanx']."\">".$GalaxyRowPlanet['name']."</a><br />";
+					$PhalanxTypeLink = "<a href=# onclick=fenster('game.php?page=phalanx&galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."')  title=\"".$lang['gl_phalanx']."\">".$GalaxyRowPlanet['name']."</a><br />";
 				} else {
 					$PhalanxTypeLink = stripslashes($GalaxyRowPlanet['name']);
 				}

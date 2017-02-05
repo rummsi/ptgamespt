@@ -47,7 +47,7 @@ function ShowGalaxyFooter ( $Galaxy, $System,  $CurrentMIP, $CurrentRC, $Current
 	$Result .= "<tr>";
 	$Result .= "<th width=\"30\">16</th>";
 	$Result .= "<th colspan=7>";
-	$Result .= "<a href=fleet.php?galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=16;planettype=1&amp;target_mission=15>". $lang['gf_unknowsp'] ."</a>";
+	$Result .= "<a href=game.php?page=fleet&galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=16;planettype=1&amp;target_mission=15>". $lang['gf_unknowsp'] ."</a>";
 	$Result .= "</th>";
 	$Result .= "</tr>";
 

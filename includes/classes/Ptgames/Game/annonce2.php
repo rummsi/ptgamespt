@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 $actions = $_GET['action'];
 
 if($actions == 2)
@@ -43,7 +39,7 @@ $page .=<<<HTML
 <td class="c" colspan="10" align="center"><b><font color="white">Ajouter une Annonce</font></b></td></tr>
 <td class="c" colspan="10" align="center"><b>Ressources &agrave; Vendre</font></b></td></tr>
 
-<form action="annonce.php?action=5" method="post">
+<form action="game.php?page=annonce&action=5" method="post">
 <tr><th colspan="5">M&eacute;tal</th><th colspan="5"><input type="texte" value="0" name="metalvendre" /></th></tr>
 <tr><th colspan="5">Cristal</th><th colspan="5"><input type="texte" value="0" name="cristalvendre" /></th></tr>
 <tr><th colspan="5">Deuterium</th><th colspan="5"><input type="texte" value="0" name="deutvendre" /></th></tr>
@@ -57,6 +53,6 @@ $page .=<<<HTML
 </table>
 HTML;
 
-display($page);
+Game::display($page);
 }
 ?>

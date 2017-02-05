@@ -28,11 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
-
 function BuildRessourcePage ( $CurrentUser, $CurrentPlanet ) {
 	global $lang, $ProdGrid, $resource, $reslist, $game_config, $_POST;
 
@@ -270,7 +265,7 @@ function BuildRessourcePage ( $CurrentUser, $CurrentPlanet ) {
 }
 
 	$Page = BuildRessourcePage ( $user, $planetrow );
-	display( $Page, $lang['Resources'] );
+	Game::display( $Page, $lang['Resources'] );
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

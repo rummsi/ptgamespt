@@ -28,9 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
 $users   = doquery("SELECT * FROM {{table}} WHERE id='".$user['id']."';", 'users');
 $annonce = doquery("SELECT * FROM {{table}} ", 'annonce');
 $action  = $_GET['action'];
@@ -65,11 +62,11 @@ deuts='{$deutsouhait}'" , "annonce");
 <center>
 <br>
 <p>Votre Annonce a bien &eacute;t&eacute; enregistr&eacute;e !</p>
-<br><p><a href="annonce.php">Retour aux annonces</a></p>
+<br><p><a href="game.php?page=annonce">Retour aux annonces</a></p>
 
 HTML;
 
-	display($page2);
+	Game::display($page2);
 }
 
 if ($action != 5) {
@@ -111,12 +108,12 @@ if ($action != 5) {
 	}
 
 	$page2 .= "
-<tr><th colspan=\"10\" align=\"center\"><a href=\"annonce2.php?action=2\">Ajouter une Annonce</a></th></tr>
+<tr><th colspan=\"10\" align=\"center\"><a href=\"game.php?page=annonce2&action=2\">Ajouter une Annonce</a></th></tr>
 </td>
 </table>
 </HTML>";
 
-	display($page2);
+	Game::display($page2);
 }
 
 // Créer par Tom1991 Copyright 2008

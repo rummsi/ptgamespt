@@ -1,5 +1,5 @@
 <br>
- <form action="search.php" method="post">
+ <form action="game.php?page=search" method="post">
 
  <table width="519">
   <tr>

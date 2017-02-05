@@ -13,7 +13,7 @@
 <tbody>
 <tr>
 	<td class="c" align="center" nowrap="nowrap">
-	{te_dt_tx_pre} <a href="infos.php?gid={te_dt_id}">'{te_dt_name}'</a></td>
+	{te_dt_tx_pre} <a href="game.php?page=infos&gid={te_dt_id}">'{te_dt_name}'</a></td>
 </tr>
 
 <tr>
@@ -24,7 +24,7 @@
 		<tbody>
 		<tr>
 			<td align="left"><font color="#00ff00">Laboratoire de recherche (Niveau 1)</font></td>
-			<td align="right"><a href="techdetails.php?techid=31">[i]</a></td>
+			<td align="right"><a href="game.php?page=techdetails&techid=31">[i]</a></td>
 		</tr>
 		</tbody>
 		</table>

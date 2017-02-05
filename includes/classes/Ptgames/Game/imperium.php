@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 includeLang('imperium');
 
 	$Order = ( $user['planet_sort_order'] == 1 ) ? "DESC" : "ASC" ;
@@ -69,19 +65,19 @@ foreach ($planet as $p) {
 	$data['text'] = $p['name'];
 	$parse['file_names'] .= parsetemplate($row2, $data);
 	// {file_coordinates}
-	$data['text'] = "[<a href=\"galaxy.php?mode=3&galaxy={$p['galaxy']}&system={$p['system']}\">{$p['galaxy']}:{$p['system']}:{$p['planet']}</a>]";
+	$data['text'] = "[<a href=\"game.php?page=galaxy&mode=3&galaxy={$p['galaxy']}&system={$p['system']}\">{$p['galaxy']}:{$p['system']}:{$p['planet']}</a>]";
 	$parse['file_coordinates'] .= parsetemplate($row2, $data);
 	// {file_fields}
 	$data['text'] = $p['field_current'] . '/' . $p['field_max'];
 	$parse['file_fields'] .= parsetemplate($row2, $data);
 	// {file_metal}
-	$data['text'] = '<a href="resources.php?cp=' . $p['id'] . '&amp;re=0&amp;planettype=' . $p['planet_type'] . '">'. pretty_number($p['metal']) .'</a> / '. pretty_number($p['metal_perhour']);
+	$data['text'] = '<a href="game.php?page=resources&cp=' . $p['id'] . '&amp;re=0&amp;planettype=' . $p['planet_type'] . '">'. pretty_number($p['metal']) .'</a> / '. pretty_number($p['metal_perhour']);
 	$parse['file_metal'] .= parsetemplate($row2, $data);
 	// {file_crystal}
-	$data['text'] = '<a href="resources.php?cp=' . $p['id'] . '&amp;re=0&amp;planettype=' . $p['planet_type'] . '">'. pretty_number($p['crystal']) .'</a> / '. pretty_number($p['crystal_perhour']);
+	$data['text'] = '<a href="game.php?page=resources&cp=' . $p['id'] . '&amp;re=0&amp;planettype=' . $p['planet_type'] . '">'. pretty_number($p['crystal']) .'</a> / '. pretty_number($p['crystal_perhour']);
 	$parse['file_crystal'] .= parsetemplate($row2, $data);
 	// {file_deuterium}
-	$data['text'] = '<a href="resources.php?cp=' . $p['id'] . '&amp;re=0&amp;planettype=' . $p['planet_type'] . '">'. pretty_number($p['deuterium']) .'</a> / '. pretty_number($p['deuterium_perhour']);
+	$data['text'] = '<a href="game.php?page=resources&cp=' . $p['id'] . '&amp;re=0&amp;planettype=' . $p['planet_type'] . '">'. pretty_number($p['deuterium']) .'</a> / '. pretty_number($p['deuterium_perhour']);
 	$parse['file_deuterium'] .= parsetemplate($row2, $data);
 	// {file_energy}
 	$data['text'] = pretty_number($p['energy_max'] - $p['energy_used']) . ' / ' . pretty_number($p['energy_max']);
@@ -124,6 +120,6 @@ foreach ($reslist['defense'] as $a => $i) {
 
 $page .= parsetemplate(gettemplate('imperium_table'), $parse);
 
-display($page, $lang['Imperium'], false);
+Game::display($page, $lang['Imperium'], false);
 // Created by Perberos. All rights reserved (C) 2006
 ?>

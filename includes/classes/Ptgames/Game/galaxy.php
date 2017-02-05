@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
     includeLang('galaxy');
 
     $CurrentPlanet = doquery("SELECT * FROM {{table}} WHERE `id` = '". $user['current_planet'] ."';", 'planets', true);
@@ -137,7 +133,7 @@ require_once dirname(__FILE__) .'/common.php';
 
     $page = InsertGalaxyScripts($CurrentPlanet);
 
-    $page .= "<body style=\"overflow: hidden;\" onUnload=\"\"><br><br>";
+    $page .= "<body style=\"overflow: auto;\" onUnload=\"\"><br><br>";
     $page .= ShowGalaxySelector ( $galaxy, $system );
 
     if ($mode == 2) {
@@ -152,7 +148,7 @@ require_once dirname(__FILE__) .'/common.php';
 
     $page .= "</tbody></table></div>";
 
-    display ($page, $lang[''], false, '', false);
+    Game::display ($page, $lang[''], false, '', false);
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

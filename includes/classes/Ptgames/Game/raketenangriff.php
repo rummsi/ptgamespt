@@ -28,9 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
 $planet    = doquery("SELECT * FROM {{table}} WHERE `id` = '".$user['current_planet']."';", 'planets', true);
 $iraks = $planet['interplanetary_misil'];
 
@@ -215,7 +212,7 @@ else
 <title>Attaque par missiles interplanetaire</title>
 <link rel="SHORTCUT ICON" href="favicon.ico">
 <link rel="stylesheet" type="text/css" href="<?php echo $dpath ?>/formate.css" />
-<meta http-equiv="refresh" content="3; URL=galaxy.php?mode=3&galaxy=<?php echo $g; ?>&system=<?php echo $s; ?>&target=<?php echo $i; ?>">
+<meta http-equiv="refresh" content="3; URL=game.php?page=galaxy&mode=3&galaxy=<?php echo $g; ?>&system=<?php echo $s; ?>&target=<?php echo $i; ?>">
 
 
 </head>

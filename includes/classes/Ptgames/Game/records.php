@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 $cacheFile = ROOT_PATH . '/cache/' . basename(__FILE__) . '.cache';
 $timeDelay = 21600; // 21600s = 6h
 
@@ -129,7 +125,7 @@ if(!file_exists($cacheFile) || (time() - filemtime($cacheFile)) > $timeDelay)
     }
 
     $page = parsetemplate($recordTpl, $parse);
-    display($page, $lang['rec_title']);
+    Game::display($page, $lang['rec_title']);
 
     $data = ob_get_contents();
     ob_end_flush();

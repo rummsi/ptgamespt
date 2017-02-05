@@ -28,9 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
 	$HeadTpl = gettemplate('techtree_head');
 	$RowTpl  = gettemplate('techtree_row');
 	foreach($lang['tech'] as $Element => $ElementName) {
@@ -55,7 +52,7 @@ require_once dirname(__FILE__) .'/common.php';
 					$parse['required_list'] .= $lang['tech'][$ResClass] ." (". $lang['level'] ." ". $Level .")";
 					$parse['required_list'] .= "</font><br>";
 				}
-				$parse['tt_detail']      = "<a href=\"techdetails.php?techid=". $Element ."\">" .$lang['treeinfo'] ."</a>";
+				$parse['tt_detail']      = "<a href=\"game.php?page=techdetails&techid=". $Element ."\">" .$lang['treeinfo'] ."</a>";
 			} else {
 				$parse['required_list'] = "";
 				$parse['tt_detail']     = "";
@@ -68,7 +65,7 @@ require_once dirname(__FILE__) .'/common.php';
 	$parse['techtree_list'] = $page;
 	$page                   = parsetemplate(gettemplate('techtree_body'), $parse);
 
-	display($page, $lang['Tech']);
+	Game::display($page, $lang['Tech']);
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

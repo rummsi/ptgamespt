@@ -31,7 +31,7 @@
 function ShowGalaxyMISelector ( $Galaxy, $System, $Planet, $Current, $MICount ) {
 	global $lang;
 
-	$Result  = "<form action=\"raketenangriff.php?c=".$Current."&mode=2&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."\" method=\"POST\">";
+	$Result  = "<form action=\"game.php?page=raketenangriff&c=".$Current."&mode=2&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."\" method=\"POST\">";
 	$Result .= "<tr>";
 	$Result .= "<table border=\"0\">";
 	$Result .= "<tr>";

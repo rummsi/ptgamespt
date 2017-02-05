@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 	includeLang('overview');
 	includeLang('phalanx');
 
@@ -136,6 +132,6 @@ require_once dirname(__FILE__) .'/common.php';
 		$page = parsetemplate( $PageTPL, $parse );
 	}
 
-	display ($page, $lang['sys_phalanx'], false, '', false);
+	Game::display ($page, $lang['sys_phalanx'], false, '', false);
 
 ?>
