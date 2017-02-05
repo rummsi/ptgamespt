@@ -2,7 +2,7 @@
 <h1>{Send_Apply}</h1>
 
 <table width=519>
-<form action="alliance.php?mode=apply&allyid={allyid}" method=POST>
+<form action="game.php?page=alliance&mode=apply&allyid={allyid}" method=POST>
 
 	<tr>
 	  <td class=c colspan=2>{Write_to_alliance}</td>

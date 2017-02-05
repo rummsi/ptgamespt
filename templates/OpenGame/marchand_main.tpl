@@ -1,4 +1,4 @@
-<form action="marchand.php" method="post">
+<form action="game.php?page=marchand" method="post">
 <input type="hidden" name="action" value="2">
 <br>
 <table width="600">

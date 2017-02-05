@@ -1,5 +1,5 @@
 <br>
-<form action="alliance.php?mode=admin&edit=rights" method=POST>
+<form action="game.php?page=alliance&mode=admin&edit=rights" method=POST>
 	<tr>
 	  <th></th>
 	  <th>{Range_name}</th>

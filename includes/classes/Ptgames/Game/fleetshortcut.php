@@ -28,11 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
-
 $mode = $_GET['mode'];
 $a = $_GET['a'];
 /*
@@ -49,7 +44,7 @@ if(isset($_GET['mode'])){
 		$r = strip_tags($_POST[n]).",".intval($_POST[g]).",".intval($_POST[s]).",".intval($_POST[p]).",".intval($_POST[t])."\r\n";
 		$user['fleet_shortcut'] .= $r;
 		doquery("UPDATE {{table}} SET fleet_shortcut='{$user[fleet_shortcut]}' WHERE id={$user[id]}","users");
-		message("Le raccourcis a &eacute;t&eacute; enregistr&eacute; !","Enregistrment","fleetshortcut.php");
+		message("Le raccourcis a &eacute;t&eacute; enregistr&eacute; !","Enregistrment","game.php?page=fleetshortcut");
 	}
 	$page = "<form method=POST><table border=0 cellpadding=0 cellspacing=1 width=519>
 	<tr height=20>
@@ -68,7 +63,7 @@ if(isset($_GET['mode'])){
 	<th><input type=\"reset\" value=\"Zur&uuml;cksetzen\"> <input type=\"submit\" value=\"Enregistrer\">";
 	//Muestra un (L) si el destino pertenece a luna, lo mismo para escombros
 	$page .= "</th></tr>";
-	$page .= '<tr><td colspan=2 class=c><a href=fleetshortcut.php>Effacer</a></td></tr></tr></table></form>';
+	$page .= '<tr><td colspan=2 class=c><a href=game.php?page=fleetshortcut>Effacer</a></td></tr></tr></table></form>';
 }
 elseif(isset($_GET['a'])){
 	if($_POST){
@@ -78,7 +73,7 @@ elseif(isset($_GET['a'])){
 			unset($scarray[$a]);
 			$user['fleet_shortcut'] =  implode("\r\n",$scarray);
 			doquery("UPDATE {{table}} SET fleet_shortcut='{$user[fleet_shortcut]}' WHERE id={$user[id]}","users");
-			message("Shortcut wurde gel&ouml;scht","Gel&ouml;scht","fleetshortcut.php");
+			message("Shortcut wurde gel&ouml;scht","Gel&ouml;scht","game.php?page=fleetshortcut");
 		}
 		else{
 			$r = explode(",",$scarray[$a]);
@@ -90,7 +85,7 @@ elseif(isset($_GET['a'])){
 			$scarray[$a] = implode(",",$r);
 			$user['fleet_shortcut'] =  implode("\r\n",$scarray);
 			doquery("UPDATE {{table}} SET fleet_shortcut='{$user[fleet_shortcut]}' WHERE id={$user[id]}","users");
-			message("Le raccourcis a &eacute;t&eacute; &eacute;dit&eacute; !.","Editer","fleetshortcut.php");
+			message("Le raccourcis a &eacute;t&eacute; &eacute;dit&eacute; !.","Editer","game.php?page=fleetshortcut");
 		}
 	}
 	if($user['fleet_shortcut']){
@@ -120,7 +115,7 @@ elseif(isset($_GET['a'])){
 
 	}else{$page .= message("Le raccourcis a &eacute;t&eacute; enregistr&eacute; !","Enregistrer","fleetshortcut.php");}
 
-	$page .= '<tr><td colspan=2 class=c><a href=fleetshortcut.php>Retour</a></td></tr></tr></table></form>';
+	$page .= '<tr><td colspan=2 class=c><a href=game.php?page=fleetshortcut>Retour</a></td></tr></tr></table></form>';
 
 
 }
@@ -128,7 +123,7 @@ else{
 
 	$page = '<table border="0" cellpadding="0" cellspacing="1" width="519">
 	<tr height="20">
-	<td colspan="2" class="c">Raccourcis(<a href="?mode=add">Ajout</a>)</td>
+	<td colspan="2" class="c">Raccourcis(<a href="game.php?page=fleetshortcut&mode=add">Ajout</a>)</td>
 	</tr>';
 
 	if($user['fleet_shortcut']){
@@ -143,7 +138,7 @@ else{
 			if($b!=""){
 			$c = explode(',',$b);
 			if($i==0){$page .= "<tr height=\"20\">";}
-			$page .= "<th><a href=\"?a=".$e++."\">";
+			$page .= "<th><a href=\"game.php?page=fleetshortcut&a=".$e++."\">";
 			$page .= "{$c[0]} {$c[1]}:{$c[2]}:{$c[3]}";
 			//Muestra un (L) si el destino pertenece a luna, lo mismo para escombros
 			if($c[4]==2){$page .= " (E)";}elseif($c[4]==3){$page .= " (L)";}
@@ -157,9 +152,9 @@ else{
 
 	}else{$page .= "<th colspan=\"2\">Pas de Raccourcis</th>";}
 
-	$page .= '<tr><td colspan=2 class=c><a href=fleet.php>Retour</a></td></tr></tr></table>';
+	$page .= '<tr><td colspan=2 class=c><a href=game.php?page=fleet>Retour</a></td></tr></tr></table>';
 }
-display($page,"Shortcutmanager");
+Game::display($page,"Shortcutmanager");
 
 // Created by Perberos. All rights reversed (C) 2006
 ?>

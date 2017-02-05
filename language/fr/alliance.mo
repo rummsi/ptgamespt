@@ -72,7 +72,7 @@ $lang['Circular_sended'] = 'Les joueurs suivants ont re&ccedil;u le mail';
 $lang['it_is_not_posible_to_apply'] = "Impossible de cette mani&egrave;re";
 $lang['write_apply'] = "D&eacute;poser la candidature";
 $lang['your_apply'] = 'Votre candidature';
-$lang['apply_registered'] = 'Votre candidature a &eacute;t&eacute; sauvegard&eacute;e. Vous recevrez un message si vous &ecirc;tes accept&eacute;.<br><br><a href=alliance.php>Retour</a>';
+$lang['apply_registered'] = 'Votre candidature a &eacute;t&eacute; sauvegard&eacute;e. Vous recevrez un message si vous &ecirc;tes accept&eacute;.<br><br><a href=game.php?page=alliance>Retour</a>';
 $lang['apply_cantbeadded'] = 'La demande n\a pas aboutie, veuillez recommencer !';
 
 $lang['Exit_of_this_alliance'] = "Sortir de cette alliance";

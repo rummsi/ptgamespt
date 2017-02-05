@@ -1,5 +1,5 @@
 <br>
-	<form action="alliance.php?mode=admin&edit=requests&show={id}&sort=0" method="POST">
+	<form action="game.php?page=alliance&mode=admin&edit=requests&show={id}&sort=0" method="POST">
 	<tr>
 	  <th colspan=2>{Request_from}</th>
 	</tr>

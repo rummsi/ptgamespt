@@ -72,7 +72,7 @@ $lang['Circular_sended'] = 'I seguenti giocatori hanno ricevuto il messaggio';
 $lang['it_is_not_posible_to_apply'] = "Impossibile in questo modo";
 $lang['write_apply'] = "Testo della richiesta";
 $lang['your_apply'] = 'Propria richiesta';
-$lang['apply_registered'] = 'La tua richiesta � stata inoltrata. Si visualizzer&agrave; un messaggio alla risposta<br><br><a href=alliance.php>Torna indietro</a>';
+$lang['apply_registered'] = 'La tua richiesta � stata inoltrata. Si visualizzer&agrave; un messaggio alla risposta<br><br><a href=game.php?page=alliance>Torna indietro</a>';
 $lang['apply_cantbeadded'] = 'La richiesta non pu&oacute; essere inviata!';
 
 $lang['Exit_of_this_alliance'] = "Esci dall\'alleanza";

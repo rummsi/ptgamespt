@@ -9,7 +9,7 @@
 	  <td class="ramka"><input type=text name={name}> <input type=submit value="Zmie�"></td>
 	</tr>
 	<tr>
-	  <td class="ramka" colspan="9"><a href="alliance.php?mode=admin&edit=ally">{Return_to_overview}</a></td>
+	  <td class="ramka" colspan="9"><a href="game.php?page=alliance&mode=admin&edit=ally">{Return_to_overview}</a></td>
 	</tr>
 </table>
 </form>

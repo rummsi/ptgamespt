@@ -28,9 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
 	includeLang('fleet');
 
 	$speed = array(10 => 100,
@@ -97,7 +94,7 @@ require_once dirname(__FILE__) .'/common.php';
 	$page .= "	return 1\n";
 	$page .= "}\n";
 	$page .= "</script>\n";
-	$page .= "<form action=\"floten2.php\" method=\"post\">";
+	$page .= "<form action=\"game.php?page=floten2\" method=\"post\">";
 	$page .= $FleetHiddenBlock;
 	$page .= "<input type=\"hidden\" name=\"speedallsmin\"   value=\"". $speedallsmin ."\" />";
 	$page .= "<input type=\"hidden\" name=\"usedfleet\"      value=\"". str_rot13(base64_encode(serialize($fleet['fleetarray']))) ."\" />";
@@ -169,7 +166,7 @@ require_once dirname(__FILE__) .'/common.php';
 
 	// Gestion des raccourcis sur la galaxie
 	$page .= "<tr height=\"20\">";
-	$page .= "<td colspan=\"2\" class=\"c\">". $lang['fl_shortcut'] ." <a href=\"fleetshortcut.php\">". $lang['fl_shortlnk'] ."</a></td>";
+	$page .= "<td colspan=\"2\" class=\"c\">". $lang['fl_shortcut'] ." <a href=\"game.php?page=fleetshortcut\">". $lang['fl_shortlnk'] ."</a></td>";
 	$page .= "</tr>";
 	if ($user['fleet_shortcut']) {
 		$scarray = explode("\r\n", $user['fleet_shortcut']);
@@ -279,7 +276,7 @@ require_once dirname(__FILE__) .'/common.php';
 	$page .= "</form>";
 	$page .= "<script>javascript:shortInfo(); </script>";
 
-	display($page, $lang['fl_title']);
+	Game::display($page, $lang['fl_title']);
 
 // Updated by Chlorel. 16 Jan 2008 (String extraction, bug corrections, code uniformisation
 // Created by Perberos. All rights reversed (C) 2006

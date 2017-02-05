@@ -28,9 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
 	includeLang('fleet');
 
 	$fleetid = $_POST['fleetid'];
@@ -370,6 +367,6 @@ require_once dirname(__FILE__) .'/common.php';
 } else {
 }
 
-display($page, "Flotten");
+Game::display($page, "Flotten");
 
 ?>

@@ -28,17 +28,17 @@ function f(target_url,win_name) {
 </tr><tr>
 	<td colspan="2"><div><a href="game.php?page=buildings&mode=defense" accesskey="d" target="{mf}">{Defense}</a></div></td>
 </tr><tr>
-	<td colspan="2"><div><a href="officier.php" accesskey="o" target="{mf}">{Officiers}</a></div></td>
+	<td colspan="2"><div><a href="game.php?page=officier" accesskey="o" target="{mf}">{Officiers}</a></div></td>
 </tr><tr>
 	{marchand_link}
 </tr><tr>
 	<td colspan="2" background="{dpath}img/bg1.gif"><center>{navig}</center></td>
 </tr><tr>
-	<td colspan="2"><div><a href="alliance.php" accesskey="a" target="{mf}">{Alliance}</a></div></td>
+	<td colspan="2"><div><a href="game.php?page=alliance" accesskey="a" target="{mf}">{Alliance}</a></div></td>
 </tr><tr>
-	<td colspan="2"><div><a href="fleet.php" accesskey="t" target="{mf}">{Fleet}</a></div></td>
+	<td colspan="2"><div><a href="game.php?page=fleet" accesskey="t" target="{mf}">{Fleet}</a></div></td>
 </tr><tr>
-	<td colspan="2"><div><a href="messages.php" accesskey="c" target="{mf}">{Messages}</a></div></td>
+	<td colspan="2"><div><a href="game.php?page=messages" accesskey="c" target="{mf}">{Messages}</a></div></td>
 </tr><tr>
 
 	<td colspan="2" background="{dpath}img/bg1.gif"><center>{observ}</center></td>

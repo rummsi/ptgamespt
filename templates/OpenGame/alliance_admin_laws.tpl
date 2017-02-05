@@ -8,7 +8,7 @@
 
 <br>
 
-<form action="alliance.php?mode=admin&edit=rights&add=name" method=POST>
+<form action="game.php?page=alliance&mode=admin&edit=rights&add=name" method=POST>
 <table width=519>
 	<tr>
 	  <td class=c colspan=2>{Range_make}</td>
@@ -23,7 +23,7 @@
 </form>
 </table>
 
-<form action="alliance.php?mode=admin&edit=rights" method=POST>
+<form action="game.php?page=alliance&mode=admin&edit=rights" method=POST>
 <table width=519>
 	<tr>
 	  <td class=c colspan=2>{Law_leyends}</td>
@@ -63,7 +63,7 @@
 	  <th><img src=images/r9.png></th><th>{Left_hand_text}</th>
 	</tr>
 	<tr>
-	  <td class="c" colspan="2"><a href="alliance.php?mode=admin&edit=ally">{Return_to_overview}</a></td>
+	  <td class="c" colspan="2"><a href="game.php?page=alliance&mode=admin&edit=ally">{Return_to_overview}</a></td>
 	</tr>
 </form>
 </table>

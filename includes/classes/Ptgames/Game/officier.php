@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 function ShowOfficierPage ( &$CurrentUser ) {
 	global $lang, $resource, $reslist, $_GET;
 
@@ -95,7 +91,7 @@ function ShowOfficierPage ( &$CurrentUser ) {
 				$bloc['off_lvl']      = $CurrentUser[$resource[$Officier]];
 				$bloc['off_desc']     = $lang['Desc'][$Officier];
 				if ($Result == 1) {
-					$bloc['off_link'] = "<a href=\"officier.php?mode=2&offi=".$Officier."\"><font color=\"#00ff00\">". $lang['link'][$Officier]."</font>";
+					$bloc['off_link'] = "<a href=\"game.php?page=officier&mode=2&offi=".$Officier."\"><font color=\"#00ff00\">". $lang['link'][$Officier]."</font>";
 				} else {
 					$bloc['off_link'] = $lang['Maxlvl'];
 				}
@@ -109,7 +105,7 @@ function ShowOfficierPage ( &$CurrentUser ) {
 }
 
 	$page = ShowOfficierPage ( $user );
-	display($page, $lang['officier']);
+	Game::display($page, $lang['officier']);
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

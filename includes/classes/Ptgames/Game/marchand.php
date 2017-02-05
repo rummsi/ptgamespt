@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 function ModuleMarchand ( $CurrentUser, &$CurrentPlanet ) {
 	global $lang, $_POST;
 
@@ -147,7 +143,7 @@ function ModuleMarchand ( $CurrentUser, &$CurrentPlanet ) {
 }
 
 	$Page = ModuleMarchand ( $user, $planetrow );
-	display ( $Page, $lang['mod_marchand'], true, '', false );
+	Game::display ( $Page, $lang['mod_marchand'], true, '', false );
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

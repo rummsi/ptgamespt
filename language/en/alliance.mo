@@ -72,7 +72,7 @@ $lang['Circular_sended'] = 'The following players have received the mail';
 $lang['it_is_not_posible_to_apply'] = "It is impossible for you to apply";
 $lang['write_apply'] = "Submit application";
 $lang['your_apply'] = 'Your application';
-$lang['apply_registered'] = 'Your application has been saved. You will receive a message if you are accepted.<br><a href=alliance.php>Back</a>';
+$lang['apply_registered'] = 'Your application has been saved. You will receive a message if you are accepted.<br><a href=game.php?page=alliance>Back</a>';
 $lang['apply_cantbeadded'] = 'Demand has failed, please try again!';
 
 $lang['Exit_of_this_alliance'] = "Leave this alliance";

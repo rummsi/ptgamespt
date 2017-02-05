@@ -28,9 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
 	includeLang('fleet');
 
 	$galaxy     = intval($_POST['galaxy']);
@@ -165,7 +162,7 @@ require_once dirname(__FILE__) .'/common.php';
 	$page .= "}\n";
 	$page .= "</script>\n";
 	$page .= "<br><center>";
-	$page .= "<form action=\"floten3.php\" method=\"post\">\n";
+	$page .= "<form action=\"game.php?page=floten3\" method=\"post\">\n";
 	$page .= "<input type=\"hidden\" name=\"thisresource1\"  value=\"". floor($planetrow["metal"]) ."\" />\n";
 	$page .= "<input type=\"hidden\" name=\"thisresource2\"  value=\"". floor($planetrow["crystal"]) ."\" />\n";
 	$page .= "<input type=\"hidden\" name=\"thisresource3\"  value=\"". floor($planetrow["deuterium"]) ."\" />\n";
@@ -276,7 +273,7 @@ require_once dirname(__FILE__) .'/common.php';
 	$page .= "</table>\n";
 	$page .= "</form></center>\n";
 
-	display($page, $lang['fl_title']);
+	Game::display($page, $lang['fl_title']);
 
 // Updated by Chlorel. 16 Jan 2008 (String extraction, bug corrections, code uniformisation)
 // Created by Perberos. All rights reversed (C) 2006

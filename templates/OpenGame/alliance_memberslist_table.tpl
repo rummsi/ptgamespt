@@ -15,6 +15,6 @@
 	</tr>
 	{list}
 	<tr>
-	  <td class="c" colspan="9"><a href="alliance.php">{Return_to_overview}</a></td>
+	  <td class="c" colspan="9"><a href="game.php?page=alliance">{Return_to_overview}</a></td>
 	</tr>
 </table>

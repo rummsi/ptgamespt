@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 	$maxfleet  = doquery("SELECT COUNT(fleet_owner) AS `actcnt` FROM {{table}} WHERE `fleet_owner` = '".$user['id']."';", 'fleets', true);
 
 	$MaxFlyingFleets     = $maxfleet['actcnt'];
@@ -161,12 +157,12 @@ require_once dirname(__FILE__) .'/common.php';
 		// (10) Orders
 		$page .= "<th>";
 		if ($f['fleet_mess'] == 0) {
-				$page .= "<form action=\"fleetback.php\" method=\"post\">";
+				$page .= "<form action=\"game.php?page=fleetback\" method=\"post\">";
 				$page .= "<input name=\"fleetid\" value=\"". $f['fleet_id'] ."\" type=\"hidden\">";
 				$page .= "<input value=\" ".$lang['fl_back_to_ttl']." \" type=\"submit\" name=\"send\">";
 				$page .= "</form>";
 			if ($f[fleet_mission] == 1) {
-				$page .= "<form action=\"verband.php\" method=\"post\">";
+				$page .= "<form action=\"game.php?page=verband\" method=\"post\">";
 				$page .= "<input name=\"fleetid\" value=\"". $f['fleet_id'] ."\" type=\"hidden\">";
 				$page .= "<input value=\" ".$lang['fl_associate']." \" type=\"submit\">";
 				$page .= "</form>";
@@ -204,7 +200,7 @@ require_once dirname(__FILE__) .'/common.php';
 	$page .= "<center>";
 
 	// Selection d'une nouvelle mission
-	$page .= "<form action=\"floten1.php\" method=\"post\">";
+	$page .= "<form action=\"game.php?page=floten1\" method=\"post\">";
 	$page .= "<table width=\"519\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\">";
 	$page .= "<tr height=\"20\">";
 	$page .= "<td colspan=\"4\" class=\"c\">".$lang['fl_new_miss']."</td>";
@@ -280,7 +276,7 @@ require_once dirname(__FILE__) .'/common.php';
 	$page .= "</form>";
 	$page .= "</center>";
 
-	display($page, $lang['fl_title']);
+	Game::display($page, $lang['fl_title']);
 
 // Updated by Chlorel. 16 Jan 2008 (String extraction, bug corrections, code uniformisation
 // Created by Perberos. All rights reversed (C) 2006

@@ -2,7 +2,7 @@
 
 <br />
 <center>
-<form action="messages.php?mode=write&id={id}" method="post">
+<form action="game.php?page=messages&mode=write&id={id}" method="post">
 <table width="519">
 <tr>
 	<td class="c" colspan="2">{Send_message}</td>

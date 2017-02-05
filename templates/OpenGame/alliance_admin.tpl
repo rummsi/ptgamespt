@@ -5,17 +5,17 @@
 	  <td class=c colspan=2>{Alliance_admin}</td>
 	</tr>
 	<tr>
-	  <th colspan=2><a href="?mode=admin&edit=rights">{Law_settings}</a></th>
+	  <th colspan=2><a href="game.php?page=alliance&mode=admin&edit=rights">{Law_settings}</a></th>
 	</tr>
 	<tr>
-	  <th colspan=2><a href="?mode=admin&edit=members">{Members_administrate}</a></th>
+	  <th colspan=2><a href="game.php?page=alliance&mode=admin&edit=members">{Members_administrate}</a></th>
 	</tr>
 	<tr>
-	  <th colspan=2><a href="?mode=admin&edit=tag">{Change_the_ally_tag}</a></th>
+	  <th colspan=2><a href="game.php?page=alliance&mode=admin&edit=tag">{Change_the_ally_tag}</a></th>
 	</tr>
 	<!--<img src="{dpath}pic/appwiz.gif" border=0 alt="">-->
 	<tr>
-	  <th colspan=2><a href="?mode=admin&edit=name">{Change_the_ally_name}</a></th>
+	  <th colspan=2><a href="game.php?page=alliance&mode=admin&edit=name">{Change_the_ally_name}</a></th>
 	</tr>
 	<!--<img src="{dpath}pic/appwiz.gif" border=0 alt="">-->
 </table>
@@ -27,8 +27,8 @@
 	  <td class="c" colspan=2>{Texts}</td>
 	</tr>
 	<tr>
-	  <th><a href="?mode=admin&edit=ally&t=1">{External_text}</a></th>
-	  <th><a href="?mode=admin&edit=ally&t=2">{Internal_text}</a></th>
+	  <th><a href="game.php?page=alliance&mode=admin&edit=ally&t=1">{External_text}</a></th>
+	  <th><a href="game.php?page=alliance&mode=admin&edit=ally&t=2">{Internal_text}</a></th>
 	</tr>
 	<tr>
 	  <td class=c colspan=3>{Show_of_request_text} (<span id="cntChars">0</span> / 5000 {characters})</td>

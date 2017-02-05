@@ -28,9 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
 	includeLang('fleet');
 
 	$BoxTitle   = $lang['fl_error'];

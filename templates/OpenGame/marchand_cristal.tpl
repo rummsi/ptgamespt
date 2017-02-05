@@ -19,7 +19,7 @@ function calcul() {
 </script>
 <br>
 <center>
-<form id="marchand" action="marchand.php" method="post">
+<form id="marchand" action="game.php?page=marchand" method="post">
 <input type="hidden" name="ress" value="cristal">
 <table width="569">
 <tr>
