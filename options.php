@@ -245,7 +245,7 @@ require_once dirname(__FILE__) .'/common.php';
              $newpass = md5($_POST["newpass1"]);
              doquery("UPDATE {{table}} SET `password` = '{$newpass}' WHERE `id` = '{$user['id']}' LIMIT 1", "users");
              setcookie(COOKIE_NAME, "", time()-100000, "/", "", 0); //le da el expire
-             message($lang['succeful_changepass'], $lang['changue_pass'],"login.php",1);
+             message($lang['succeful_changepass'], $lang['changue_pass'],"index.php",1);
           }
        }
        if ($user['username'] != $_POST["db_character"]) {
@@ -253,7 +253,7 @@ require_once dirname(__FILE__) .'/common.php';
           if (!$query) {
              doquery("UPDATE {{table}} SET username='{$username}' WHERE id='{$user['id']}' LIMIT 1", "users");
              setcookie(COOKIE_NAME, "", time()-100000, "/", "", 0); //le da el expire
-             message($lang['succeful_changename'], $lang['changue_name'],"login.php",1);
+             message($lang['succeful_changename'], $lang['changue_name'],"index.php",1);
           }
        }
        message($lang['succeful_save'], $lang['Options'],"options.php",1);

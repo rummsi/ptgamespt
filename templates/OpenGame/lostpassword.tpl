@@ -1,7 +1,7 @@
 <center>
 <br><br>
 <h2><font size="5">{ResetPass}</font><br>{servername}</h2>
-<form action="?action=1" method="post">
+<form action="?page=lostpassword&action=1" method="post">
 <table width="400">
 <tbody><tr>
 	 <td colspan="2" class="c"><b>{PassForm}</b></td>
@@ -19,7 +19,7 @@
          <th colspan="2"><input value="{ButtonSendPass}" type="submit"></th>
       </tr>
            <tr>
-             <th colspan="2"><a href="login.php">Retour a l'accueil</a></th>
+             <th colspan="2"><a href="index.php">Retour a l'accueil</a></th>
            </tr>
     </tbody></table>
        

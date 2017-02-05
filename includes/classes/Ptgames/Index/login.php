@@ -28,11 +28,7 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
 define('LOGIN'   , true);
-define('DISABLE_IDENTITY_CHECK', true);
-require_once dirname(__FILE__) .'/common.php';
 
 includeLang('login');
 

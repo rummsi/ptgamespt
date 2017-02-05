@@ -28,11 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-define('DISABLE_IDENTITY_CHECK', true);
-require_once dirname(__FILE__) .'/common.php';
-
 //on demarre la session qui ne sers ici que pour le code de secu
 session_start();
 

@@ -28,13 +28,9 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) . '/common.php';
-
 includeLang('logout');
 
 session_destroy();
 setcookie('nova-cookie', NULL, 0);
 
-message($lang['see_you'], $lang['session_closed'], 'login.php');
+message($lang['see_you'], $lang['session_closed'], 'index.php');

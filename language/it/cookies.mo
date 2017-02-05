@@ -28,8 +28,8 @@
  *
  */
 
-$lang['cookies']['Error1'] = 'Errore nei cookie, c\'&egrave; pi&ugrave; di un utente con lo stesso nome !<a href=login.php>Login</a> eliminare i cookie. In caso di problemi contattare l\'admin';
-$lang['cookies']['Error2'] = 'Errore nei cookie ! Il cookie non corrisponde all\'utente !<a href=login.php>Login</a> Veuillez supprimer vos cookies. eliminare i cookie. In caso di problemi contattare l\'admin';
-$lang['cookies']['Error3'] = 'Erreur nei cookie ! Errore di sessione, provare a connettersi nuovamente !<a href=login.php>Login</a> eliminare i cookie. In caso di problemi contattare l\'admin';
+$lang['cookies']['Error1'] = 'Errore nei cookie, c\'&egrave; pi&ugrave; di un utente con lo stesso nome !<a href=index.php>Login</a> eliminare i cookie. In caso di problemi contattare l\'admin';
+$lang['cookies']['Error2'] = 'Errore nei cookie ! Il cookie non corrisponde all\'utente !<a href=index.php>Login</a> Veuillez supprimer vos cookies. eliminare i cookie. In caso di problemi contattare l\'admin';
+$lang['cookies']['Error3'] = 'Erreur nei cookie ! Errore di sessione, provare a connettersi nuovamente !<a href=index.php>Login</a> eliminare i cookie. In caso di problemi contattare l\'admin';
 
 ?>

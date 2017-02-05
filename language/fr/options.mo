@@ -39,7 +39,7 @@ $lang['Error'] = "Erreur";
 $lang['changue_pass'] = "Changer de mot de passe";
 $lang['Download'] = "T&eacute;l&eacute;charger";
 $lang['Search'] = "Chercher";
-$lang['succeful_changepass'] = "Le mot de passe a bien &eacute;t&eacute; chang&eacute;.<br /><a href=\"login.php\" target=\"_top\">Retour</a>";
+$lang['succeful_changepass'] = "Le mot de passe a bien &eacute;t&eacute; chang&eacute;.<br /><a href=\"index.php\" target=\"_top\">Retour</a>";
 $lang['succeful_save'] = "Les changements ont &eacute;t&eacute; sauvegard&eacute;.<br /><a href=\"options.php\">Retour</a>";
 $lang['Options'] = 'Options';
 

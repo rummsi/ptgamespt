@@ -50,7 +50,7 @@ $lang['signup']            = ' Registrati ';
 $lang['neededpass']        = 'Password';
 
 // Send
-$lang['mail_welcome']      = 'Grazie per l\'iscrizione al gioco ({gameurl}xnova-0.8/login.php)<br> La vostra password &egrave;: "{password}"<br> Buon divertimento!<br> {gameurl}';
+$lang['mail_welcome']      = 'Grazie per l\'iscrizione al gioco ({gameurl}xnova-0.8/index.php)<br> La vostra password &egrave;: "{password}"<br> Buon divertimento!<br> {gameurl}';
 $lang['mail_title']        = 'Registrazione';
 $lang['thanksforregistry'] = 'Grazie per esservi iscritti! Riceverete un\'email con la vostra password.';
 

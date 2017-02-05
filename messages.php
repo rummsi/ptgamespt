@@ -34,7 +34,7 @@ require_once dirname(__FILE__) .'/common.php';
 include(ROOT_PATH . 'includes/functions/BBcodeFunction.' . PHPEXT);
 
 if(!isset($user['authlevel'])) {
-    header("Location: login.php");
+    header("Location: index.php");
 }
 
 includeLang('messages');

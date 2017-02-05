@@ -54,7 +54,7 @@
 $lang['changue_pass'] = "Cambia password";
 $lang['Download'] = "Download";
 $lang['Search'] = "Cerca";
-$lang['succeful_changepass'] = "La password &egrave; stata cambiata.<br /><a href=\"login.php\" target=\"_top\">Retour</a>";
+$lang['succeful_changepass'] = "La password &egrave; stata cambiata.<br /><a href=\"index.php\" target=\"_top\">Retour</a>";
 $lang['succeful_save'] = "Le modifiche sono state applicate con successo.<br /><a href=\"options.php\">Retour</a>";
 
 // Form

@@ -86,7 +86,7 @@ includeLang('system');
 includeLang('tech');
 
 if (empty($user) && !defined('DISABLE_IDENTITY_CHECK')) {
-    header('Location: login.php');
+    header('Location: index.php');
     exit(0);
 }
 
