@@ -1,7 +1,7 @@
 <script language="JavaScript" type="text/javascript" src="scripts/time.js"></script>
 <br>
 <table width="519">
-	<tr><td class="c" colspan="4"><a href="overview.php?mode=renameplanet" title="{Planet_menu}">{Planet} "{planet_name}"</a> ({user_username})</td></tr>
+	<tr><td class="c" colspan="4"><a href="game.php?page=overview&mode=renameplanet" title="{Planet_menu}">{Planet} "{planet_name}"</a> ({user_username})</td></tr>
 	{Have_new_message}
 	{Have_new_level_mineur}
 	{Have_new_level_raid}

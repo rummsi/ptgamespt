@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 	includeLang('buddy');
 
 $a = $_GET['a'];
@@ -68,7 +64,7 @@ if ( $s == 1 && isset( $_GET['bid'] ) ) {
 		}
 		$text = mysqli_real_escape_string( Database::$dbHandle, strip_tags( $_POST['text'] ) );
 		doquery( "INSERT INTO {{table}} SET sender={$uid}, owner={$u}, active=0, text='{$text}'", 'buddy' );
-		message( $lang['Request_sent'], $lang['Buddy_request'], 'buddy.php' );
+		message( $lang['Request_sent'], $lang['Buddy_request'], 'game.php?page=buddy' );
 	} else {
 		message( $lang['A_request_exists_already_for_this_user'], $lang['Buddy_request'] );
 	}
@@ -84,7 +80,7 @@ if ( $a == 2 && isset( $u ) ) {
 		<script src=\"scripts/cntchar.js\" type=\"text/javascript\"></script>
 		<script src=\"scripts/win.js\" type=\"text/javascript\"></script>
 		<center>
-			<form action=buddy.php method=post>
+			<form action=game.php?page=buddy method=post>
 			<input type=hidden name=a value=1>
 			<input type=hidden name=s value=3>
 			<input type=hidden name=e value=1>
@@ -106,7 +102,7 @@ if ( $a == 2 && isset( $u ) ) {
 		</center>
 		</body>
 		</html>";
-		display( $page, 'buddy' );
+		Game::display( $page, 'buddy' );
 	} elseif ( $u["id"] == $user["id"] ) {
 		message( $lang['You_cannot_ask_yourself_for_a_request'], $lang['Buddy_request'] );
 	}
@@ -217,7 +213,7 @@ if ( !isset( $i ) ) {
 if ( $a == 1 ) {
 	$page .= "
 	<tr>
-		<td colspan=6 class=c><a href=buddy.php>{$lang['Back']}</a></td>
+		<td colspan=6 class=c><a href=game.php?page=buddy>{$lang['Back']}</a></td>
 	</tr>";
 }
 
@@ -225,6 +221,6 @@ $page .= "
 	</table>
 	</center>";
 
-display ( $page, $lang['Buddy_list'], false );
+Game:display ( $page, $lang['Buddy_list'], false );
 // Created by Perberos. All rights reversed (C) 2006
 ?>

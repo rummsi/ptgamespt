@@ -36,7 +36,7 @@ require_once dirname(__FILE__) .'/common.php';
 	$fleetid = $_POST['fleetid'];
 
 	if (!is_numeric($fleetid) || empty($fleetid)) {
-		header("Location: overview.php");
+		header("Location: game.php?page=overview");
 		exit();
 	}
 

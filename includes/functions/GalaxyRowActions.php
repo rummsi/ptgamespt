@@ -77,7 +77,7 @@ function GalaxyRowActions ( $GalaxyRow, $GalaxyRowPlanet, $GalaxyRowPlayer, $Gal
 			}
 			if ($user["settings_bud"] == "1" &&
 				$GalaxyRowPlayer['id']) {
-				$Result .= "<a href=buddy.php?a=2&amp;u=".$GalaxyRowPlayer['id']." >";
+				$Result .= "<a href=game.php?page=buddy&a=2&amp;u=".$GalaxyRowPlayer['id']." >";
 				$Result .= "<img src=". $dpath ."img/b.gif alt=\"".$lang['gl_buddyreq']."\" title=\"".$lang['gl_buddyreq']."\" border=0></a>";
                 $Result .= "&nbsp;";
 			}

@@ -55,7 +55,7 @@ function BuildRessourcePage ( $CurrentUser, $CurrentPlanet ) {
 			$FieldName = $Field."_porcent";
 			if ( isset( $CurrentPlanet[ $FieldName ] ) ) {
 				if ( ! in_array( $Value, $ValidList['percent']) ) {
-					header("Location: overview.php");
+					header("Location: game.php?page=overview");
 					exit;
 				}
 

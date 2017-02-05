@@ -28,11 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
-
 includeLang('banned');
 
 $parse = $lang;
@@ -57,7 +52,7 @@ if ($i=="0")
 else
   $parse['banned'] .= "<tr><th class=b colspan=6>Il y a {$i} joueurs bannis</th></tr>";
 
-display(parsetemplate(gettemplate('banned_body'), $parse),'Banned',true);
+Game::display(parsetemplate(gettemplate('banned_body'), $parse),'Banned',true);
 
 
 // Created by e-Zobar (XNova Team). All rights reversed (C) 2008

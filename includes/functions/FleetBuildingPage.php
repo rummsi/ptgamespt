@@ -141,5 +141,5 @@ function FleetBuildingPage(&$currentPlanet, &$currentUser)
     $parse['buildinglist'] = $BuildQueue;
     $page .= parsetemplate(gettemplate('buildings_fleet'), $parse);
 
-    display($page, $lang['Fleet']);
+    Game::display($page, $lang['Fleet']);
 }

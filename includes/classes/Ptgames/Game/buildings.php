@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 	includeLang('buildings');
 
 	// Mise a jour de la liste de construction si necessaire

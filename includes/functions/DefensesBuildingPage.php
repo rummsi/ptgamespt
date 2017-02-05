@@ -135,7 +135,7 @@ function DefensesBuildingPage ( &$currentPlanet, $currentUser ) {
     // fragmento de template
     $page .= parsetemplate(gettemplate('buildings_defense'), $parse);
 
-    display($page, $lang['Defense']);
+    Game::display($page, $lang['Defense']);
 
 }
 // Version History

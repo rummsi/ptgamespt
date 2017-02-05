@@ -70,7 +70,7 @@ EOF;
             doquery($sql, 'users');
 
             $_SESSION['user_id'] = $login['id'];
-            header("Location: frames.php");
+            header("Location: game.php?page=overview");
             exit(0);
         } else {
             message($lang['Login_FailPassword'], $lang['Login_Error']);

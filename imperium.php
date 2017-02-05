@@ -63,7 +63,7 @@ foreach ($planet as $p) {
 	PlanetResourceUpdate ( $user, $p, time() );
 
 	// {file_images}
-	$data['text'] = '<a href="overview.php?cp=' . $p['id'] . '&amp;re=0"><img src="' . $dpath . 'planeten/small/s_' . $p['image'] . '.jpg" border="0" height="71" width="75"></a>';
+	$data['text'] = '<a href="game.php?page=overview&cp=' . $p['id'] . '&amp;re=0"><img src="' . $dpath . 'planeten/small/s_' . $p['image'] . '.jpg" border="0" height="71" width="75"></a>';
 	$parse['file_images'] .= parsetemplate($row, $data);
 	// {file_names}
 	$data['text'] = $p['name'];
@@ -89,13 +89,13 @@ foreach ($planet as $p) {
 
 	foreach ($resource as $i => $res) {
 		if (in_array($i, $reslist['build']))
-			$data['text'] = ($p[$resource[$i]]    == 0) ? '-' : "<a href=\"buildings.php?cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>";
+			$data['text'] = ($p[$resource[$i]]    == 0) ? '-' : "<a href=\"game.php?page=buildings&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>";
 		elseif (in_array($i, $reslist['tech']))
-			$data['text'] = ($user[$resource[$i]] == 0) ? '-' : "<a href=\"buildings.php?mode=research&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$user[$resource[$i]]}</a>";
+			$data['text'] = ($user[$resource[$i]] == 0) ? '-' : "<a href=\"game.php?page=buildings&mode=research&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$user[$resource[$i]]}</a>";
 		elseif (in_array($i, $reslist['fleet']))
-			$data['text'] = ($p[$resource[$i]]    == 0) ? '-' : "<a href=\"buildings.php?mode=fleet&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>";
+			$data['text'] = ($p[$resource[$i]]    == 0) ? '-' : "<a href=\"game.php?page=buildings&mode=fleet&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>";
 		elseif (in_array($i, $reslist['defense']))
-			$data['text'] = ($p[$resource[$i]]    == 0) ? '-' : "<a href=\"buildings.php?mode=defense&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>";
+			$data['text'] = ($p[$resource[$i]]    == 0) ? '-' : "<a href=\"game.php?page=buildings&mode=defense&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>";
 
 		$r[$i] .= parsetemplate($row2, $data);
 	}

@@ -3,7 +3,7 @@
 <table align="top">
 <tr>
 	<td>
-		<form action="buildings.php?mode=defense" method="post">
+		<form action="game.php?page=buildings&mode=defense" method="post">
 		<table width=530>
 		{buildlist}
 		<tr>

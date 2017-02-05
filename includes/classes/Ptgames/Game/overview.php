@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 $lunarow = doquery("SELECT * FROM {{table}} WHERE `id_owner` = '" . $planetrow['id_owner'] . "' AND `galaxy` = '" . $planetrow['galaxy'] . "' AND `system` = '" . $planetrow['system'] . "' AND `lunapos` = '" . $planetrow['planet'] . "';", 'lunas', true);
 
 //CheckPlanetUsedFields ($lunarow);
@@ -73,7 +69,7 @@ switch ($mode) {
 
             $page .= parsetemplate(gettemplate('overview_deleteplanet'), $parse);
             // On affiche la forme pour l'abandon de la colonie
-            display($page, $lang['rename_and_abandon_planet']);
+            Game::display($page, $lang['rename_and_abandon_planet']);
         } elseif ($_POST['kolonieloeschen'] == 1 && $_POST['deleteid'] == $user['current_planet']) {
                 // Controle du mot de passe pour abandon de colonie
                 if (md5($_POST['pw']) == $user["password"] && $user['id_planet'] != $user['current_planet']) {
@@ -81,7 +77,7 @@ switch ($mode) {
                 include_once(ROOT_PATH . 'includes/functions/AbandonColony.' . PHPEXT);
                 if (CheckFleets($planetrow)){
                    $strMessage = "Vous ne pouvez pas abandonner la colonie, il y a de la flotte en vol !";
-                   message($strMessage, $lang['colony_abandon'], 'overview.php?mode=renameplanet',3);
+                   message($strMessage, $lang['colony_abandon'], 'game.php?page=overview&mode=renameplanet',3);
                 }
 
                 AbandonColony($user,$planetrow);
@@ -92,16 +88,16 @@ switch ($mode) {
                     $QryUpdateUser .= "`id` = '" . $user['id'] . "' LIMIT 1";
                     doquery($QryUpdateUser, "users");
                     // Tout s'est bien pass� ! La colo a �t� effac�e !!
-                    message($lang['deletemessage_ok'] , $lang['colony_abandon'], 'overview.php',3);
+                    message($lang['deletemessage_ok'] , $lang['colony_abandon'], 'game.php?page=overview',3);
 
                 } elseif ($user['id_planet'] == $user["current_planet"]) {
                     // Et puis quoi encore ??? On ne peut pas effacer la planete mere ..
                     // Uniquement les colonies cr�es apres coup !!!
-                    message($lang['deletemessage_wrong'], $lang['colony_abandon'], 'overview.php?mode=renameplanet');
+                    message($lang['deletemessage_wrong'], $lang['colony_abandon'], 'game.php?page=overview&mode=renameplanet');
 
                 } else {
                     // Erreur de saisie du mot de passe je n'efface pas !!!
-                    message($lang['deletemessage_fail'] , $lang['colony_abandon'], 'overview.php?mode=renameplanet');
+                    message($lang['deletemessage_fail'] , $lang['colony_abandon'], 'game.php?page=overview&mode=renameplanet');
 
                 }
             }
@@ -116,7 +112,7 @@ switch ($mode) {
 
         $page .= parsetemplate(gettemplate('overview_renameplanet'), $parse);
         // On affiche la page permettant d'abandonner OU de renomme une Colonie / Planete
-        display($page, $lang['rename_and_abandon_planet']);
+        Game::display($page, $lang['rename_and_abandon_planet']);
         break;
 
     default:
@@ -477,7 +473,7 @@ switch ($mode) {
 
             $page = parsetemplate(gettemplate('overview_body'), $parse);
 
-            display($page, $lang['Overview']);
+            Game::display($page, $lang['Overview']);
             break;
         }
 }

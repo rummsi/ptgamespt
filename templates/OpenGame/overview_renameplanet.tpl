@@ -1,7 +1,7 @@
 <br />
 <center>
 <h1>{rename_and_abandon_planet}</h1>
-<form action="overview.php?mode=renameplanet&pl={planet_id}" method="POST">
+<form action="game.php?page=overview&mode=renameplanet&pl={planet_id}" method="POST">
 <table width=519>
 <tr>
 	<td class="c" colspan=3>{your_planet}</td>

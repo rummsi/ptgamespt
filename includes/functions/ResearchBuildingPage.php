@@ -201,7 +201,7 @@ function ResearchBuildingPage (&$CurrentPlanet, $CurrentUser, $InResearch, $TheP
 	$PageParse['technolist']  = $TechnoList;
 	$Page                    .= parsetemplate(gettemplate('buildings_research'), $PageParse);
 
-	display( $Page, $lang['Research'] );
+	Game::display( $Page, $lang['Research'] );
 }
 
 // History revision

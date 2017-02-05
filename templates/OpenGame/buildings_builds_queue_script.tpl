@@ -3,7 +3,7 @@
 	pp = '{time}';
 	pk = '{building_id}';
 	pl = '{id}';
-	ps = 'buildings.php';
+	ps = 'game.php?page=buildings';
 	t();
 </script>
 <script type="text/javascript">
@@ -88,7 +88,7 @@ window.onload = t;
 
 <center>
 <br>
-<form name="Atr" method="get" action="buildings.php">
+<form name="Atr" method="get" action="game.php?page=buildings">
 	<input type="hidden" name="mode" value="fleet">
 	<table width="530">
 	<tr>

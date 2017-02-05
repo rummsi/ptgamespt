@@ -3,6 +3,6 @@
    pp='{time}';
    pk='{building_id}';
    pl='{id}';
-   ps='buildings.php';
+   ps='game.php?page=buildings';
    t();
 </script>
