@@ -28,11 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-define('IN_ADMIN', true);
-require_once dirname(dirname(__FILE__)) .'/common.php';
-
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
 		includeLang('admin');
 
@@ -108,7 +103,7 @@ require_once dirname(dirname(__FILE__)) .'/common.php';
 		$parse['adm_ov_data_count']  = $Count;
 		$Page = parsetemplate($PageTPL, $parse);
 
-		display ( $Page, $lang['sys_overview'], false, '', true);
+		Game::display ( $Page, $lang['sys_overview'], false, '', true);
 	} else {
 		AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}

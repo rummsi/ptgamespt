@@ -28,21 +28,33 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-define('IN_ADMIN', true);
-require_once dirname(dirname(__FILE__)) .'/common.php';
+	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
+		includeLang('admin');
 
-	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
-		includeLang('admin/fleets');
-		$PageTPL            = gettemplate('admin/fleet_body');
+		$mode      = $_POST['mode'];
 
-		$parse              = $lang;
-		$parse['flt_table'] = BuildFlyingFleetTable ();
+		$PageTpl   = gettemplate("admin/add_money");
+		$parse     = $lang;
 
-		$page               = parsetemplate( $PageTPL, $parse );
-		display ( $page, $lang['flt_title'], false, '', true);
+		if ($mode == 'addit') {
+			$id          = $_POST['id'];
+			$metal       = $_POST['metal'];
+			$cristal     = $_POST['cristal'];
+			$deut        = $_POST['deut'];
 
+			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+			$QryUpdatePlanet .= "`metal` = `metal` + '". $metal ."', ";
+			$QryUpdatePlanet .= "`crystal` = `crystal` + '". $cristal ."', ";
+			$QryUpdatePlanet .= "`deuterium` = `deuterium` + '". $deut ."' ";
+			$QryUpdatePlanet .= "WHERE ";
+			$QryUpdatePlanet .= "`id` = '". $id ."' ";
+			doquery( $QryUpdatePlanet, "planets");
+
+			AdminMessage ( $lang['adm_am_done'], $lang['adm_am_ttle'] );
+		}
+		$Page = parsetemplate($PageTpl, $parse);
+
+		Game::display ($Page, $lang['adm_am_ttle'], false, '', true);
 	} else {
 		AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}

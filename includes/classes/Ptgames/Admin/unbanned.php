@@ -28,40 +28,25 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-define('IN_ADMIN', true);
-require_once dirname(dirname(__FILE__)) .'/common.php';
-
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
-		includeLang('admin');
 
-		$mode      = $_POST['mode'];
+		$parse['dpath'] = $dpath;
+		$parse = $lang;
 
-		$PageTpl   = gettemplate("admin/add_money");
-		$parse     = $lang;
+		$mode = $_GET['mode'];
 
-		if ($mode == 'addit') {
-			$id          = $_POST['id'];
-			$metal       = $_POST['metal'];
-			$cristal     = $_POST['cristal'];
-			$deut        = $_POST['deut'];
-
-			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-			$QryUpdatePlanet .= "`metal` = `metal` + '". $metal ."', ";
-			$QryUpdatePlanet .= "`crystal` = `crystal` + '". $cristal ."', ";
-			$QryUpdatePlanet .= "`deuterium` = `deuterium` + '". $deut ."' ";
-			$QryUpdatePlanet .= "WHERE ";
-			$QryUpdatePlanet .= "`id` = '". $id ."' ";
-			doquery( $QryUpdatePlanet, "planets");
-
-			AdminMessage ( $lang['adm_am_done'], $lang['adm_am_ttle'] );
+		if ($mode != 'change') {
+			$parse['Name'] = "Nom du joueur";
+		} elseif ($mode == 'change') {
+			$nam = $_POST['nam'];
+			doquery("DELETE FROM {{table}} WHERE who2='{$nam}'", 'banned');
+			doquery("UPDATE {{table}} SET bana=0, banaday=0 WHERE username='{$nam}'", "users");
+			message("Le joueur {$nam} a bien &eacute;t&eacute; d&eacute;banni!", 'Information');
 		}
-		$Page = parsetemplate($PageTpl, $parse);
 
-		display ($Page, $lang['adm_am_ttle'], false, '', true);
+		Game::display(parsetemplate(gettemplate('admin/unbanned'), $parse), "Overview", false, '', true);
 	} else {
-		AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
 
 ?>

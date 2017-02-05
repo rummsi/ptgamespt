@@ -28,11 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-define('IN_ADMIN', true);
-require_once dirname(dirname(__FILE__)) .'/common.php';
-
 includeLang('admin');
 
 function XNovaResetUnivers ( $CurrentUser ) {
@@ -132,7 +127,7 @@ function XNovaResetUnivers ( $CurrentUser ) {
 		XNovaResetUnivers ( $user );
 	} else {
 		$Page = parsetemplate($PageTpl, $parse);
-		display ($Page, $lang['Reset'], false, '', true);
+		Game::display ($Page, $lang['Reset'], false, '', true);
 	}
 
 ?>

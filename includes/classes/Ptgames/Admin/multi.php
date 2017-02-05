@@ -28,20 +28,33 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-define('IN_ADMIN', true);
-require_once dirname(dirname(__FILE__)) .'/common.php';
-
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
+		includeLang('admin/multi');
 
-				$parse['phpinfo'] = phpinfo();
+		$query   = doquery("SELECT * FROM {{table}}", 'multi');
 
-		$Page = parsetemplate($PageTPL, $parse);
+		$parse                 = $lang;
+		$parse['adm_mt_table'] = "";
+		$i                     = 0;
 
-		display ( $Page, "PhpInfo", false, '', true);
+		$RowsTPL = gettemplate('admin/multi_rows');
+		$PageTPL = gettemplate('admin/multi_body');
+
+		while ($infos = mysqli_fetch_assoc($query)) {
+			$Bloc['player'] = $infos['player'];
+			$Bloc['text']   = $infos['text'];
+
+			$parse['adm_mt_table'] .= parsetemplate( $RowsTPL, $Bloc );
+			$i++;
+		}
+
+		$parse['adm_mt_count'] = $i;
+
+		$page = parsetemplate( $PageTPL, $parse );
+		Game::display( $page, $lang['adm_mt_title'], false, '', true);
+
 	} else {
-		AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
 
 ?>

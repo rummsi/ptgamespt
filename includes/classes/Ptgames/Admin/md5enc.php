@@ -28,31 +28,23 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-define('IN_ADMIN', true);
-require_once dirname(dirname(__FILE__)) .'/common.php';
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
-		includeLang('admin/changepass');
+		includeLang('admin/md5enc');
 
 		$parse   = $lang;
 
 		if ($_POST['md5q'] != "") {
-
-			doquery ("UPDATE {{table}} SET `password` = '" . md5 ($_POST['md5q']) . "' WHERE `username` = '".$_POST['user']."';", 'users');
-			//$QueryUpdatePass = "UPDATE {{table}} SET ";
-			//$QueryUpdatePass .= "`password` = '" . md5 ($_POST['md5q']) . "', ";
-			//$QueryUpdatePass = "WHERE ";
-	        //$QueryUpdatePass .= "`username`=" . $_POST['user'] . "";
-      //  doquery($QueryUpdatePass, 'users');
+			$parse['md5_md5'] = $_POST['md5q'];
+			$parse['md5_enc'] = md5 ($_POST['md5q']);
 		} else {
-
+			$parse['md5_md5'] = "";
+			$parse['md5_enc'] = md5 ("");
 		}
 
-		$PageTpl = gettemplate("admin/changepass");
+		$PageTpl = gettemplate("admin/md5enc");
 		$Page    = parsetemplate( $PageTpl, $parse);
 
-		display( $Page, $lang['md5_title'], false, '', true );
+		Game::display( $Page, $lang['md5_title'], false, '', true );
 	} else {
 		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}

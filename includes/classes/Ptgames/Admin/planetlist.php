@@ -28,42 +28,31 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-define('IN_ADMIN', true);
-require_once dirname(dirname(__FILE__)) .'/common.php';
-
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
-		includeLang('admin/addmoon');
 
-		$mode      = $_POST['mode'];
-
-		$PageTpl   = gettemplate("admin/add_moon");
-		$parse     = $lang;
-
-		if ($mode == 'addit') {
-			$PlanetID  = $_POST['user'];
-			$MoonName  = $_POST['name'];
-
-			$QrySelectPlanet  = "SELECT * FROM {{table}} ";
-			$QrySelectPlanet .= "WHERE ";
-			$QrySelectPlanet .= "`id` = '". $PlanetID ."';";
-			$PlanetSelected = doquery ( $QrySelectPlanet, 'planets', true);
-
-			$Galaxy    = $PlanetSelected['galaxy'];
-			$System    = $PlanetSelected['system'];
-			$Planet    = $PlanetSelected['planet'];
-            $Owner     = $PlanetSelected['id_owner'];
-			$MoonID    = time();
-
-			CreateOneMoonRecord ( $Galaxy, $System, $Planet, $Owner, $MoonID, $MoonName, 20 );
-
-			AdminMessage ( $lang['addm_done'], $lang['addm_title'] );
+		$parse = $lang;
+		$query = doquery("SELECT * FROM {{table}} WHERE planet_type='1'", "planets");
+		$i = 0;
+		while ($u = mysqli_fetch_array($query, MYSQLI_NUM)) {
+			$parse['planetes'] .= "<tr>"
+			. "<td class=b><center><b>" . $u[0] . "</center></b></td>"
+			. "<td class=b><center><b>" . $u[1] . "</center></b></td>"
+			. "<td class=b><center><b>" . $u[4] . "</center></b></td>"
+			. "<td class=b><center><b>" . $u[5] . "</center></b></td>"
+			. "<td class=b><center><b>" . $u[6] . "</center></b></td>"
+			. "</tr>";
+			$i++;
 		}
-		$Page = parsetemplate($PageTpl, $parse);
 
-		display ($Page, $lang['addm_title'], false, '', true);
+		if ($i == "1")
+			$parse['planetes'] .= "<tr><th class=b colspan=5>Il y a qu'une seule plan&egrave;te</th></tr>";
+		else
+			$parse['planetes'] .= "<tr><th class=b colspan=5>Il y a {$i} plan&egrave;tes</th></tr>";
+
+                    Game::display(parsetemplate(gettemplate('admin/planetlist_body'), $parse), 'Planetlist', false, '', true);
 	} else {
-		AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+		message($lang['sys_noalloaw'], $lang['sys_noaccess']);
 	}
+
+// Created by e-Zobar. All rights reversed (C) XNova Team 2008
 ?>

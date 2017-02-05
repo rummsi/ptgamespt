@@ -28,11 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-define('IN_ADMIN', true);
-require_once dirname(dirname(__FILE__)) .'/common.php';
-
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
 		includeLang('admin/messagelist');
 
@@ -140,7 +135,7 @@ require_once dirname(dirname(__FILE__)) .'/common.php';
 			doquery ("DELETE FROM {{table}} WHERE `message_id` = '". $_POST['delit'] ."';", 'messages');
 			AdminMessage ( $lang['mlst_mess_del'] ." ( ". $_POST['delit'] ." )", $lang['mlst_title'], "./messagelist.".PHPEXT, 3);
 		}
-		display ($display, $lang['mlst_title'], false, '', true);
+		Game::display ($display, $lang['mlst_title'], false, '', true);
 	} else {
 		message($lang['sys_noalloaw'], $lang['sys_noaccess']);
 	}

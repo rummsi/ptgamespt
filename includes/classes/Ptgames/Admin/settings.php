@@ -28,12 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-define('IN_ADMIN', true);
-require_once dirname(dirname(__FILE__)) .'/common.php';
-
-
 function DisplayGameSettingsPage ( $CurrentUser ) {
 	global $lang, $game_config;
 
@@ -297,7 +291,7 @@ $game_config['banner_source_post'] = $_POST['banner_source_post'];
 			$PageTPL                         = gettemplate('admin/options_body');
 			$Page                           .= parsetemplate( $PageTPL,  $parse );
 
-			display ( $Page, $lang['adm_opt_title'], false, '', true );
+			Game::display ( $Page, $lang['adm_opt_title'], false, '', true );
 		}
 	} else {
 		AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );

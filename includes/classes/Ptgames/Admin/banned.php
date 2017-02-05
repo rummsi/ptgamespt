@@ -28,11 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-define('IN_ADMIN', true);
-require_once dirname(dirname(__FILE__)) .'/common.php';
-
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
 		includeLang('admin');
 
@@ -81,7 +76,7 @@ require_once dirname(dirname(__FILE__)) .'/common.php';
 		}
 
 		$Page = parsetemplate($PageTpl, $parse);
-		display( $Page, $lang['adm_bn_ttle'], false, '', true);
+		Game::display( $Page, $lang['adm_bn_ttle'], false, '', true);
 	} else {
 		AdminMessage ($lang['sys_noalloaw'], $lang['sys_noaccess']);
 	}

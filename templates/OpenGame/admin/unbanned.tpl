@@ -1,6 +1,6 @@
 <br><br>
 <h2>D&eacute;bannir un joueur </h2>
-<form action="unbanned.php?mode=change" method="post">
+<form action="admin.php?page=unbanned&mode=change" method="post">
 <table width="409" style="color:#FFFFFF">
 <tbody>
 <tr>

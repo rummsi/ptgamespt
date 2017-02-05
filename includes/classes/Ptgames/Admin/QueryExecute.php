@@ -28,11 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-define('IN_ADMIN', true);
-require_once dirname(dirname(__FILE__)) .'/common.php';
-
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN))) {
 		includeLang('admin/Queries');
 
@@ -51,7 +46,7 @@ require_once dirname(dirname(__FILE__)) .'/common.php';
 		$PageTpl = gettemplate("admin/exec_query");
 		$Page    = parsetemplate( $PageTpl, $parse);
 
-		display( $Page, $lang['qry_title'], false, '', true );
+		Game::display( $Page, $lang['qry_title'], false, '', true );
 	} else {
 		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}

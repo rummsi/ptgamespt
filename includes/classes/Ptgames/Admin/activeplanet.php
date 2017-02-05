@@ -28,28 +28,32 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-define('IN_ADMIN', true);
-require_once dirname(dirname(__FILE__)) .'/common.php';
-
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
+		includeLang('admin');
 
+		$parse          = $lang;
 		$parse['dpath'] = $dpath;
-		$parse = $lang;
+		$parse['mf']    = $mf;
 
-		$mode = $_GET['mode'];
+		$PageTPL        = gettemplate('admin/activeplanet_body');
+		$AllActivPlanet = doquery("SELECT * FROM {{table}} WHERE `last_update` >= '". (time()-15 * 60) ."' ORDER BY `id` ASC", 'planets');
+		$Count          = 0;
 
-		if ($mode != 'change') {
-			$parse['Name'] = "Nom du joueur";
-		} elseif ($mode == 'change') {
-			$nam = $_POST['nam'];
-			doquery("DELETE FROM {{table}} WHERE who2='{$nam}'", 'banned');
-			doquery("UPDATE {{table}} SET bana=0, banaday=0 WHERE username='{$nam}'", "users");
-			message("Le joueur {$nam} a bien &eacute;t&eacute; d&eacute;banni!", 'Information');
+		while ($ActivPlanet = mysqli_fetch_array($AllActivPlanet, MYSQLI_ASSOC)) {
+			$parse['online_list'] .= "<tr>";
+			$parse['online_list'] .= "<td class=b><center><b>". $ActivPlanet['name'] ."</b></center></td>";
+			$parse['online_list'] .= "<td class=b><center><b>[". $ActivPlanet['galaxy'] .":". $ActivPlanet['system'] .":". $ActivPlanet['planet'] ."]</b></center></td>";
+			$parse['online_list'] .= "<td class=m><center><b>". pretty_number($ActivPlanet['points'] / 1000) ."</b></center></td>";
+			$parse['online_list'] .= "<td class=b><center><b>". pretty_time(time() - $ActivPlanet['last_update']) . "</b></center></td>";
+			$parse['online_list'] .= "</tr>";
+			$Count++;
 		}
+		$parse['online_list'] .= "<tr>";
+		$parse['online_list'] .= "<th class=\"b\" colspan=\"4\">". $lang['adm_pl_they'] ." ". $Count ." ". $lang['adm_pl_apla'] ."</th>";
+		$parse['online_list'] .= "</tr>";
 
-		display(parsetemplate(gettemplate('admin/unbanned'), $parse), "Overview", false, '', true);
+		$page = parsetemplate( $PageTPL	, $parse );
+		Game::display( $page, $lang['adm_pl_title'], false, '', true );
 	} else {
 		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}

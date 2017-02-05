@@ -32,10 +32,14 @@ class Game {
 
     static function display($page, $title = '', $metatags = '') {
         global $link, $game_config, $debug, $user, $planetrow;
-
+        if (!defined('IN_ADMIN')) {
+            $Menu = self::ShowLeftMenu();
+        } else {
+            $Menu = self::ShowAdminMenu();
+        }
         $DisplayPage = self::gameHeader($title, $metatags);
         $DisplayPage .= ShowTopNavigationBar($user, $planetrow);
-        $DisplayPage .= self::ShowLeftMenu();
+        $DisplayPage .= $Menu;
         $DisplayPage .= "<center>\n" . $page . "\n</center>\n";
         if (isset($user['authlevel']) && in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
             if ($game_config['debug'] == 1) {
@@ -70,7 +74,7 @@ class Game {
         if ($user['authlevel'] > 0) {
             $parse['ADMIN_LINK'] = "
 		<tr>
-			<td colspan=\"2\"><div><a href=\"admin/leftmenu.php\"><font color=\"lime\">" . $lang['user_level'][$user['authlevel']] . "</font></a></div></td>
+			<td colspan=\"2\"><div><a href=\"admin.php?page=overview\"><font color=\"lime\">" . $lang['user_level'][$user['authlevel']] . "</font></a></div></td>
 		</tr>";
         } else {
             $parse['ADMIN_LINK'] = "";
@@ -111,6 +115,22 @@ class Game {
         }
         $parse['servername'] = $game_config['game_name'];
         return parsetemplate(gettemplate('left_menu'), $parse);
+    }
+
+    static function ShowAdminMenu() {
+        global $lang, $user, $dpath, $game_config;
+
+        includeLang('leftmenu');
+        if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
+            $parse = $lang;
+            $parse['mf'] = "_self";
+            $parse['dpath'] = $dpath;
+            $parse['XNovaRelease'] = VERSION;
+            $parse['servername'] = XNova;
+            return parsetemplate(gettemplate('admin/left_menu'), $parse);
+        } else {
+            message($lang['sys_noalloaw'], $lang['sys_noaccess']);
+        }
     }
 
     static function gameHeader($title = '', $metatags = '') {
