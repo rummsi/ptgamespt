@@ -57,7 +57,7 @@ function ShowTopNavigationBar ( $CurrentUser, $CurrentPlanet ) {
 					// Bon puisque deja on s'y trouve autant le marquer
 					$parse['planetlist'] .= "selected=\"selected\" ";
 				}
-				$parse['planetlist'] .= "value=\"?cp=".$CurPlanet['id']."";
+				$parse['planetlist'] .= "value=\"game.php?page=".$_GET['page']."&cp=".$CurPlanet['id']."";
 				$parse['planetlist'] .= "&amp;mode=".$_GET['mode'];
 				$parse['planetlist'] .= "&amp;re=0\">";
 

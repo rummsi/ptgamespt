@@ -122,9 +122,9 @@ $page .= "
 if ( !isset( $a ) ) {
 	$page .= "
 	<tr>
-		<th colspan=6><a href=?a=1>{$lang['Requests']}</a></th>
+		<th colspan=6><a href=game.php?page=buddy&a=1>{$lang['Requests']}</a></th>
 	</tr><tr>
-		<th colspan=6><a href=?a=1&e=1>{$lang['My_requests']}</a></th>
+		<th colspan=6><a href=game.php?page=buddy&a=1&e=1>{$lang['My_requests']}</a></th>
 	</tr><tr>
 		<td class=c></td>
 		<td class=c>{$lang['Name']}</td>
@@ -187,7 +187,7 @@ while ( $b = mysqli_fetch_array( $buddyrow, MYSQLI_ASSOC ) ) {
 		$UserCommand = "<a href=?s=1&bid=" . $b["id"] . ">{$lang['Delete_request']}</a>";
 	} elseif ( isset( $a ) ) {
 		$UserCommand = "<a href=?s=1&bid=" . $b["id"] . ">{$lang['Ok']}</a><br/>";
-		$UserCommand .= "<a href=?a=1&s=1&bid=" . $b["id"] . ">{$lang['Reject']}</a></a>";
+		$UserCommand .= "<a href=game.php?page=buddy&a=1&s=1&bid=" . $b["id"] . ">{$lang['Reject']}</a></a>";
 	} else {
 		$UserCommand = "<a href=?s=1&bid=" . $b["id"] . ">{$lang['Delete']}</a>";
 	}

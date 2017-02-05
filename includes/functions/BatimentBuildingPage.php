@@ -149,19 +149,19 @@ function BatimentBuildingPage (&$CurrentPlanet, $CurrentUser) {
 					if ($Queue['lenght'] == 0) {
 						if ($NextBuildLevel == 1) {
 							if ( $HaveRessources == true ) {
-								$parse['click'] = "<a href=\"?cmd=insert&building=". $Element ."\"><font color=#00FF00>". $lang['BuildFirstLevel'] ."</font></a>";
+								$parse['click'] = "<a href=\"game.php?page=buildings&cmd=insert&building=". $Element ."\"><font color=#00FF00>". $lang['BuildFirstLevel'] ."</font></a>";
 							} else {
 								$parse['click'] = "<font color=#FF0000>". $lang['BuildFirstLevel'] ."</font>";
 							}
 						} else {
 							if ( $HaveRessources == true ) {
-								$parse['click'] = "<a href=\"?cmd=insert&building=". $Element ."\"><font color=#00FF00>". $lang['BuildNextLevel'] ." ". $NextBuildLevel ."</font></a>";
+								$parse['click'] = "<a href=\"game.php?page=buildings&cmd=insert&building=". $Element ."\"><font color=#00FF00>". $lang['BuildNextLevel'] ." ". $NextBuildLevel ."</font></a>";
 							} else {
 								$parse['click'] = "<font color=#FF0000>". $lang['BuildNextLevel'] ." ". $NextBuildLevel ."</font>";
 							}
 						}
 					} else {
-						$parse['click'] = "<a href=\"?cmd=insert&building=". $Element ."\"><font color=#00FF00>". $lang['InBuildQueue'] ."</font></a>";
+						$parse['click'] = "<a href=\"game.php?page=buildings&cmd=insert&building=". $Element ."\"><font color=#00FF00>". $lang['InBuildQueue'] ."</font></a>";
 					}
 				} elseif ($RoomIsOk && !$CanBuildElement) {
 					if ($NextBuildLevel == 1) {

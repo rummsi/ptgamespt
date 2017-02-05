@@ -150,7 +150,7 @@ function ResearchBuildingPage (&$CurrentPlanet, $CurrentUser, $InResearch, $TheP
 								$TechnoLink  = "<font color=#FF0000>". $lang['Rechercher'] ."<br>".$lang['level']." ".$LevelToDo."</font>";
 							}
 						} else {
-							$TechnoLink  = "<a href=\"buildings.php?mode=research&cmd=search&tech=".$Tech."\">";
+							$TechnoLink  = "<a href=\"game.php?page=buildings&mode=research&cmd=search&tech=".$Tech."\">";
 							if ($LevelToDo == 1) {
 								$TechnoLink .= "<font color=#00FF00>". $lang['Rechercher'] ."</font>";
 							} else {
