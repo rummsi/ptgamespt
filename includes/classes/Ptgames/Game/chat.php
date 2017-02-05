@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 	includeLang('chat');
 	$BodyTPL = gettemplate('chat_body');
 
@@ -39,7 +35,7 @@ require_once dirname(__FILE__) .'/common.php';
 	$parse = $lang;
 
 	$page = parsetemplate($BodyTPL, $parse);
-	display($page, $lang['Chat'], false);
+	Game::display($page, $lang['Chat'], false);
 
 // Shoutbox by e-Zobar - Copyright XNova Team 2008
 ?>

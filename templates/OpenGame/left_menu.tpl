@@ -68,17 +68,17 @@ function f(target_url,win_name) {
 	</tr><tr>
 	<td colspan="2"><div><a href="#" onClick="f('game.php?page=buddy', '');" accesskey="c">{Buddylist}</a></div></td>
 </tr></tr>{notes_link}<tr><tr>
-	<td colspan="2"><div><a href="chat.php" accesskey="a" target="{mf}">{Chat}</a></div></td>
+	<td colspan="2"><div><a href="game.php?page=chat" accesskey="a" target="{mf}">{Chat}</a></div></td>
 </tr><tr>
 	<td colspan="2"><div><a href="{forum_url}" accesskey="1" target="{mf}">{Board}</a></div></td>
 </tr><tr>
 	<td colspan="2"><div><a href="game.php?page=add_declare" accesskey="1" target="{mf}">{multi}</a></div></td>
 </tr><tr>
-	<td colspan="2"><div><a href="rules.php"  accesskey="c" target="{mf}">{Rules}</a></div></td>
+	<td colspan="2"><div><a href="game.php?page=rules"  accesskey="c" target="{mf}">{Rules}</a></div></td>
 </tr><tr>
-	<td colspan="2"><div><a href="contact.php" accesskey="3" target="{mf}" >{Contact}</a></div></td>
+	<td colspan="2"><div><a href="index.php?page=contact" accesskey="3" target="{mf}" >{Contact}</a></div></td>
 </tr><tr>
-	<td colspan="2"><div><a href="options.php" accesskey="o" target="{mf}">{Options}</a></div></td>
+	<td colspan="2"><div><a href="game.php?page=options" accesskey="o" target="{mf}">{Options}</a></div></td>
 </tr>
 	{ADMIN_LINK}
 <tr>

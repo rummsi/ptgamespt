@@ -6,7 +6,7 @@
 	  <td class=c colspan=4>{Notes}</td>
 	</tr>
 	<tr>
-	  <th colspan=4><a href="{PHP_SELF}?a=1">{MakeNewNote}</a></th>
+	  <th colspan=4><a href="{PHP_SELF}&a=1">{MakeNewNote}</a></th>
 	</tr>
 	<tr>
 	  <td class=c></td>

@@ -122,9 +122,9 @@ switch ($mode) {
             if ($user['new_message'] != 0) {
                 $Have_new_message .= "<tr>";
                 if ($user['new_message'] == 1) {
-                    $Have_new_message .= "<th colspan=4><a href=messages.php>" . $lang['Have_new_message'] . "</a></th>";
+                    $Have_new_message .= "<th colspan=4><a href=game.php?page=messages>" . $lang['Have_new_message'] . "</a></th>";
                 } elseif ($user['new_message'] > 1) {
-                    $Have_new_message .= "<th colspan=4><a href=messages.php>";
+                    $Have_new_message .= "<th colspan=4><a href=game.php?page=messages>";
                     $m = pretty_number($user['new_message']);
                     $Have_new_message .= str_replace('%m', $m, $lang['Have_new_messages']);
                     $Have_new_message .= "</a></th>";
@@ -303,9 +303,9 @@ switch ($mode) {
                     }
 
                     $fpage[$irak['zeit']] .= "<tr><th><div id=\"bxxfs$i\" class=\"z\"></div><font color=\"lime\">" . gmdate("H:i:s", $irak['zeit'] + 1 * 60 * 60) . "</font> </th><th colspan=\"3\"><font color=\"#0099FF\">Une attaque de missiles (" . $irak['anzahl'] . ") de " . $user_planet['name'] . " ";
-                    $fpage[$irak['zeit']] .= '<a href="galaxy.php?mode=3&galaxy=' . $irak["galaxy_angreifer"] . '&system=' . $irak["system_angreifer"] . '&planet=' . $irak["planet_angreifer"] . '">[' . $irak["galaxy_angreifer"] . ':' . $irak["system_angreifer"] . ':' . $irak["planet_angreifer"] . ']</a>';
+                    $fpage[$irak['zeit']] .= '<a href="game.php?page=galaxy&mode=3&galaxy=' . $irak["galaxy_angreifer"] . '&system=' . $irak["system_angreifer"] . '&planet=' . $irak["planet_angreifer"] . '">[' . $irak["galaxy_angreifer"] . ':' . $irak["system_angreifer"] . ':' . $irak["planet_angreifer"] . ']</a>';
                     $fpage[$irak['zeit']] .= ' arrive sur la plan&egrave;te' . $planet["name"] . ' ';
-                    $fpage[$irak['zeit']] .= '<a href="galaxy.php?mode=3&galaxy=' . $irak["galaxy"] . '&system=' . $irak["system"] . '&planet=' . $irak["planet"] . '">[' . $irak["galaxy"] . ':' . $irak["system"] . ':' . $irak["planet"] . ']</a>';
+                    $fpage[$irak['zeit']] .= '<a href="game.php?page=galaxy&mode=3&galaxy=' . $irak["galaxy"] . '&system=' . $irak["system"] . '&planet=' . $irak["planet"] . '">[' . $irak["galaxy"] . ':' . $irak["system"] . ':' . $irak["planet"] . ']</a>';
                     $fpage[$irak['zeit']] .= '</font>';
                     $fpage[$irak['zeit']] .= InsertJavaScriptChronoApplet ("fm", $Record, $time, false);
                     $fpage[$irak['zeit']] .= "</th>";
@@ -397,7 +397,7 @@ switch ($mode) {
             $parse['metal_debris'] = pretty_number($galaxyrow['metal']);
             $parse['crystal_debris'] = pretty_number($galaxyrow['crystal']);
             if (($galaxyrow['metal'] != 0 || $galaxyrow['crystal'] != 0) && $planetrow[$resource[209]] != 0) {
-                $parse['get_link'] = " (<a href=\"quickfleet.php?mode=8&g=" . $galaxyrow['galaxy'] . "&s=" . $galaxyrow['system'] . "&p=" . $galaxyrow['planet'] . "&t=2\">" . $lang['type_mission'][8] . "</a>)";
+                $parse['get_link'] = " (<a href=\"game.php?page=quickfleet&mode=8&g=" . $galaxyrow['galaxy'] . "&s=" . $galaxyrow['system'] . "&p=" . $galaxyrow['planet'] . "&t=2\">" . $lang['type_mission'][8] . "</a>)";
             } else {
                 $parse['get_link'] = '';
             }

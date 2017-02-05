@@ -204,7 +204,7 @@
 		$page .= "<th><font color=\"lime\"><div id=\"time_0\"><font>" . pretty_time(floor($f['fleet_end_time'] + 1 - time())) . "</font></th><th>";
 
 		if ($f['fleet_mess'] == 0) {
-			$page .= "     <form action=\"fleetback.php\" method=\"post\">
+			$page .= "     <form action=\"game.php?page=fleetback\" method=\"post\">
       <input name=\"zawracanie\" value=" . $f['fleet_id'] . " type=hidden>
          <input value=\" Retour \" type=\"submit\">
        </form></th>";
@@ -228,7 +228,7 @@
      <td class="c" colspan="2">	Association de flotte KV50502025</td>
    </tr>
 
-   <form action="verband.php" method="POST">
+   <form action="game.php?page=verband" method="POST">
    <input type="hidden" name="fleet_id value="' . $fleetid . '" />
    <input type="hidden" name="changename" value="49021" />
    <tr height="20">
@@ -255,7 +255,7 @@
                  </select>
        </th>
 
-	    <form action="index.php?page=flotten1&session=388eb542c1d0" method="POST">
+	    <form action="game.php?page=flotten1&session=388eb542c1d0" method="POST">
 	<input type="hidden" name="order_union" value="49021" />
        <input type="hidden" name="adduser" value="49021" />
 
@@ -271,7 +271,7 @@
 
   </table>
 	  <center>
-		<form action="floten1.php" method="post">
+		<form action="game.php?page=floten1" method="post">
 		<table width="519" border="0" cellpadding="0" cellspacing="1">
 		  <tr height="20">
 			<td colspan="4" class="c">Nouveau march�: Choix de la flotte</td>

@@ -165,7 +165,7 @@ while ( $b = mysqli_fetch_array( $buddyrow, MYSQLI_ASSOC ) ) {
 	if ( $u["ally_id"] != 0 ) { // Alianza
 		// $allyrow = doquery("SELECT id,ally_tag FROM {{table}} WHERE id=".$u["ally_id"],"alliance",true);
 		// if($allyrow){
-		$UserAlly .= "<a href=alliance.php?mode=ainfo&a=" . $u["id"] . ">" . $u["ally_name"] . "</a>";
+		$UserAlly .= "<a href=game.php?page=alliance&mode=ainfo&a=" . $u["id"] . ">" . $u["ally_name"] . "</a>";
 		// }
 	}
 
@@ -195,9 +195,9 @@ while ( $b = mysqli_fetch_array( $buddyrow, MYSQLI_ASSOC ) ) {
 	$page .= "
 	<tr>
 		<th width=20>" . $i . "</th>
-		<th><a href=messages.php?mode=write&id=" . $u["id"] . ">" . $u["username"] . "</a></th>
+		<th><a href=game.php?page=messages&mode=write&id=" . $u["id"] . ">" . $u["username"] . "</a></th>
 		<th>{$UserAlly}</th>
-		<th><a href=\"galaxy.php?mode=3&galaxy=" . $u["galaxy"] . "&system=" . $u["system"] . "\">" . $u["galaxy"] . ":" . $u["system"] . ":" . $u["planet"] . "</a></th>
+		<th><a href=\"game.php?page=galaxy&mode=3&galaxy=" . $u["galaxy"] . "&system=" . $u["system"] . "\">" . $u["galaxy"] . ":" . $u["system"] . ":" . $u["planet"] . "</a></th>
 		<th>{$LastOnline}</th>
 		<th>{$UserCommand}</th>
 	</tr>";

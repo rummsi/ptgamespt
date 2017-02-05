@@ -113,7 +113,7 @@ elseif(isset($_GET['a'])){
 		<th><input type=reset value=\"Reset\"> <input type=submit value=\"Enregistrer\"> <input type=submit name=delete value=\"Supprimer\">";
 		$page .= "</th></tr>";
 
-	}else{$page .= message("Le raccourcis a &eacute;t&eacute; enregistr&eacute; !","Enregistrer","fleetshortcut.php");}
+	}else{$page .= message("Le raccourcis a &eacute;t&eacute; enregistr&eacute; !","Enregistrer","game.php?page=fleetshortcut");}
 
 	$page .= '<tr><td colspan=2 class=c><a href=game.php?page=fleetshortcut>Retour</a></td></tr></tr></table></form>';
 

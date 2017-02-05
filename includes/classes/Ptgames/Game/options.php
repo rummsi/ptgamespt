@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
     includeLang('options');
 
     $lang['PHP_SELF'] = 'options.' . PHPEXT;
@@ -63,11 +59,11 @@ require_once dirname(__FILE__) .'/common.php';
                  WHERE id = '{$id['id']}' AND `planet_type` = 1 ", 'planets');}
 
           $dpath = (!$user["dpath"]) ? DEFAULT_SKINPATH : $user["dpath"];
-          message($lang['succeful_save'], $lang['Options'],"options.php",1);
+          message($lang['succeful_save'], $lang['Options'],"game.php?page=options",1);
        }else{
        $urlaubs_modus = "1";
        $dpath = (!$user["dpath"]) ? DEFAULT_SKINPATH : $user["dpath"];
-       message($lang['You_cant_exit_vmode'], $lan['Error'] ,"options.php",1);
+       message($lang['You_cant_exit_vmode'], $lan['Error'] ,"game.php?page=options",1);
        }
     }
     if ($_POST && $mode == "change") { // Array ( [db_character]
@@ -256,7 +252,7 @@ require_once dirname(__FILE__) .'/common.php';
              message($lang['succeful_changename'], $lang['changue_name'],"index.php",1);
           }
        }
-       message($lang['succeful_save'], $lang['Options'],"options.php",1);
+       message($lang['succeful_save'], $lang['Options'],"game.php?page=options",1);
     } else {
        $parse = $lang;
 
@@ -305,9 +301,9 @@ require_once dirname(__FILE__) .'/common.php';
 
        if($user['urlaubs_modus']){
 
-          display(parsetemplate(gettemplate('options_body_vmode'), $parse), 'Options', false);
+           Game::display(parsetemplate(gettemplate('options_body_vmode'), $parse), 'Options', false);
        }else{
-       display(parsetemplate(gettemplate('options_body'), $parse), 'Options', false);
+           Game::display(parsetemplate(gettemplate('options_body'), $parse), 'Options', false);
        }
        die();
     }

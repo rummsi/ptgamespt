@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 $dpath = (!$user["dpath"]) ? DEFAULT_SKINPATH : $user["dpath"];
 
 $a = $_GET['a'];
@@ -41,7 +37,7 @@ $lang['Please_Wait'] = "Patientez...";
 //lenguaje
 includeLang('notes');
 
-$lang['PHP_SELF'] = 'notes.'.PHPEXT;
+$lang['PHP_SELF'] = 'game.php?page=notes';
 
 if($_POST["s"] == 1 || $_POST["s"] == 2){//Edicion y agregar notas
 
@@ -52,7 +48,7 @@ if($_POST["s"] == 1 || $_POST["s"] == 2){//Edicion y agregar notas
 
 	if($_POST["s"] ==1){
 		doquery("INSERT INTO {{table}} SET owner={$user['id']}, time=$time, priority=$priority, title='$title', text='$text'","notes");
-		message($lang['NoteAdded'], $lang['Please_Wait'],'notes.'.PHPEXT,"3");
+		message($lang['NoteAdded'], $lang['Please_Wait'],'game.php?page=notes',"3");
 	}elseif($_POST["s"] == 2){
 		/*
 		  pequeño query para averiguar si la nota que se edita es del propio jugador
@@ -63,7 +59,7 @@ if($_POST["s"] == 1 || $_POST["s"] == 2){//Edicion y agregar notas
 		if(!$note_query){ error($lang['notpossiblethisway'],$lang['Notes']); }
 
 		doquery("UPDATE {{table}} SET time=$time, priority=$priority, title='$title', text='$text' WHERE id=$id","notes");
-		message($lang['NoteUpdated'], $lang['Please_Wait'], 'notes.'.PHPEXT, "3");
+		message($lang['NoteUpdated'], $lang['Please_Wait'], 'game.php?page=notes', "3");
 	}
 
 }
@@ -87,8 +83,8 @@ elseif($_POST){//Borrar
 	}
 	if($deleted){
 		$mes = ($deleted == 1) ? $lang['NoteDeleted'] : $lang['NoteDeleteds'];
-		message($mes,$lang['Please_Wait'],'notes.'.PHPEXT,"3");
-	}else{header("Location: notes.". PHPEXT);}
+		message($mes,$lang['Please_Wait'],'game.php?page=notes',"3");
+	}else{header("Location: game.php?page=notes");}
 
 }else{//sin post...
 	if($_GET["a"] == 1){//crear una nueva nota.
@@ -110,7 +106,7 @@ elseif($_POST){//Borrar
 
 		$page .= parsetemplate(gettemplate('notes_form'), $parse);
 
-		display($page,$lang['Notes'],false);
+		Game::display($page,$lang['Notes'],false);
 
 	}
 	elseif($_GET["a"] == 2){//editar
@@ -137,7 +133,7 @@ elseif($_POST){//Borrar
 
 		$page .= parsetemplate(gettemplate('notes_form'), $parse);
 
-		display($page,$lang['Notes'],false);
+		Game::display($page,$lang['Notes'],false);
 
 	}
 	else{//default
@@ -172,7 +168,7 @@ elseif($_POST){//Borrar
 		//fragmento de template
 		$page .= parsetemplate(gettemplate('notes_body'), $parse);
 
-		display($page,$lang['Notes'],false);
+		Game::display($page,$lang['Notes'],false);
 	}
 }
 ?>

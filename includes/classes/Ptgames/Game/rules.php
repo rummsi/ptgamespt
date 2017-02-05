@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 	includeLang('rules');
 
 	$parse = $lang;
@@ -40,7 +36,7 @@ require_once dirname(__FILE__) .'/common.php';
 	$PageTPL  = gettemplate('rules_body');
 	$page     = parsetemplate( $PageTPL, $parse);
 
-	display($page, $lang['rules'], false);
+	Game::display($page, $lang['rules'], false);
 
 
 ?>

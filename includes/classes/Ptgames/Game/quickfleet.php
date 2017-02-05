@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 includeLang('fleet');
 
 	$Mode   = $_GET['mode'];
@@ -163,7 +159,7 @@ includeLang('fleet');
 
 
 
-	display ( $page, "QuickFleet" );
+	Game::display ( $page, "QuickFleet" );
 
 // Updated by Chlorel Jan 22 2008 (all code just hold the table and the idea)
 // Created by Perberos. All rights reversed (C) 2006
