@@ -29,7 +29,7 @@
  */
 
 	includeLang('chat');
-	$BodyTPL = gettemplate('chat_body');
+	$BodyTPL = gettemplate('Game/chat_body');
 
 	$nick = $user['username'];
 	$parse = $lang;

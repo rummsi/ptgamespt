@@ -67,7 +67,7 @@ switch ($mode) {
             $parse['galaxy_planet'] = $planetrow['planet'];
             $parse['planet_name'] = $planetrow['name'];
 
-            $page .= parsetemplate(gettemplate('overview_deleteplanet'), $parse);
+            $page .= parsetemplate(gettemplate('Game/overview_deleteplanet'), $parse);
             // On affiche la forme pour l'abandon de la colonie
             Game::display($page, $lang['rename_and_abandon_planet']);
         } elseif ($_POST['kolonieloeschen'] == 1 && $_POST['deleteid'] == $user['current_planet']) {
@@ -110,7 +110,7 @@ switch ($mode) {
         $parse['galaxy_planet'] = $planetrow['planet'];
         $parse['planet_name'] = $planetrow['name'];
 
-        $page .= parsetemplate(gettemplate('overview_renameplanet'), $parse);
+        $page .= parsetemplate(gettemplate('Game/overview_renameplanet'), $parse);
         // On affiche la page permettant d'abandonner OU de renomme une Colonie / Planete
         Game::display($page, $lang['rename_and_abandon_planet']);
         break;
@@ -471,7 +471,7 @@ switch ($mode) {
             $OnlineUsers = doquery("SELECT COUNT(*) FROM {{table}} WHERE onlinetime>='" . (time()-15 * 60) . "'", 'users', 'true');
             $parse['NumberMembersOnline'] = $OnlineUsers[0];
 
-            $page = parsetemplate(gettemplate('overview_body'), $parse);
+            $page = parsetemplate(gettemplate('Game/overview_body'), $parse);
 
             Game::display($page, $lang['Overview']);
             break;

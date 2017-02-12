@@ -63,7 +63,7 @@ class Game {
         $parse['lm_tx_game'] = $game_config['game_speed'] / 2500;
         $parse['lm_tx_fleet'] = $game_config['fleet_speed'] / 2500;
         $parse['lm_tx_queue'] = MAX_FLEET_OR_DEFS_PER_ROW;
-        $SubFrame = parsetemplate(gettemplate('serv_infos'), $parse);
+        $SubFrame = parsetemplate(gettemplate('Game/serv_infos'), $parse);
         $parse['server_info'] = $SubFrame;
         $parse['XNovaRelease'] = VERSION;
         $parse['dpath'] = $dpath;
@@ -114,7 +114,7 @@ class Game {
             $parse['notes_link'] = "";
         }
         $parse['servername'] = $game_config['game_name'];
-        return parsetemplate(gettemplate('left_menu'), $parse);
+        return parsetemplate(gettemplate('Game/left_menu'), $parse);
     }
 
     static function ShowAdminMenu() {
@@ -127,7 +127,7 @@ class Game {
             $parse['dpath'] = $dpath;
             $parse['XNovaRelease'] = VERSION;
             $parse['servername'] = XNova;
-            return parsetemplate(gettemplate('admin/left_menu'), $parse);
+            return parsetemplate(gettemplate('Admin/left_menu'), $parse);
         } else {
             message($lang['sys_noalloaw'], $lang['sys_noaccess']);
         }
@@ -143,7 +143,7 @@ class Game {
         $parse['-style-'] .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . DEFAULT_SKINPATH . "/formate.css\" />";
         $parse['-meta-'] = ($metatags) ? $metatags : "";
         $parse['-body-'] = "<body>";
-        return parsetemplate(gettemplate('simple_header'), $parse);
+        return parsetemplate(gettemplate('Game/simple_header'), $parse);
     }
 
 }

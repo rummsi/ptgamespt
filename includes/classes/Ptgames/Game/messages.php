@@ -126,9 +126,9 @@ $Message = trim ( nl2br ( strip_tags ( $_POST['text'], '<br>' ) ) ); }
 			$parse['subject']      = (!isset($subject)) ? $lang['mess_no_subject'] : $subject ;
 			$parse['text']         = $text;
 			if($game_config['enable_bbcode'] == 1) {
-			$page                 .= parsetemplate(gettemplate('messages_pm_form_bb'), $parse);
+			$page                 .= parsetemplate(gettemplate('Game/messages_pm_form_bb'), $parse);
 			} else {
-						$page                 .= parsetemplate(gettemplate('messages_pm_form'), $parse); }
+						$page                 .= parsetemplate(gettemplate('Game/messages_pm_form'), $parse); }
 			break;
 
 		case 'delete':

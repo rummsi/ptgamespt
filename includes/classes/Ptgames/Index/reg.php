@@ -258,7 +258,7 @@ $_SESSION['secu'] = $_SESSION['nombre1'] + $_SESSION['nombre2'];
     $parse['servername'] = '<img src="images/xnova.png" align="top" border="0" >';
     $parse['code_secu'] = "<th>Securite: </th>";
 	$parse['affiche'] = $_SESSION['nombre1']." + ".$_SESSION['nombre2']." = <input name='secu' size='3' maxlength='3' type='text'>";
-	$page = parsetemplate(gettemplate('registry_form'), $parse);
+	$page = parsetemplate(gettemplate('Index/registry_form'), $parse);
 
 	}else{
 
@@ -267,7 +267,7 @@ $_SESSION['secu'] = $_SESSION['nombre1'] + $_SESSION['nombre2'];
 	$parse['code_secu'] = "";
 	$parse['affiche'] = "";
     $parse['servername'] = '<img src="images/xnova.png" align="top" border="0" >';
-    $page = parsetemplate(gettemplate('registry_form'), $parse);
+    $page = parsetemplate(gettemplate('Index/registry_form'), $parse);
 }
     display ($page, $lang['registry'], false);
 

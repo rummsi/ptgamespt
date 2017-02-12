@@ -131,7 +131,7 @@ function FleetBuildingPage(&$currentPlanet, &$currentUser)
         $parse = array(
             'data' => json_encode($data)
             );
-        $BuildQueue = parsetemplate(gettemplate('buildings_script'), $parse);
+        $BuildQueue = parsetemplate(gettemplate('Game/buildings_script'), $parse);
     }
 
     $parse = $lang;
@@ -139,7 +139,7 @@ function FleetBuildingPage(&$currentPlanet, &$currentUser)
     $parse['buildlist']    = $PageTable;
     // Et la liste de constructions en cours dans $BuildQueue;
     $parse['buildinglist'] = $BuildQueue;
-    $page .= parsetemplate(gettemplate('buildings_fleet'), $parse);
+    $page .= parsetemplate(gettemplate('Game/buildings_fleet'), $parse);
 
     Game::display($page, $lang['Fleet']);
 }

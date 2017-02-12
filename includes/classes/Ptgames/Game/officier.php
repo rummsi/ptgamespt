@@ -71,15 +71,15 @@ function ShowOfficierPage ( &$CurrentUser ) {
 		} else {
 			$Message = $lang['NoPoints'];
 		}
-		$MessTPL        = gettemplate('message_body');
+		$MessTPL        = gettemplate('Game/message_body');
 		$parse['title'] = $lang['Officier'];
 		$parse['mes']   = $Message;
 
 		$page           = parsetemplate( $MessTPL, $parse);
 	} else {
 		// Pas de recrutement d'officier
-		$PageTPL = gettemplate('officier_body');
-		$RowsTPL = gettemplate('officier_rows');
+		$PageTPL = gettemplate('Game/officier_body');
+		$RowsTPL = gettemplate('Game/officier_rows');
 		$parse['off_points']   = $lang['off_points'];
 		$parse['alv_points']   = $CurrentUser['rpg_points'];
 		$parse['disp_off_tbl'] = "";

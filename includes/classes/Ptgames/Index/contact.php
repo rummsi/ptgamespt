@@ -30,8 +30,8 @@
 
 	includeLang('contact');
 
-	$BodyTPL = gettemplate('contact_body');
-	$RowsTPL = gettemplate('contact_body_rows');
+	$BodyTPL = gettemplate('Index/contact_body');
+	$RowsTPL = gettemplate('Index/contact_body_rows');
 	$parse   = $lang;
 
 	$QrySelectUser  = "SELECT `username`, `email`, `authlevel` ";

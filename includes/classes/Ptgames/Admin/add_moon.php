@@ -33,7 +33,7 @@
 
 		$mode      = $_POST['mode'];
 
-		$PageTpl   = gettemplate("admin/add_moon");
+		$PageTpl   = gettemplate("Admin/add_moon");
 		$parse     = $lang;
 
 		if ($mode == 'addit') {

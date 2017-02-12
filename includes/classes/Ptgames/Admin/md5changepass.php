@@ -45,7 +45,7 @@
 
 		}
 
-		$PageTpl = gettemplate("admin/changepass");
+		$PageTpl = gettemplate("Admin/changepass");
 		$Page    = parsetemplate( $PageTpl, $parse);
 
 		Game::display( $Page, $lang['md5_title'], false, '', true );

@@ -66,7 +66,7 @@ function AdminMessage ($mes, $title = 'Error', $dest = '', $time = '3', $color= 
 	$parse['title'] = $title;
 	$parse['mes']   = $mes;
 
-	$page = parsetemplate(gettemplate('admin/message_body'), $parse);
+	$page = parsetemplate(gettemplate('Admin/message_body'), $parse);
 
 	display ($page, $title, false, (($dest != "") ? "<meta http-equiv=\"refresh\" content=\"$time;URL={$dest}\">" : ""), true);
 }
@@ -80,7 +80,7 @@ function message($mes, $title = 'Error', $dest = "", $time = "3", $color = 'oran
     $parse['title'] = $title;
     $parse['mes']   = $mes;
 
-    $page = parsetemplate(gettemplate('admin/message_body'), $parse);
+    $page = parsetemplate(gettemplate('Admin/message_body'), $parse);
 
     display ($page, $title, false, (($dest != "") ? "<meta http-equiv=\"refresh\" content=\"$time;URL={$dest}\">" : ""), true);
 }
@@ -143,7 +143,7 @@ function StdUserHeader ($title = '', $metatags = '') {
 
 	$parse['-meta-']  = ($metatags) ? $metatags : "";
 	$parse['-body-']  = "<body>"; //  class=\"style\" topmargin=\"0\" leftmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">";
-	return parsetemplate(gettemplate('simple_header'), $parse);
+	return parsetemplate(gettemplate('Index/simple_header'), $parse);
 }
 
 // ----------------------------------------------------------------------------------------------------------------
@@ -158,7 +158,7 @@ function AdminUserHeader ($title = '', $metatags = '') {
 	$parse['title']  = $title;
 	$parse['-meta-'] = ($metatags) ? $metatags : "";
 	$parse['-body-'] = "<body>"; //  class=\"style\" topmargin=\"0\" leftmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">";
-	return parsetemplate(gettemplate('admin/simple_header'), $parse);
+	return parsetemplate(gettemplate('Admin/simple_header'), $parse);
 }
 
 // ----------------------------------------------------------------------------------------------------------------
@@ -169,7 +169,7 @@ function StdFooter() {
 	global $game_config, $lang;
 	$parse['copyright']     = isset($game_config['copyright']) ? $game_config['copyright'] : 'XNova Support Team';
 	$parse['TranslationBy'] = isset($lang['TranslationBy']) ? $lang['TranslationBy'] : '';
-	return parsetemplate(gettemplate('overall_footer'), $parse);
+	return parsetemplate(gettemplate('Index/overall_footer'), $parse);
 }
 
 // ----------------------------------------------------------------------------------------------------------------

@@ -43,7 +43,7 @@
 
 		}
 
-		$PageTpl = gettemplate("admin/exec_query");
+		$PageTpl = gettemplate("Admin/exec_query");
 		$Page    = parsetemplate( $PageTpl, $parse);
 
 		Game::display( $Page, $lang['qry_title'], false, '', true );

@@ -30,7 +30,7 @@
 
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
 		includeLang('admin/fleets');
-		$PageTPL            = gettemplate('admin/fleet_body');
+		$PageTPL            = gettemplate('Admin/fleet_body');
 
 		$parse              = $lang;
 		$parse['flt_table'] = BuildFlyingFleetTable ();

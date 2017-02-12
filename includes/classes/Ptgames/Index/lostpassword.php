@@ -106,5 +106,5 @@ EOF;
 }
 
 $parse = $lang;
-$page = parsetemplate(gettemplate('lostpassword'), $parse);
+$page = parsetemplate(gettemplate('Index/lostpassword'), $parse);
 display($page, $lang['registry']);

@@ -29,8 +29,8 @@
  */
 
 $Id                  = $_GET['techid'];
-$PageTPL             = gettemplate('techtree_details');
-$RowsTPL             = gettemplate('techtree_details_rows');
+$PageTPL             = gettemplate('Game/techtree_details');
+$RowsTPL             = gettemplate('Game/techtree_details_rows');
 
 $parse               = $lang;
 $parse['te_dt_id']   = $Id;

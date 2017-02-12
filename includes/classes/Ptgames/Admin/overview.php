@@ -37,8 +37,8 @@
 			$TypeSort = "id";
 		}
 
-		$PageTPL  = gettemplate('admin/overview_body');
-		$RowsTPL  = gettemplate('admin/overview_rows');
+		$PageTPL  = gettemplate('Admin/overview_body');
+		$RowsTPL  = gettemplate('Admin/overview_rows');
 
 		$parse                      = $lang;
 		$parse['dpath']             = $dpath;

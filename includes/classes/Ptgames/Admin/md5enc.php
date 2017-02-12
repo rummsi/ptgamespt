@@ -41,7 +41,7 @@
 			$parse['md5_enc'] = md5 ("");
 		}
 
-		$PageTpl = gettemplate("admin/md5enc");
+		$PageTpl = gettemplate("Admin/md5enc");
 		$Page    = parsetemplate( $PageTpl, $parse);
 
 		Game::display( $Page, $lang['md5_title'], false, '', true );

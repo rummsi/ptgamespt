@@ -120,7 +120,7 @@ function XNovaResetUnivers ( $CurrentUser ) {
 }
 
 	$mode      = $_POST['mode'];
-	$PageTpl   = gettemplate("admin/reset_body");
+	$PageTpl   = gettemplate("Admin/reset_body");
 	$parse     = $lang;
 
 	if ($mode == 'reset') {

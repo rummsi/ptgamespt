@@ -33,7 +33,7 @@
 
 		$mode      = $_POST['mode'];
 
-		$PageTpl   = gettemplate("admin/add_money");
+		$PageTpl   = gettemplate("Admin/add_money");
 		$parse     = $lang;
 
 		if ($mode == 'addit') {

@@ -28,8 +28,8 @@
  *
  */
 
-	$HeadTpl = gettemplate('techtree_head');
-	$RowTpl  = gettemplate('techtree_row');
+	$HeadTpl = gettemplate('Game/techtree_head');
+	$RowTpl  = gettemplate('Game/techtree_row');
 	foreach($lang['tech'] as $Element => $ElementName) {
 		$parse            = array();
 		$parse['tt_name'] = $ElementName;
@@ -63,7 +63,7 @@
 	}
 
 	$parse['techtree_list'] = $page;
-	$page                   = parsetemplate(gettemplate('techtree_body'), $parse);
+	$page                   = parsetemplate(gettemplate('Game/techtree_body'), $parse);
 
 	Game::display($page, $lang['Tech']);
 

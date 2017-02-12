@@ -148,7 +148,7 @@ if ($_GET['mode'] == 'ainfo') {
 	} else
 		$lang['bewerbung'] = "Candidature";
 
-	$page .= parsetemplate(gettemplate('alliance_ainfo'), $lang);
+	$page .= parsetemplate(gettemplate('Game/alliance_ainfo'), $lang);
 	Game::display($page, str_replace('%s', $ally_name, $lang['Info_of_Alliance']));
 }
 // --[Comprobaciones de alianza]-------------------------
@@ -197,7 +197,7 @@ if ($user['ally_id'] == 0) { // Sin alianza
 
 				str_replace('%s', $_POST['atag'], $lang['alliance_has_been_maked']) . "<br><br>", "", $lang['Ok']);
 		} else {
-			$page .= parsetemplate(gettemplate('alliance_make'), $lang);
+			$page .= parsetemplate(gettemplate('Game/alliance_make'), $lang);
 		}
 
 		Game::display($page, $lang['make_alliance']);
@@ -207,14 +207,14 @@ if ($user['ally_id'] == 0) { // Sin alianza
 
 		$parse = $lang;
 		$lang['searchtext'] = $_POST['searchtext'];
-		$page = parsetemplate(gettemplate('alliance_searchform'), $lang);
+		$page = parsetemplate(gettemplate('Game/alliance_searchform'), $lang);
 
 		if ($_POST) { // esta parte es igual que el buscador de search.php...
 			// searchtext
 			$search = doquery("SELECT * FROM {{table}} WHERE ally_name LIKE '%{$_POST['searchtext']}%' or ally_tag LIKE '%{$_POST['searchtext']}%' LIMIT 30", "alliance");
 
 			if (mysqli_num_rows($search) != 0) {
-				$template = gettemplate('alliance_searchresult_row');
+				$template = gettemplate('Game/alliance_searchresult_row');
 
 				while ($s = mysqli_fetch_array($search, MYSQLI_ASSOC)) {
 					$entry = array();
@@ -225,7 +225,7 @@ if ($user['ally_id'] == 0) { // Sin alianza
 					$parse['result'] .= parsetemplate($template, $entry);
 				}
 
-				$page .= parsetemplate(gettemplate('alliance_searchresult_table'), $parse);
+				$page .= parsetemplate(gettemplate('Game/alliance_searchresult_table'), $parse);
 			}
 		}
 
@@ -261,7 +261,7 @@ if ($user['ally_id'] == 0) { // Sin alianza
 		$parse['text_apply'] = $text_apply;
 		$parse['Write_to_alliance'] = str_replace('%s', $ally_tag, $lang['Write_to_alliance']);
 
-		$page = parsetemplate(gettemplate('alliance_applyform'), $parse);
+		$page = parsetemplate(gettemplate('Game/alliance_applyform'), $parse);
 
 		Game::display($page, $lang['Write_to_alliance']);
 	}
@@ -276,11 +276,11 @@ if ($user['ally_id'] == 0) { // Sin alianza
 
 			$lang['request_text'] = str_replace('%s', $ally_tag, $lang['Canceled_a_request_text']);
 			$lang['button_text'] = $lang['Ok'];
-			$page = parsetemplate(gettemplate('alliance_apply_waitform'), $lang);
+			$page = parsetemplate(gettemplate('Game/alliance_apply_waitform'), $lang);
 		} else {
 			$lang['request_text'] = str_replace('%s', $ally_tag, $lang['Waiting_a_request_text']);
 			$lang['button_text'] = $lang['Delete_apply'];
-			$page = parsetemplate(gettemplate('alliance_apply_waitform'), $lang);
+			$page = parsetemplate(gettemplate('Game/alliance_apply_waitform'), $lang);
 		}
 		// mysqli_real_escape_string(Database::$dbHandle, strip_tags());
 		Game::display($page, "Deine Anfrage");
@@ -288,7 +288,7 @@ if ($user['ally_id'] == 0) { // Sin alianza
 		/*
 	  Vista normal de cuando no se tiene ni solicitud ni alianza
 	*/
-		$page .= parsetemplate(gettemplate('alliance_defaultmenu'), $lang);
+		$page .= parsetemplate(gettemplate('Game/alliance_defaultmenu'), $lang);
 		Game::display($page, $lang['alliance']);
 	}
 }
@@ -420,7 +420,7 @@ elseif ($user['ally_id'] != 0 && $user['ally_request'] == 0) { // Con alianza
 		// contamos la cantidad de usuarios.
 		$i = 0;
 		// Como es costumbre. un row template
-		$template = gettemplate('alliance_memberslist_row');
+		$template = gettemplate('Game/alliance_memberslist_row');
 		$page_list = '';
 		while ($u = mysqli_fetch_array($listuser, MYSQLI_ASSOC)) {
 			$UserPoints = doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '" . $u['id'] . "';", 'statpoints', true);
@@ -472,7 +472,7 @@ elseif ($user['ally_id'] != 0 && $user['ally_request'] == 0) { // Con alianza
 		$parse['s'] = $s;
 		$parse['list'] = $page_list;
 
-		$page .= parsetemplate(gettemplate('alliance_memberslist_table'), $parse);
+		$page .= parsetemplate(gettemplate('Game/alliance_memberslist_table'), $parse);
 
 		Game::display($page, $lang['Members_list']);
 	}
@@ -529,7 +529,7 @@ elseif ($user['ally_id'] != 0 && $user['ally_request'] == 0) { // Con alianza
 			}
 		}
 
-		$page .= parsetemplate(gettemplate('alliance_circular'), $lang);
+		$page .= parsetemplate(gettemplate('Game/alliance_circular'), $lang);
 
 		Game::display($page, $lang['Send_circular_mail']);
 	}
@@ -646,8 +646,8 @@ elseif ($user['ally_id'] != 0 && $user['ally_request'] == 0) { // Con alianza
 			$list = "<th>{$lang['There_is_not_range']}</th>";
 		} else { // Si hay rangos
 			// cargamos la template de tabla
-			$list = parsetemplate(gettemplate('alliance_admin_laws_head'), $lang);
-			$template = gettemplate('alliance_admin_laws_row');
+			$list = parsetemplate(gettemplate('Game/alliance_admin_laws_head'), $lang);
+			$template = gettemplate('Game/alliance_admin_laws_row');
 			// Creamos la lista de rangos
 			$i = 0;
 
@@ -689,13 +689,13 @@ elseif ($user['ally_id'] != 0 && $user['ally_request'] == 0) { // Con alianza
 			}
 
 			if (count($ally_ranks) != 0) {
-				$list .= parsetemplate(gettemplate('alliance_admin_laws_feet'), $lang);
+				$list .= parsetemplate(gettemplate('Game/alliance_admin_laws_feet'), $lang);
 			}
 		}
 
 		$lang['list'] = $list;
 		$lang['dpath'] = $dpath;
-		$page .= parsetemplate(gettemplate('alliance_admin_laws'), $lang);
+		$page .= parsetemplate(gettemplate('Game/alliance_admin_laws'), $lang);
 
 		Game::display($page, $lang['Law_settings']);
 	}
@@ -786,7 +786,7 @@ elseif ($user['ally_id'] != 0 && $user['ally_request'] == 0) { // Con alianza
 		$lang['Transfer_alliance'] = MessageForm("Abandonner / Transf&eacute;rer L'alliance", "", "game.php?page=alliance&mode=admin&edit=give", $lang['Continue']);
 		$lang['Disolve_alliance'] = MessageForm("Dissoudre L'alliance", "", "game.php?page=alliance&mode=admin&edit=exit", $lang['Continue']);
 
-		$page .= parsetemplate(gettemplate('alliance_admin'), $lang);
+		$page .= parsetemplate(gettemplate('Game/alliance_admin'), $lang);
 		Game::display($page, $lang['Alliance_admin']);
 	}
 
@@ -841,8 +841,8 @@ while($data=mysqli_fetch_array($selection, MYSQLI_ASSOC)){
 			}
 		}
 		// obtenemos las template row
-		$template = gettemplate('alliance_admin_members_row');
-		$f_template = gettemplate('alliance_admin_members_function');
+		$template = gettemplate('Game/alliance_admin_members_row');
+		$f_template = gettemplate('Game/alliance_admin_members_function');
 		// El orden de aparicion
 		if ($sort2) {
 			// agregar el =0 para las coordenadas...
@@ -927,7 +927,7 @@ while($data=mysqli_fetch_array($selection, MYSQLI_ASSOC)){
 				}
 				$r['id'] = $u['id'];
 				$r['Save'] = $lang['Save'];
-				$page_list .= parsetemplate(gettemplate('alliance_admin_members_row_edit'), $r);
+				$page_list .= parsetemplate(gettemplate('Game/alliance_admin_members_row_edit'), $r);
 			}
 		}
 		// para cambiar el link de ordenar.
@@ -945,7 +945,7 @@ while($data=mysqli_fetch_array($selection, MYSQLI_ASSOC)){
 
 		$lang['memberslist'] = $page_list;
 		$lang['s'] = $s;
-		$page .= parsetemplate(gettemplate('alliance_admin_members_table'), $lang);
+		$page .= parsetemplate(gettemplate('Game/alliance_admin_members_table'), $lang);
 
 		Game::display($page, $lang['Members_administrate']);
 		// a=9 es para cambiar la etiqueta de la etiqueta.
@@ -1007,7 +1007,7 @@ while($data=mysqli_fetch_array($selection, MYSQLI_ASSOC)){
 			die();
 		}
 
-		$row = gettemplate('alliance_admin_request_row');
+		$row = gettemplate('Game/alliance_admin_request_row');
 		$i = 0;
 		$parse = $lang;
 		$query = doquery("SELECT id,username,ally_request_text,ally_register_time FROM {{table}} WHERE ally_request='{$ally['id']}'", 'users');
@@ -1031,7 +1031,7 @@ while($data=mysqli_fetch_array($selection, MYSQLI_ASSOC)){
 			// Los datos de la solicitud
 			$s['Request_from'] = str_replace('%s', $s['username'], $lang['Request_from']);
 			// el formulario
-			$parse['request'] = parsetemplate(gettemplate('alliance_admin_request_form'), $s);
+			$parse['request'] = parsetemplate(gettemplate('Game/alliance_admin_request_form'), $s);
 			$parse['request'] = parsetemplate($parse['request'], $lang);
 		} else {
 			$parse['request'] = '';
@@ -1042,7 +1042,7 @@ while($data=mysqli_fetch_array($selection, MYSQLI_ASSOC)){
 
 		$parse['There_is_hanging_request'] = str_replace('%n', $i, $lang['There_is_hanging_request']);
 		// $parse['list'] = $lang['Return_to_overview'];
-		$page = parsetemplate(gettemplate('alliance_admin_request_table'), $parse);
+		$page = parsetemplate(gettemplate('Game/alliance_admin_request_table'), $parse);
 		Game::display($page, $lang['Check_the_requests']);
 	}
 
@@ -1067,7 +1067,7 @@ while($data=mysqli_fetch_array($selection, MYSQLI_ASSOC)){
 		$parse['Change']             = $lang['Change'];
 		$parse['name']               = 'newname';
 		$parse['Return_to_overview'] = $lang['Return_to_overview'];
-		$page .= parsetemplate(gettemplate('alliance_admin_rename'), $parse);
+		$page .= parsetemplate(gettemplate('Game/alliance_admin_rename'), $parse);
 		Game::display($page, $lang['Alliance_admin']);
 
 	}
@@ -1092,7 +1092,7 @@ while($data=mysqli_fetch_array($selection, MYSQLI_ASSOC)){
 		$parse['Change']             = $lang['Change'];
 		$parse['name']               = 'newtag';
 		$parse['Return_to_overview'] = $lang['Return_to_overview'];
-		$page .= parsetemplate(gettemplate('alliance_admin_rename'), $parse);
+		$page .= parsetemplate(gettemplate('Game/alliance_admin_rename'), $parse);
 		Game::display($page, $lang['Alliance_admin']);
 	}
 
@@ -1185,7 +1185,7 @@ while($data=mysqli_fetch_array($selection, MYSQLI_ASSOC)){
 		$lang['ally_members'] = $ally['ally_members'];
 		$lang['ally_name'] = $ally['ally_name'];
 
-		$page .= parsetemplate(gettemplate('alliance_frontpage'), $lang);
+		$page .= parsetemplate(gettemplate('Game/alliance_frontpage'), $lang);
 		Game::display($page, $lang['your_alliance']);
 	}
 }

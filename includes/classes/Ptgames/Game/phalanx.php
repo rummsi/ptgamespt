@@ -31,7 +31,7 @@
 	includeLang('overview');
 	includeLang('phalanx');
 
-	$PageTPL     = gettemplate('phalanx_body');
+	$PageTPL     = gettemplate('Game/phalanx_body');
 	$PhalanxMoon = doquery ("SELECT * FROM {{table}} WHERE `id` = '". $user['current_planet'] ."';", 'planets', true);
 
 	if ( $PhalanxMoon['planet_type'] == 3) {

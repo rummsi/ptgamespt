@@ -51,7 +51,7 @@ function BuildFleetEventTable ( $FleetRow, $Status, $Owner, $Label, $Record ) {
 		$FleetPrefix = '';
 	}
 
-	$RowsTPL        = gettemplate ('overview_fleet_event');
+	$RowsTPL        = gettemplate ('Game/overview_fleet_event');
 	$MissionType    = $FleetRow['fleet_mission'];
 	$FleetContent   = CreateFleetPopupedFleetLink ( $FleetRow, $lang['ov_fleet'], $FleetPrefix . $FleetStyle[ $MissionType ] );
 	$FleetCapacity  = CreateFleetPopupedMissionLink ( $FleetRow, $lang['type_mission'][ $MissionType ], $FleetPrefix . $FleetStyle[ $MissionType ] );

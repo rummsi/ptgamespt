@@ -39,28 +39,28 @@ $i = 0;
 $searchtext = mysqli_real_escape_string(Database::$dbHandle, $_POST["searchtext"]);
 switch($type){
 	case "playername":
-		$table = gettemplate('search_user_table');
-		$row = gettemplate('search_user_row');
+		$table = gettemplate('Game/search_user_table');
+		$row = gettemplate('Game/search_user_row');
 		$search = doquery("SELECT * FROM {{table}} WHERE username LIKE '%{$searchtext}%' LIMIT 30;","users");
 	break;
 	case "planetname":
-		$table = gettemplate('search_user_table');
-		$row = gettemplate('search_user_row');
+		$table = gettemplate('Game/search_user_table');
+		$row = gettemplate('Game/search_user_row');
 		$search = doquery("SELECT * FROM {{table}} WHERE name LIKE '%{$searchtext}%' LIMIT 30",'planets');
 	break;
 	case "allytag":
-		$table = gettemplate('search_ally_table');
-		$row = gettemplate('search_ally_row');
+		$table = gettemplate('Game/search_ally_table');
+		$row = gettemplate('Game/search_ally_row');
 		$search = doquery("SELECT * FROM {{table}} WHERE ally_tag LIKE '%{$searchtext}%' LIMIT 30","alliance");
 	break;
 	case "allyname":
-		$table = gettemplate('search_ally_table');
-		$row = gettemplate('search_ally_row');
+		$table = gettemplate('Game/search_ally_table');
+		$row = gettemplate('Game/search_ally_row');
 		$search = doquery("SELECT * FROM {{table}} WHERE ally_name LIKE '%{$searchtext}%' LIMIT 30","alliance");
 	break;
 	default:
-		$table = gettemplate('search_user_table');
-		$row = gettemplate('search_user_row');
+		$table = gettemplate('Game/search_user_table');
+		$row = gettemplate('Game/search_user_row');
 		$search = doquery("SELECT * FROM {{table}} WHERE username LIKE '%{$searchtext}%' LIMIT 30","users");
 }
 /*
@@ -125,6 +125,6 @@ $lang['type_allyname'] = ($_POST["type"] == "allyname") ? " SELECTED" : "";
 $lang['searchtext'] = $searchtext;
 $lang['search_results'] = $search_results;
 //esto es algo repetitivo ... w
-$page = parsetemplate(gettemplate('search_body'), $lang);
+$page = parsetemplate(gettemplate('Game/search_body'), $lang);
 Game::display($page,$lang['Search']);
 ?>

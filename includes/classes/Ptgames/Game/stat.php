@@ -97,7 +97,7 @@
 			$parse['range'] .= "<option value=\"". $PageValue ."\"". (($range == $PageValue) ? " SELECTED" : "") .">". $PageValue ."-". $PageRange ."</option>";
 		}
 
-		$parse['stat_header'] = parsetemplate(gettemplate('stat_alliancetable_header'), $parse);
+		$parse['stat_header'] = parsetemplate(gettemplate('Game/stat_alliancetable_header'), $parse);
 
 		$start = floor($range / 100 % 100) * 100;
 		$query = doquery("SELECT * FROM {{table}} WHERE `stat_type` = '2' AND `stat_code` = '1' ORDER BY `". $Order ."` DESC LIMIT ". $start .",100;", 'statpoints');
@@ -135,7 +135,7 @@
 			$parse['ally_points']     = pretty_number( $StatRow[ $Order ] );
 			$parse['ally_members_points'] =  pretty_number( floor($StatRow[ $Order ] / $AllyRow['ally_members']) );
 
-			$parse['stat_values']    .= parsetemplate(gettemplate('stat_alliancetable'), $parse);
+			$parse['stat_values']    .= parsetemplate(gettemplate('Game/stat_alliancetable'), $parse);
 			$start++;
 		}
 	} else {
@@ -150,7 +150,7 @@
 			$parse['range'] .= "<option value=\"". $PageValue ."\"". (($start == $PageValue) ? " SELECTED" : "") .">". $PageValue ."-". $PageRange ."</option>";
 		}
 
-		$parse['stat_header'] = parsetemplate(gettemplate('stat_playertable_header'), $parse);
+		$parse['stat_header'] = parsetemplate(gettemplate('Game/stat_playertable_header'), $parse);
 
 		$start = floor($range / 100 % 100) * 100;
 		$query = doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `stat_code` = '1' ORDER BY `". $Order ."` DESC LIMIT ". $start .",100;", 'statpoints');
@@ -197,12 +197,12 @@
 				$parse['player_alliance'] = $UsrRow['ally_name'];
 			}
 			$parse['player_points']   = pretty_number( $StatRow[ $Order ] );
-			$parse['stat_values']    .= parsetemplate(gettemplate('stat_playertable'), $parse);
+			$parse['stat_values']    .= parsetemplate(gettemplate('Game/stat_playertable'), $parse);
 			$start++;
 		}
 	}
 
-	$page = parsetemplate( gettemplate('stat_body'), $parse );
+	$page = parsetemplate( gettemplate('Game/stat_body'), $parse );
 
 	Game::display($page, $lang['stat_title']);
 

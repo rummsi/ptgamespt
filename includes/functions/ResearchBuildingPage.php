@@ -117,8 +117,8 @@ function ResearchBuildingPage (&$CurrentPlanet, $CurrentUser, $InResearch, $TheP
 		}
 	}
 
-	$TechRowTPL = gettemplate('buildings_research_row');
-	$TechScrTPL = gettemplate('buildings_research_script');
+	$TechRowTPL = gettemplate('Game/buildings_research_row');
+	$TechScrTPL = gettemplate('Game/buildings_research_script');
 
 	foreach($lang['tech'] as $Tech => $TechName) {
 		if ($Tech > 105 && $Tech <= 199) {
@@ -199,7 +199,7 @@ function ResearchBuildingPage (&$CurrentPlanet, $CurrentUser, $InResearch, $TheP
 	$PageParse                = $lang;
 	$PageParse['noresearch']  = $NoResearchMessage;
 	$PageParse['technolist']  = $TechnoList;
-	$Page                    .= parsetemplate(gettemplate('buildings_research'), $PageParse);
+	$Page                    .= parsetemplate(gettemplate('Game/buildings_research'), $PageParse);
 
 	Game::display( $Page, $lang['Research'] );
 }

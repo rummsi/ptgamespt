@@ -34,7 +34,7 @@
 function BuildFleetListRows ( $CurrentPlanet ) {
 	global $resource, $lang;
 
-	$RowsTPL  = gettemplate('gate_fleet_rows');
+	$RowsTPL  = gettemplate('Game/gate_fleet_rows');
 	$CurrIdx  = 1;
 	$Result   = "";
 	for ($Ship = 300; $Ship > 200; $Ship-- ) {
@@ -202,57 +202,57 @@ function ShowBuildingInfoPage ($CurrentUser, $CurrentPlanet, $BuildID) {
 
 	if       ($BuildID >=   1 && $BuildID <=   3) {
 		// Cas des mines
-		$PageTPL              = gettemplate('info_buildings_table');
-		$DestroyTPL           = gettemplate('info_buildings_destroy');
+		$PageTPL              = gettemplate('Game/info_buildings_table');
+		$DestroyTPL           = gettemplate('Game/info_buildings_destroy');
 		$TableHeadTPL         = "<tr><td class=\"c\">{nfo_level}</td><td class=\"c\">{nfo_prod_p_hour}</td><td class=\"c\">{nfo_difference}</td><td class=\"c\">{nfo_used_energy}</td><td class=\"c\">{nfo_difference}</td></tr>";
 		$TableTPL             = "<tr><th>{build_lvl}</th><th>{build_prod} {build_gain}</th><th>{build_prod_diff}</th><th>{build_need}</th><th>{build_need_diff}</th></tr>";
 	} elseif ($BuildID ==   4) {
 		// Centrale Solaire
-		$PageTPL              = gettemplate('info_buildings_table');
-		$DestroyTPL           = gettemplate('info_buildings_destroy');
+		$PageTPL              = gettemplate('Game/info_buildings_table');
+		$DestroyTPL           = gettemplate('Game/info_buildings_destroy');
 		$TableHeadTPL         = "<tr><td class=\"c\">{nfo_level}</td><td class=\"c\">{nfo_prod_energy}</td><td class=\"c\">{nfo_difference}</td></tr>";
 		$TableTPL             = "<tr><th>{build_lvl}</th><th>{build_prod} {build_gain}</th><th>{build_prod_diff}</th></tr>";
 	} elseif ($BuildID ==  12) {
 		// Centrale Fusion
-		$PageTPL              = gettemplate('info_buildings_table');
-		$DestroyTPL           = gettemplate('info_buildings_destroy');
+		$PageTPL              = gettemplate('Game/info_buildings_table');
+		$DestroyTPL           = gettemplate('Game/info_buildings_destroy');
 		$TableHeadTPL         = "<tr><td class=\"c\">{nfo_level}</td><td class=\"c\">{nfo_prod_energy}</td><td class=\"c\">{nfo_difference}</td><td class=\"c\">{nfo_used_deuter}</td><td class=\"c\">{nfo_difference}</td></tr>";
 		$TableTPL             = "<tr><th>{build_lvl}</th><th>{build_prod} {build_gain}</th><th>{build_prod_diff}</th><th>{build_need}</th><th>{build_need_diff}</th></tr>";
 	} elseif ($BuildID >=  14 && $BuildID <=  32) {
 		// Batiments Generaux
-		$PageTPL              = gettemplate('info_buildings_general');
-		$DestroyTPL           = gettemplate('info_buildings_destroy');
+		$PageTPL              = gettemplate('Game/info_buildings_general');
+		$DestroyTPL           = gettemplate('Game/info_buildings_destroy');
 	} elseif ($BuildID ==  33) {
 		// Batiments Terraformer
-		$PageTPL              = gettemplate('info_buildings_general');
+		$PageTPL              = gettemplate('Game/info_buildings_general');
 	} elseif ($BuildID ==  34) {
 		// Dépot d'alliance
-		$PageTPL              = gettemplate('info_buildings_general');
-		$DestroyTPL           = gettemplate('info_buildings_destroy');
+		$PageTPL              = gettemplate('Game/info_buildings_general');
+		$DestroyTPL           = gettemplate('Game/info_buildings_destroy');
 	} elseif ($BuildID ==  44) {
 		// Silo de missiles
-		$PageTPL              = gettemplate('info_buildings_general');
-		$DestroyTPL           = gettemplate('info_buildings_destroy');
+		$PageTPL              = gettemplate('Game/info_buildings_general');
+		$DestroyTPL           = gettemplate('Game/info_buildings_destroy');
 	} elseif ($BuildID ==  41) {
 		// Batiments lunaires
-		$PageTPL              = gettemplate('info_buildings_general');
+		$PageTPL              = gettemplate('Game/info_buildings_general');
 	} elseif ($BuildID ==  42) {
 		// Phalange
-		$PageTPL              = gettemplate('info_buildings_table');
+		$PageTPL              = gettemplate('Game/info_buildings_table');
 		$TableHeadTPL         = "<tr><td class=\"c\">{nfo_level}</td><td class=\"c\">{nfo_range}</td></tr>";
 		$TableTPL             = "<tr><th>{build_lvl}</th><th>{build_range}</th></tr>";
-		$DestroyTPL           = gettemplate('info_buildings_destroy');
+		$DestroyTPL           = gettemplate('Game/info_buildings_destroy');
 	} elseif ($BuildID ==  43) {
 		// Porte de Saut
-		$PageTPL              = gettemplate('info_buildings_general');
-		$GateTPL              = gettemplate('gate_fleet_table');
-		$DestroyTPL           = gettemplate('info_buildings_destroy');
+		$PageTPL              = gettemplate('Game/info_buildings_general');
+		$GateTPL              = gettemplate('Game/gate_fleet_table');
+		$DestroyTPL           = gettemplate('Game/info_buildings_destroy');
 	} elseif ($BuildID >= 106 && $BuildID <= 199) {
 		// Laboratoire
-		$PageTPL              = gettemplate('info_buildings_general');
+		$PageTPL              = gettemplate('Game/info_buildings_general');
 	} elseif ($BuildID >= 202 && $BuildID <= 216) {
 		// Flotte
-		$PageTPL              = gettemplate('info_buildings_fleet');
+		$PageTPL              = gettemplate('Game/info_buildings_fleet');
 		$parse['element_typ'] = $lang['tech'][200];
 		$parse['rf_info_to']  = ShowRapidFireTo ($BuildID);   // Rapid Fire vers
 		$parse['rf_info_fr']  = ShowRapidFireFrom ($BuildID); // Rapid Fire de
@@ -270,7 +270,7 @@ function ShowBuildingInfoPage ($CurrentUser, $CurrentPlanet, $BuildID) {
 		}
 	} elseif ($BuildID >= 401 && $BuildID <= 408) {
 		// Defenses
-		$PageTPL              = gettemplate('info_buildings_defense');
+		$PageTPL              = gettemplate('Game/info_buildings_defense');
 		$parse['element_typ'] = $lang['tech'][400];
 
 		$parse['rf_info_to']  = ShowRapidFireTo ($BuildID);   // Rapid Fire vers
@@ -280,14 +280,14 @@ function ShowBuildingInfoPage ($CurrentUser, $CurrentPlanet, $BuildID) {
 		$parse['attack_pt']   = pretty_number ($CombatCaps[$BuildID]['attack']);  // Points d'Attaque
 	} elseif ($BuildID >= 502 && $BuildID <= 503) {
 		// Misilles
-		$PageTPL              = gettemplate('info_buildings_defense');
+		$PageTPL              = gettemplate('Game/info_buildings_defense');
 		$parse['element_typ'] = $lang['tech'][400];
 		$parse['hull_pt']     = pretty_number ($pricelist[$BuildID]['metal'] + $pricelist[$BuildID]['crystal']); // Points de Structure
 		$parse['shield_pt']   = pretty_number ($CombatCaps[$BuildID]['shield']);  // Points de Bouclier
 		$parse['attack_pt']   = pretty_number ($CombatCaps[$BuildID]['attack']);  // Points d'Attaque
 	} elseif ($BuildID >= 601 && $BuildID <= 615) {
 		// Officiers
-		$PageTPL              = gettemplate('info_officiers_general');
+		$PageTPL              = gettemplate('Game/info_officiers_general');
 	}
 
 	// ---- Tableau d'evolution

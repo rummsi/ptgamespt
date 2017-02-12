@@ -51,7 +51,7 @@
 		else
 			$parse['moon'] .= "<tr><th class=b colspan=6>Il y a {$i} lunes</th></tr>";
 
-                    Game::display(parsetemplate(gettemplate('admin/moonlist_body'), $parse), 'Lunalist' , false, '', true);
+                    Game::display(parsetemplate(gettemplate('Admin/moonlist_body'), $parse), 'Lunalist' , false, '', true);
 	} else {
 		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}

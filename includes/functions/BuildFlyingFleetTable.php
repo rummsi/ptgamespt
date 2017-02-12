@@ -31,7 +31,7 @@
 function BuildFlyingFleetTable () {
 	global $lang;
 
-	$TableTPL     = gettemplate('admin/fleet_rows');
+	$TableTPL     = gettemplate('Admin/fleet_rows');
 	$FlyingFleets = doquery ("SELECT * FROM {{table}} ORDER BY `fleet_end_time` ASC;", 'fleets');
 	while ( $CurrentFleet = mysqli_fetch_assoc( $FlyingFleets ) ) {
 		$FleetOwner       = doquery("SELECT `username` FROM {{table}} WHERE `id` = '". $CurrentFleet['fleet_owner'] ."';", 'users', true);

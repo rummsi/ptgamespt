@@ -108,7 +108,7 @@ function BatimentBuildingPage (&$CurrentPlanet, $CurrentUser) {
 		$CanBuildElement = false;
 	}
 
-	$SubTemplate         = gettemplate('buildings_builds_row');
+	$SubTemplate         = gettemplate('Game/buildings_builds_row');
 	$BuildingPage        = "";
 	foreach($lang['tech'] as $Element => $ElementName) {
 		if (in_array($Element, $Allowed[$CurrentPlanet['planet_type']])) {
@@ -195,7 +195,7 @@ function BatimentBuildingPage (&$CurrentPlanet, $CurrentUser) {
 
 	$parse['BuildingsList']        = $BuildingPage;
 
-	$page                         .= parsetemplate(gettemplate('buildings_builds'), $parse);
+	$page                         .= parsetemplate(gettemplate('Game/buildings_builds'), $parse);
 
 	Game::display($page, $lang['Builds']);
 }

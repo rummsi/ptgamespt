@@ -37,9 +37,9 @@ if(!file_exists($cacheFile) || (time() - filemtime($cacheFile)) > $timeDelay)
 
     includeLang('records');
 
-    $recordTpl = gettemplate('records_body');
-    $headerTpl = gettemplate('records_section_header');
-    $tableRows = gettemplate('records_section_rows');
+    $recordTpl = gettemplate('Game/records_body');
+    $headerTpl = gettemplate('Game/records_section_header');
+    $tableRows = gettemplate('Game/records_section_rows');
     $parse['rec_title'] = $lang['rec_title'];
 
     $bloc['section']    = $lang['rec_build'];

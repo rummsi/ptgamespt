@@ -82,7 +82,7 @@ parent.frames['Hauptframe'].location.replace("admin.php?page=overview");
 </tr><tr>
 	<td><div><a href="game.php?page=overview" accesskey="i" target="_top" style="color:red">{adm_back}</a></div></td>
 </tr><tr>
-	<td background="{dpath}img/bg1.gif"><center>{ infog }</center></td>
+	<td background="{dpath}img/bg1.gif"><center>{infog}</center></td>
 </tr>
 </table>
 </div>

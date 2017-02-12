@@ -49,7 +49,7 @@
 		else
 			$parse['planetes'] .= "<tr><th class=b colspan=5>Il y a {$i} plan&egrave;tes</th></tr>";
 
-                    Game::display(parsetemplate(gettemplate('admin/planetlist_body'), $parse), 'Planetlist', false, '', true);
+                    Game::display(parsetemplate(gettemplate('Admin/planetlist_body'), $parse), 'Planetlist', false, '', true);
 	} else {
 		message($lang['sys_noalloaw'], $lang['sys_noaccess']);
 	}

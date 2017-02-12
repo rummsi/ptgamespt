@@ -32,7 +32,7 @@
 
 		$mode      = $_POST['mode'];
 
-		$PageTpl   = gettemplate("add_declare");
+		$PageTpl   = gettemplate("Game/add_declare");
 		$parse     = $lang;
 
 		if ($mode == 'addit') {

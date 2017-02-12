@@ -36,7 +36,7 @@ function ModuleMarchand ( $CurrentUser, &$CurrentPlanet ) {
 	$parse   = $lang;
 
 	if ($_POST['ress'] != '') {
-		$PageTPL   = gettemplate('message_body');
+		$PageTPL   = gettemplate('Game/message_body');
 		$Error     = false;
 		$CheatTry  = false;
 		$Metal     = $_POST['metal'];
@@ -115,22 +115,22 @@ function ModuleMarchand ( $CurrentUser, &$CurrentPlanet ) {
 		$parse['mes']   = $Message;
 	} else {
 		if ($_POST['action'] != 2) {
-			$PageTPL = gettemplate('marchand_main');
+			$PageTPL = gettemplate('Game/marchand_main');
 		} else {
 			$parse['mod_ma_res']   = "1";
 			switch ($_POST['choix']) {
 				case 'metal':
-					$PageTPL = gettemplate('marchand_metal');
+					$PageTPL = gettemplate('Game/marchand_metal');
 					$parse['mod_ma_res_a'] = "2";
 					$parse['mod_ma_res_b'] = "4";
 					break;
 				case 'cristal':
-					$PageTPL = gettemplate('marchand_cristal');
+					$PageTPL = gettemplate('Game/marchand_cristal');
 					$parse['mod_ma_res_a'] = "0.5";
 					$parse['mod_ma_res_b'] = "2";
 					break;
 				case 'deut':
-					$PageTPL = gettemplate('marchand_deuterium');
+					$PageTPL = gettemplate('Game/marchand_deuterium');
 					$parse['mod_ma_res_a'] = "0.25";
 					$parse['mod_ma_res_b'] = "0.5";
 					break;

@@ -44,7 +44,7 @@
 			message("Le joueur {$nam} a bien &eacute;t&eacute; d&eacute;banni!", 'Information');
 		}
 
-		Game::display(parsetemplate(gettemplate('admin/unbanned'), $parse), "Overview", false, '', true);
+		Game::display(parsetemplate(gettemplate('Admin/unbanned'), $parse), "Overview", false, '', true);
 	} else {
 		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}

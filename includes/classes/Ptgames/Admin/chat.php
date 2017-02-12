@@ -53,7 +53,7 @@ $parse = $lang;
 		}
 		$parse['msg_list'] .= "<tr><th class=b colspan=4>{$i} ".$lang['adm_ch_nbs']."</th></tr>";
 
-		Game::display(parsetemplate(gettemplate('admin/chat_body'), $parse), "Chat", false, '', true);
+		Game::display(parsetemplate(gettemplate('Admin/chat_body'), $parse), "Chat", false, '', true);
 
 	} else {
 		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );

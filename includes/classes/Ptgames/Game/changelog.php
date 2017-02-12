@@ -30,7 +30,7 @@
 
 includeLang('changelog');
 
-$template = gettemplate('changelog_table');
+$template = gettemplate('Game/changelog_table');
 
 
 foreach($lang['changelog'] as $a => $b)
@@ -46,7 +46,7 @@ foreach($lang['changelog'] as $a => $b)
 $parse = $lang;
 $parse['body'] = $body;
 
-$page .= parsetemplate(gettemplate('changelog_body'), $parse);
+$page .= parsetemplate(gettemplate('Game/changelog_body'), $parse);
 
 Game::display($page,"Change Log");
 

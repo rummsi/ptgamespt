@@ -33,8 +33,8 @@ function BuildRessourcePage ( $CurrentUser, $CurrentPlanet ) {
 
 	includeLang('resources');
 
-	$RessBodyTPL = gettemplate('resources');
-	$RessRowTPL  = gettemplate('resources_row');
+	$RessBodyTPL = gettemplate('Game/resources');
+	$RessRowTPL  = gettemplate('Game/resources_row');
 
 	// Si c'est une lune ... pas de ressources produites
 	if ($CurrentPlanet['planet_type'] == 3) {

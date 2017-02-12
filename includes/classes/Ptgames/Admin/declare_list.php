@@ -39,8 +39,8 @@
 			$TypeSort = "id";
 		}
 
-		$PageTPL = gettemplate('admin/declarelist_body');
-		$RowsTPL = gettemplate('admin/declarelist_rows');
+		$PageTPL = gettemplate('Admin/declarelist_body');
+		$RowsTPL = gettemplate('Admin/declarelist_rows');
 
 		$query   = doquery("SELECT * FROM {{table}} ORDER BY `declarator` DESC", 'declared');
 

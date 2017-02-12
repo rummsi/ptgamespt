@@ -33,7 +33,7 @@
 	$parse = $lang;
 	$parse['servername']   = $game_config['game_name'];
 
-	$PageTPL  = gettemplate('rules_body');
+	$PageTPL  = gettemplate('Game/rules_body');
 	$page     = parsetemplate( $PageTPL, $parse);
 
 	Game::display($page, $lang['rules'], false);

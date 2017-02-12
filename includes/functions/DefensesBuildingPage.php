@@ -124,7 +124,7 @@ function DefensesBuildingPage ( &$currentPlanet, $currentUser ) {
         $parse = array(
             'data' => json_encode($data)
             );
-        $BuildQueue = parsetemplate(gettemplate('buildings_script'), $parse);
+        $BuildQueue = parsetemplate(gettemplate('Game/buildings_script'), $parse);
     }
 
     $parse = $lang;
@@ -133,7 +133,7 @@ function DefensesBuildingPage ( &$currentPlanet, $currentUser ) {
     // Et la liste de constructions en cours dans $BuildQueue;
     $parse['buildinglist'] = $BuildQueue;
     // fragmento de template
-    $page .= parsetemplate(gettemplate('buildings_defense'), $parse);
+    $page .= parsetemplate(gettemplate('Game/buildings_defense'), $parse);
 
     Game::display($page, $lang['Defense']);
 

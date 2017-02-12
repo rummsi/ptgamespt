@@ -41,7 +41,7 @@ function CheckTheUser($IsUserChecked)
         if ($user['bana'] == "1") {
             die (
 
-            $page .= parsetemplate(gettemplate('usr_banned'), $lang)
+            $page .= parsetemplate(gettemplate('Game/usr_banned'), $lang)
 
             );
         }

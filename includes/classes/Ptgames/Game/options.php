@@ -266,7 +266,7 @@
        $parse['opt_lst_cla_data']  .= "<option value =\"1\"". (($user['planet_sort_order'] == 1) ? " selected": "") .">". $lang['opt_lst_cla1'] ."</option>";
 
        if ($user['authlevel'] != LEVEL_PLAYER) {
-          $FrameTPL = gettemplate('options_admadd');
+          $FrameTPL = gettemplate('Game/options_admadd');
           $IsProtOn = doquery ("SELECT `id_level` FROM {{table}} WHERE `id_owner` = '".$user['id']."' LIMIT 1;", 'planets', true);
           $bloc['opt_adm_title']       = $lang['opt_adm_title'];
           $bloc['opt_adm_planet_prot'] = $lang['opt_adm_planet_prot'];
@@ -301,9 +301,9 @@
 
        if($user['urlaubs_modus']){
 
-           Game::display(parsetemplate(gettemplate('options_body_vmode'), $parse), 'Options', false);
+           Game::display(parsetemplate(gettemplate('Game/options_body_vmode'), $parse), 'Options', false);
        }else{
-           Game::display(parsetemplate(gettemplate('options_body'), $parse), 'Options', false);
+           Game::display(parsetemplate(gettemplate('Game/options_body'), $parse), 'Options', false);
        }
        die();
     }

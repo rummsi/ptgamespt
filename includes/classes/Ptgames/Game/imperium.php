@@ -52,8 +52,8 @@ while ($p = mysqli_fetch_array($planetsrow, MYSQLI_BOTH)) {
 
 $parse['mount'] = count($planet) + 1;
 // primera tabla, con las imagenes y coordenadas
-$row  = gettemplate('imperium_row');
-$row2 = gettemplate('imperium_row2');
+$row  = gettemplate('Game/imperium_row');
+$row2 = gettemplate('Game/imperium_row2');
 
 foreach ($planet as $p) {
 	PlanetResourceUpdate ( $user, $p, time() );
@@ -118,7 +118,7 @@ foreach ($reslist['defense'] as $a => $i) {
 	$parse['defense_row'] .= "<tr>" . parsetemplate($row2, $data) . $r[$i] . "</tr>";
 }
 
-$page .= parsetemplate(gettemplate('imperium_table'), $parse);
+$page .= parsetemplate(gettemplate('Game/imperium_table'), $parse);
 
 Game::display($page, $lang['Imperium'], false);
 // Created by Perberos. All rights reserved (C) 2006

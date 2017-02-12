@@ -40,7 +40,7 @@ function ShowTopNavigationBar ( $CurrentUser, $CurrentPlanet ) {
 
 		// Actualisation des ressources de la planete
 
-		$NavigationTPL       = gettemplate('topnav');
+		$NavigationTPL       = gettemplate('Game/topnav');
 
 		$dpath               = (!$CurrentUser["dpath"]) ? DEFAULT_SKINPATH : $CurrentUser["dpath"];
 		$parse               = $lang;

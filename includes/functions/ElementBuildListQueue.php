@@ -68,7 +68,7 @@ change `unbau` `unbau` varchar (100) NULL COLLATE latin1_general_ci;
 //
 //	$parse['pretty_time_b_hangar'] = pretty_time($totaltime - $CurrentPlanet['b_hangar']); // //$CurrentPlanet['last_update']
 //
-//	$text .= parsetemplate(gettemplate('buildings_script'), $parse);
+//	$text .= parsetemplate(gettemplate('Game/buildings_script'), $parse);
 //
 //	return $text;
 }

@@ -37,8 +37,8 @@
 		$parse['adm_mt_table'] = "";
 		$i                     = 0;
 
-		$RowsTPL = gettemplate('admin/multi_rows');
-		$PageTPL = gettemplate('admin/multi_body');
+		$RowsTPL = gettemplate('Admin/multi_rows');
+		$PageTPL = gettemplate('Admin/multi_body');
 
 		while ($infos = mysqli_fetch_assoc($query)) {
 			$Bloc['player'] = $infos['player'];

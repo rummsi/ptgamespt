@@ -33,7 +33,7 @@
 
 		$mode      = $_POST['mode'];
 
-		$PageTpl   = gettemplate("admin/banned");
+		$PageTpl   = gettemplate("Admin/banned");
 
 		$parse     = $lang;
 		if ($mode == 'banit') {

@@ -31,8 +31,8 @@
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
 		includeLang('admin/messagelist');
 
-		$BodyTpl    = gettemplate('admin/messagelist_body');
-		$RowsTpl    = gettemplate('admin/messagelist_table_rows');
+		$BodyTpl    = gettemplate('Admin/messagelist_body');
+		$RowsTpl    = gettemplate('Admin/messagelist_table_rows');
 
         $Prev       = ( !empty($_POST['prev'])   ) ? true : false;
         $Next       = ( !empty($_POST['next'])   ) ? true : false;

@@ -32,7 +32,7 @@
 
     includeLang('admin/adminpanel');
 
-    $PanelMainTPL = gettemplate('admin/admin_panel_main');
+    $PanelMainTPL = gettemplate('Admin/admin_panel_main');
 
     $parse                  = $lang;
     $parse['adm_sub_form1'] = "";
@@ -57,7 +57,7 @@
                 $bloc['answer6']        = $lang['adm_usr_genre'][ $SelUser['sex'] ];
                 $bloc['answer7']        = "[".$SelUser['id_planet']."] ".$UsrMain['name'];
                 $bloc['answer8']        = "[".$SelUser['galaxy'].":".$SelUser['system'].":".$SelUser['planet']."] ";
-                $SubPanelTPL            = gettemplate('admin/admin_panel_asw1');
+                $SubPanelTPL            = gettemplate('Admin/admin_panel_asw1');
                 $parse['adm_sub_form2'] = parsetemplate( $SubPanelTPL, $bloc );
                 break;
 
@@ -75,7 +75,7 @@
                 $bloc['answer6']         = $lang['adm_usr_genre'][ $SelUser['sex'] ];
                 $bloc['answer7']         = "[".$SelUser['id_planet']."] ".$UsrMain['name'];
                 $bloc['answer8']         = "[".$SelUser['galaxy'].":".$SelUser['system'].":".$SelUser['planet']."] ";
-                $SubPanelTPL             = gettemplate('admin/admin_panel_asw1');
+                $SubPanelTPL             = gettemplate('Admin/admin_panel_asw1');
                 $parse['adm_sub_form1']  = parsetemplate( $SubPanelTPL, $bloc );
 
                 $parse['adm_sub_form2']  = "<table><tbody>";
@@ -140,7 +140,7 @@
                     $UsrMain = doquery("SELECT `name` FROM {{table}} WHERE `id` = '". $Usr['id_planet'] ."';", 'planets', true);
                     $bloc['adm_plyer_lst'] .= "<tr><th>".$Usr['username']."</th><th>[".$Usr['galaxy'].":".$Usr['system'].":".$Usr['planet']."] ".$UsrMain['name']."</th></tr>";
                 }
-                $SubPanelTPL            = gettemplate('admin/admin_panel_asw2');
+                $SubPanelTPL            = gettemplate('Admin/admin_panel_asw2');
                 $parse['adm_sub_form2'] = parsetemplate( $SubPanelTPL, $bloc );
                 break;
             default:
@@ -157,22 +157,22 @@
 
         switch ($_GET['action']){
             case 'usr_search':
-                $SubPanelTPL            = gettemplate('admin/admin_panel_frm1');
+                $SubPanelTPL            = gettemplate('Admin/admin_panel_frm1');
                 break;
 
             case 'usr_data':
-                $SubPanelTPL            = gettemplate('admin/admin_panel_frm4');
+                $SubPanelTPL            = gettemplate('Admin/admin_panel_frm4');
                 break;
 
             case 'usr_level':
                 for ($Lvl = 0; $Lvl < 4; $Lvl++) {
                     $bloc['adm_level_lst'] .= "<option value=\"". $Lvl ."\">". $lang['adm_usr_level'][ $Lvl ] ."</option>";
                 }
-                $SubPanelTPL       = gettemplate('admin/admin_panel_frm3');
+                $SubPanelTPL       = gettemplate('Admin/admin_panel_frm3');
                 break;
 
             case 'ip_search':
-                $SubPanelTPL            = gettemplate('admin/admin_panel_frm2');
+                $SubPanelTPL            = gettemplate('Admin/admin_panel_frm2');
                 break;
 
             default:

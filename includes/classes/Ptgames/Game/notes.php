@@ -104,7 +104,7 @@ elseif($_POST){//Borrar
 		$parse['title'] = '';
 		$parse['inputs'] = '<input type=hidden name=s value=1>';
 
-		$page .= parsetemplate(gettemplate('notes_form'), $parse);
+		$page .= parsetemplate(gettemplate('Game/notes_form'), $parse);
 
 		Game::display($page,$lang['Notes'],false);
 
@@ -131,7 +131,7 @@ elseif($_POST){//Borrar
 		$parse['TITLE'] = $lang['Editnote'];
 		$parse['inputs'] = '<input type=hidden name=s value=2><input type=hidden name=n value='.$note['id'].'>';
 
-		$page .= parsetemplate(gettemplate('notes_form'), $parse);
+		$page .= parsetemplate(gettemplate('Game/notes_form'), $parse);
 
 		Game::display($page,$lang['Notes'],false);
 
@@ -155,7 +155,7 @@ elseif($_POST){//Borrar
 			$parse['NOTE_TITLE'] = $note['title'];
 			$parse['NOTE_TEXT'] = strlen($note['text']);
 
-			$list .= parsetemplate(gettemplate('notes_body_entry'), $parse);
+			$list .= parsetemplate(gettemplate('Game/notes_body_entry'), $parse);
 
 		}
 
@@ -166,7 +166,7 @@ elseif($_POST){//Borrar
 		$parse = $lang;
 		$parse['BODY_LIST'] = $list;
 		//fragmento de template
-		$page .= parsetemplate(gettemplate('notes_body'), $parse);
+		$page .= parsetemplate(gettemplate('Game/notes_body'), $parse);
 
 		Game::display($page,$lang['Notes'],false);
 	}

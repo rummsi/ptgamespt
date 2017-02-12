@@ -288,7 +288,7 @@ $game_config['banner_source_post'] = $_POST['banner_source_post'];
 
 			$parse['bannerframe']            = ($game_config['ForumBannerFrame'] == 1) ? " checked = 'checked' ":"";
 
-			$PageTPL                         = gettemplate('admin/options_body');
+			$PageTPL                         = gettemplate('Admin/options_body');
 			$Page                           .= parsetemplate( $PageTPL,  $parse );
 
 			Game::display ( $Page, $lang['adm_opt_title'], false, '', true );

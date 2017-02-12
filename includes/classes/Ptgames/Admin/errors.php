@@ -57,7 +57,7 @@ $parse = $lang;
 			<th class=b colspan=5>". $i ." ". $lang['adm_er_nbs'] ."</th>
 		</tr>";
 
-		Game::display(parsetemplate(gettemplate('admin/errors_body'), $parse), "Bledy", false, '', true);
+		Game::display(parsetemplate(gettemplate('Admin/errors_body'), $parse), "Bledy", false, '', true);
 	} else {
 		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}

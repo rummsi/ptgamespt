@@ -41,8 +41,8 @@ define('IN_ADMIN', true);
 			$TypeSort = "id";
 		}
 
-		$PageTPL = gettemplate('admin/userlist_body');
-		$RowsTPL = gettemplate('admin/userlist_rows');
+		$PageTPL = gettemplate('Admin/userlist_body');
+		$RowsTPL = gettemplate('Admin/userlist_rows');
 
 		$query   = doquery("SELECT * FROM {{table}} ORDER BY `". $TypeSort ."` ASC", 'users');
 
