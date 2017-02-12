@@ -28,10 +28,6 @@
  *
  */
 
-define('INSIDE' , true);
-define('INSTALL' , false);
-require_once dirname(__FILE__) .'/common.php';
-
 function DoFleetJump ( $CurrentUser, $CurrentPlanet ) {
 	global $lang, $resource;
 
@@ -116,7 +112,7 @@ function DoFleetJump ( $CurrentUser, $CurrentPlanet ) {
 }
 
 	$Message = DoFleetJump($user, $planetrow);
-	message ($Message, $lang['tech'][43], "infos.php?gid=43", 4);
+	message ($Message, $lang['tech'][43], "game.php?page=infos&gid=43", 4);
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

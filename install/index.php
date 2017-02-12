@@ -37,7 +37,7 @@ define('PHPEXT', include ROOT_PATH . 'extension.inc');
 
 define('DEFAULT_SKINPATH', '../skins/xnova/');
 define('TEMPLATE_DIR', realpath(ROOT_PATH . '/templates/'));
-define('TEMPLATE_NAME', 'OpenGame');
+define('TEMPLATE_NAME', 'Ptgames');
 define('DEFAULT_LANG', 'fr');
 $dpath = DEFAULT_SKINPATH;
 
@@ -60,12 +60,12 @@ $mode     = isset($_GET['mode']) ? strval($_GET['mode']) : 'intro';
 $page     = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $nextPage = $page + 1;
 
-$mainTpl = gettemplate('install/ins_body');
+$mainTpl = gettemplate('Install/ins_body');
 includeLang('install/install');
 
 switch ($mode) {
     case 'intro':
-            $subTpl = gettemplate('install/ins_intro');
+            $subTpl = gettemplate('Install/ins_intro');
             $bloc = $lang;
             $bloc['dpath'] = $dpath;
             $frame  = parsetemplate($subTpl, $bloc);
@@ -80,7 +80,7 @@ switch ($mode) {
 	            adminMessage ($lang['ins_error2'], $lang['ins_error']);
             }
 
-            $subTpl = gettemplate('install/ins_form');
+            $subTpl = gettemplate('Install/ins_form');
             $bloc   = $lang;
             $bloc['dpath'] = $dpath;
             $frame  = parsetemplate($subTpl, $bloc);
@@ -143,7 +143,7 @@ EOF;
             doquery ( $QryTableUsers      , 'users'      );
             doquery ( $QryTableMulti      , 'multi'      );
 
-            $subTpl = gettemplate ('install/ins_form_done');
+            $subTpl = gettemplate ('Install/ins_form_done');
             $bloc   = $lang;
             $bloc['dpath']        = $dpath;
             $frame  = parsetemplate ( $subTpl, $bloc );
@@ -152,7 +152,7 @@ EOF;
             adminMessage($lang['ins_error3'], $lang['ins_error']);
             }
 
-            $subTpl = gettemplate ('install/ins_acc');
+            $subTpl = gettemplate ('Install/ins_acc');
             $bloc   = $lang;
             $bloc['dpath']        = $dpath;
             $frame  = parsetemplate ( $subTpl, $bloc );
@@ -246,7 +246,7 @@ EOF;
             doquery("UPDATE {{table}} SET `config_value` = '1' WHERE `config_name` = 'LastSettedPlanetPos';", 'config');
             doquery("UPDATE {{table}} SET `config_value` = `config_value` + '1' WHERE `config_name` = 'users_amount' LIMIT 1;", 'config');
 
-            $subTpl = gettemplate ('install/ins_acc_done');
+            $subTpl = gettemplate ('Install/ins_acc_done');
             $bloc   = $lang;
             $bloc['dpath']        = $dpath;
             $frame  = parsetemplate ( $subTpl, $bloc );
@@ -255,7 +255,7 @@ EOF;
 
     case 'goto':
         if ($page == 1) {
-            $subTpl = gettemplate ('install/ins_goto_intro');
+            $subTpl = gettemplate ('Install/ins_goto_intro');
             $bloc   = $lang;
             $bloc['dpath']        = $dpath;
             $frame  = parsetemplate ( $subTpl, $bloc );
@@ -267,7 +267,7 @@ EOF;
             adminMessage ($lang['ins_error2'], $lang['ins_error']);
             }
 
-            $subTpl = gettemplate ('install/ins_goto_form');
+            $subTpl = gettemplate ('Install/ins_goto_form');
             $bloc   = $lang;
             $bloc['dpath']        = $dpath;
             $frame  = parsetemplate ( $subTpl, $bloc );
@@ -312,7 +312,7 @@ EOF;
                 doquery($query, $prefix);
             }
 
-            $subTpl = gettemplate('install/ins_goto_done');
+            $subTpl = gettemplate('Install/ins_goto_done');
             $bloc   = $lang;
             $bloc['dpath']        = $dpath;
             $frame  = parsetemplate($subTpl, $bloc);

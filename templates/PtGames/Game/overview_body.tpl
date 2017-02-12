@@ -30,7 +30,7 @@
 	<th>{Temperature}</th>
 	<th colspan="3">{ov_temp_from} {planet_temp_min}{ov_temp_unit} {ov_temp_to} {planet_temp_max}{ov_temp_unit}</th></tr>
 	<tr><th>{Position}</th>
-	<th colspan="3"><a href="galaxy.php?mode=0&galaxy={galaxy_galaxy}&system={galaxy_system}">[{galaxy_galaxy}:{galaxy_system}:{galaxy_planet}]</a></th></tr>
+	<th colspan="3"><a href="game.php?page=galaxy&mode=0&galaxy={galaxy_galaxy}&system={galaxy_system}">[{galaxy_galaxy}:{galaxy_system}:{galaxy_planet}]</a></th></tr>
 	<tr><th>{ov_local_cdr}</th>
 	<th colspan="3">{Metal} : {metal_debris} / {Crystal} : {crystal_debris}{get_link}</th></tr>
 	<tr><th>{Points}</th>
@@ -43,7 +43,7 @@
 		<td align="left" width="50%" style="background-color: transparent;"><b>{player_points_tech}</b></td></tr>
 		<tr><td align="right" width="50%" style="background-color: transparent;"><b>{ov_pts_total} :</b></td>
 		<td align="left" width="50%" style="background-color: transparent;"><b>{total_points}</b></td></tr>
-		<tr><td colspan="2" align="center" width="100%" style="background-color: transparent;"><b>({Rank} <a href="stat.php?range={u_user_rank}">{user_rank}</a> {of} {max_users})</b></td></tr></tbody></table></th></tr>
+		<tr><td colspan="2" align="center" width="100%" style="background-color: transparent;"><b>({Rank} <a href="game.php?page=stat&range={u_user_rank}">{user_rank}</a> {of} {max_users})</b></td></tr></tbody></table></th></tr>
 	<th>{Raids}</th>
 	<th colspan="3"><table border="0" width="100%"><tbody><tr>
 		<td align="right" width="50%" style="background-color: transparent;"><b>{NumberOfRaids} :</b></td>

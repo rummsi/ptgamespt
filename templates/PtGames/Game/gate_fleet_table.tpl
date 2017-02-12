@@ -1,6 +1,6 @@
 <br>
 {gate_time_script}
-<form action="jumpgate.php" method="post">
+<form action="game.php?page=jumpgate" method="post">
 <table border="1">
 <tbody>
 <tr>

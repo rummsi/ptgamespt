@@ -1,11 +1,11 @@
 <tr>
 	<td class="l">
-		<a href="infos.php?gid={i}">
+		<a href="game.php?page=infos&gid={i}">
 		<img border="0" src="{dpath}gebaeude/{i}.gif" align="top" width="120" height="120">
 		</a>
 	</td>
 	<td class="l">
-		<a href="infos.php?gid={i}">{n}</a>{nivel}<br>
+		<a href="game.php?page=infos&gid={i}">{n}</a>{nivel}<br>
 		{descriptions}<br>
 		{price}
 		{time}
