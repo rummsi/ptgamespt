@@ -147,7 +147,7 @@ if (!$_POST['secu'] || $_POST['secu'] != $_SESSION['secu'] ) { $errorlist .= $la
     }
 
     if ($errors != 0) {
-        message ($errorlist, $lang['Register']);
+        $this->message ($errorlist, $lang['Register']);
     } else {
         $newpass = $_POST['passwrd'];
         $UserName = CheckInputStrings ($_POST['character']);
@@ -258,7 +258,7 @@ if (!$_POST['secu'] || $_POST['secu'] != $_SESSION['secu'] ) { $errorlist .= $la
             $Message .= " (" . htmlentities($_POST["email"]) . ")";
             $Message .= "<br><br>" . $lang['error_mailsend'] . " <b>" . $newpass . "</b>";
         }
-        message($Message, $lang['reg_welldone']);
+        $this->message($Message, $lang['reg_welldone']);
     }
 } elseif ( $game_config['secu'] == 1 ){
 

@@ -56,7 +56,7 @@ SELECT users.email, users.username
   LIMIT 1
 EOF;
         if (!($result = doquery($sql, 'users', true))) {
-            message("Cet utilisateur n'existe pas", 'Erreur', 'lostpassword.php');
+            $this->message("Cet utilisateur n'existe pas", 'Erreur', 'lostpassword.php');
             die();
         }
         list($mailData['recipient'], $username) = $result;
@@ -69,12 +69,12 @@ SELECT users.email, users.username
   LIMIT 1
 EOF;
         if (!($result = doquery($sql, 'users', true))) {
-            message("Cet email n'est utilisé par aucun joueur", 'Erreur', 'lostpassword.php');
+            $this->message("Cet email n'est utilisé par aucun joueur", 'Erreur', 'lostpassword.php');
             die();
         }
         list($mailData['recipient'], $username) = $result;
     } else {
-        message('Veuillez entrer votre login ou votre email.', 'Erreur', 'lostpassword.php');
+        $this->message('Veuillez entrer votre login ou votre email.', 'Erreur', 'lostpassword.php');
         die();
     }
 
@@ -109,7 +109,7 @@ UPDATE {{table}} AS users
 EOF;
 
         doquery($sql, 'users');
-        message('Mot de passe envoyé ! Veuillez regarder votre boite e-mail ou dans vos spam.', 'Nouveau mot de passe', 'index.php');
+        $this->message('Mot de passe envoyé ! Veuillez regarder votre boite e-mail ou dans vos spam.', 'Nouveau mot de passe', 'index.php');
         die();
     }
 }

@@ -37,8 +37,6 @@ class login extends AbstractIndexPage {
     function show() {
         global $lang, $game_config;
 
-define('LOGIN'   , true);
-
 includeLang('login');
 
 if (!empty($_POST)) {
@@ -82,12 +80,15 @@ EOF;
             header("Location: game.php?page=overview");
             exit(0);
         } else {
-            message($lang['Login_FailPassword'], $lang['Login_Error']);
+            $this->message($lang['Login_FailPassword'], $lang['Login_Error']);
         }
     } else {
-        message($lang['Login_FailUser'], $lang['Login_Error']);
+        $this->message($lang['Login_FailUser'], $lang['Login_Error']);
     }
 } else {
+
+    define('LOGIN'   , true);
+    
     $parse                 = $lang;
     $Count                 = doquery('SELECT COUNT(DISTINCT users.id) AS `players` FROM {{table}} AS users WHERE users.authlevel < 3', 'users', true);
     $LastPlayer            = doquery('SELECT users.`username` FROM {{table}} AS users ORDER BY `register_time` DESC LIMIT 1', 'users', true);

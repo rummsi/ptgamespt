@@ -68,4 +68,19 @@ abstract class AbstractIndexPage {
         return parsetemplate(gettemplate('Index/overall_footer'), $parse);
     }
 
+    function message($mes, $title = 'Error', $dest = "", $time = "3", $color = 'orange') {
+        if (define('LOGIN')){
+            $parse['-style-'] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/styles.css\">\n";
+            $parse['-style-'] .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/about.css\">\n";
+            
+        }
+        $parse['color'] = $color;
+        $parse['title'] = $title;
+        $parse['mes'] = $mes;
+
+        $page = parsetemplate(gettemplate('Admin/message_body'), $parse);
+
+        $this->display($page, $title, false, (($dest != "") ? "<meta http-equiv=\"refresh\" content=\"$time;URL={$dest}\">" : ""), true);
+    }
+
 }
