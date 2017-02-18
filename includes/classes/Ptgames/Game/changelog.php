@@ -28,11 +28,20 @@
  *
  */
 
+class changelog extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang;
+
 includeLang('changelog');
 
 $template = gettemplate('Game/changelog_table');
 
-
+$body = '';
 foreach($lang['changelog'] as $a => $b)
 {
 
@@ -46,9 +55,13 @@ foreach($lang['changelog'] as $a => $b)
 $parse = $lang;
 $parse['body'] = $body;
 
-$page .= parsetemplate(gettemplate('Game/changelog_body'), $parse);
+$page = parsetemplate(gettemplate('Game/changelog_body'), $parse);
 
-Game::display($page,"Change Log");
+$this->display($page,"Change Log");
+        
+    }
+
+}
 
 // Created by Perberos. All rights reversed (C) 2006
 ?>

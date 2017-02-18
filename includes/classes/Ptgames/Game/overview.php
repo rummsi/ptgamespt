@@ -28,6 +28,15 @@
  *
  */
 
+class overview extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $planetrow, $user, $game_config, $dpath, $galaxyrow, $fpage, $flotten;
+
 $lunarow = doquery("SELECT * FROM {{table}} WHERE `id_owner` = '" . $planetrow['id_owner'] . "' AND `galaxy` = '" . $planetrow['galaxy'] . "' AND `system` = '" . $planetrow['system'] . "' AND `lunapos` = '" . $planetrow['planet'] . "';", 'lunas', true);
 
 //CheckPlanetUsedFields ($lunarow);
@@ -67,9 +76,9 @@ switch ($mode) {
             $parse['galaxy_planet'] = $planetrow['planet'];
             $parse['planet_name'] = $planetrow['name'];
 
-            $page .= parsetemplate(gettemplate('Game/overview_deleteplanet'), $parse);
+            $page = parsetemplate(gettemplate('Game/overview_deleteplanet'), $parse);
             // On affiche la forme pour l'abandon de la colonie
-            Game::display($page, $lang['rename_and_abandon_planet']);
+            $this->display($page, $lang['rename_and_abandon_planet']);
         } elseif ($_POST['kolonieloeschen'] == 1 && $_POST['deleteid'] == $user['current_planet']) {
                 // Controle du mot de passe pour abandon de colonie
                 if (md5($_POST['pw']) == $user["password"] && $user['id_planet'] != $user['current_planet']) {
@@ -77,7 +86,7 @@ switch ($mode) {
                 include_once(ROOT_PATH . 'includes/functions/AbandonColony.' . PHPEXT);
                 if (CheckFleets($planetrow)){
                    $strMessage = "Vous ne pouvez pas abandonner la colonie, il y a de la flotte en vol !";
-                   message($strMessage, $lang['colony_abandon'], 'game.php?page=overview&mode=renameplanet',3);
+                   $this->message($strMessage, $lang['colony_abandon'], 'game.php?page=overview&mode=renameplanet',3);
                 }
 
                 AbandonColony($user,$planetrow);
@@ -88,16 +97,16 @@ switch ($mode) {
                     $QryUpdateUser .= "`id` = '" . $user['id'] . "' LIMIT 1";
                     doquery($QryUpdateUser, "users");
                     // Tout s'est bien pass� ! La colo a �t� effac�e !!
-                    message($lang['deletemessage_ok'] , $lang['colony_abandon'], 'game.php?page=overview',3);
+                    $this->message($lang['deletemessage_ok'] , $lang['colony_abandon'], 'game.php?page=overview',3);
 
                 } elseif ($user['id_planet'] == $user["current_planet"]) {
                     // Et puis quoi encore ??? On ne peut pas effacer la planete mere ..
                     // Uniquement les colonies cr�es apres coup !!!
-                    message($lang['deletemessage_wrong'], $lang['colony_abandon'], 'game.php?page=overview&mode=renameplanet');
+                    $this->message($lang['deletemessage_wrong'], $lang['colony_abandon'], 'game.php?page=overview&mode=renameplanet');
 
                 } else {
                     // Erreur de saisie du mot de passe je n'efface pas !!!
-                    message($lang['deletemessage_fail'] , $lang['colony_abandon'], 'game.php?page=overview&mode=renameplanet');
+                    $this->message($lang['deletemessage_fail'] , $lang['colony_abandon'], 'game.php?page=overview&mode=renameplanet');
 
                 }
             }
@@ -110,9 +119,9 @@ switch ($mode) {
         $parse['galaxy_planet'] = $planetrow['planet'];
         $parse['planet_name'] = $planetrow['name'];
 
-        $page .= parsetemplate(gettemplate('Game/overview_renameplanet'), $parse);
+        $page = parsetemplate(gettemplate('Game/overview_renameplanet'), $parse);
         // On affiche la page permettant d'abandonner OU de renomme une Colonie / Planete
-        Game::display($page, $lang['rename_and_abandon_planet']);
+        $this->display($page, $lang['rename_and_abandon_planet']);
         break;
 
     default:
@@ -141,7 +150,8 @@ switch ($mode) {
 
             $LvlUpMinier = $user['lvl_minier'] + 1;
             $LvlUpRaid = $user['lvl_raid'] + 1;
-
+            $HaveNewLevelMineur = "";
+            $HaveNewLevelRaid = "";
             if (($LvlUpMinier + $LvlUpRaid) <= 100) {
                 if ($XpMinier >= $XpMinierUp) {
                     $QryUpdateUser = "UPDATE {{table}} SET ";
@@ -473,9 +483,13 @@ switch ($mode) {
 
             $page = parsetemplate(gettemplate('Game/overview_body'), $parse);
 
-            Game::display($page, $lang['Overview']);
+            $this->display($page, $lang['Overview']);
             break;
         }
+}
+        
+    }
+
 }
 
 ?>

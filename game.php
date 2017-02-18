@@ -26,6 +26,7 @@
 define('INSIDE', true);
 define('INSTALL', false);
 require_once dirname(__FILE__) . '/common.php';
+require_once realpath(ROOT_PATH . 'Libraries/Ptgames/AbstractGamePage.php');
 
 $page = filter_input(INPUT_GET, 'page');
 $mode1 = filter_input(INPUT_GET, 'mode');
