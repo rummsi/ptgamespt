@@ -29,7 +29,10 @@
  */
 
 //on demarre la session qui ne sers ici que pour le code de secu
-session_start();
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }
 
 includeLang('reg');
 

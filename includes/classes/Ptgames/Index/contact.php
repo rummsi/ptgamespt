@@ -38,7 +38,7 @@
 	$QrySelectUser .= "FROM {{table}} ";
 	$QrySelectUser .= "WHERE `authlevel` != '0' ORDER BY `authlevel` DESC;";
 	$GameOps = doquery ( $QrySelectUser, 'users');
-
+        $parse['ctc_admin_list'] = '';
 	while( $Ops = mysqli_fetch_assoc($GameOps) ) {
 		$bloc['ctc_data_name']    = $Ops['username'];
 		$bloc['ctc_data_auth']    = $lang['user_level'][$Ops['authlevel']];

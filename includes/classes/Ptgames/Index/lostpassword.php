@@ -107,4 +107,4 @@ EOF;
 
 $parse = $lang;
 $page = parsetemplate(gettemplate('Index/lostpassword'), $parse);
-display($page, $lang['registry']);
+display($page, $lang['ResetPass']);
