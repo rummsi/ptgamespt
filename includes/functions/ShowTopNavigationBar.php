@@ -51,14 +51,14 @@ function ShowTopNavigationBar ( $CurrentUser, $CurrentPlanet ) {
 		$parse['planetlist'] = '';
 		$ThisUsersPlanets    = SortUserPlanets ( $CurrentUser );
 		while ($CurPlanet = mysqli_fetch_array($ThisUsersPlanets, MYSQLI_ASSOC)) {
-			if ($CurPlanet["destruyed"] == 0) {
+			if (isset($CurPlanet["destruyed"]) == 0) {
 				$parse['planetlist'] .= "\n<option ";
 				if ($CurPlanet['id'] == $CurrentUser['current_planet']) {
 					// Bon puisque deja on s'y trouve autant le marquer
 					$parse['planetlist'] .= "selected=\"selected\" ";
 				}
 				$parse['planetlist'] .= "value=\"game.php?page=".$_GET['page']."&cp=".$CurPlanet['id']."";
-				$parse['planetlist'] .= "&amp;mode=".$_GET['mode'];
+				$parse['planetlist'] .= "&amp;mode=".isset($_GET['mode']);
 				$parse['planetlist'] .= "&amp;re=0\">";
 
 				// Nom et coordonnées de la planete

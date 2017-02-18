@@ -34,7 +34,7 @@
 	UpdatePlanetBatimentQueueList ( $planetrow, $user );
 	$IsWorking = HandleTechnologieBuild ( $planetrow, $user );
 
-	switch ($_GET['mode']) {
+	switch (isset($_GET['mode'])) {
 		case 'fleet':
 			// --------------------------------------------------------------------------------------------------
 			FleetBuildingPage ( $planetrow, $user );
