@@ -28,7 +28,16 @@
  *
  */
 
-	includeLang('contact');
+class contact {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang;
+
+        includeLang('contact');
 
 	$BodyTPL = gettemplate('Index/contact_body');
 	$RowsTPL = gettemplate('Index/contact_body_rows');
@@ -48,6 +57,10 @@
 
 	$page = parsetemplate($BodyTPL, $parse);
 	display($page, $lang['ctc_title'], false);
+        
+    }
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

@@ -28,6 +28,15 @@
  *
  */
 
+class reg {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $game_config;
+        
 //on demarre la session qui ne sers ici que pour le code de secu
 if(!isset($_SESSION)) 
     { 
@@ -273,6 +282,10 @@ $_SESSION['secu'] = $_SESSION['nombre1'] + $_SESSION['nombre2'];
     $page = parsetemplate(gettemplate('Index/registry_form'), $parse);
 }
     display ($page, $lang['registry'], false);
+        
+    }
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

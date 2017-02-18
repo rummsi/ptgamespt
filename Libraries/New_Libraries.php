@@ -32,7 +32,7 @@ if (!defined('ROOT_PATH')) {
     die('Hacking attempt');
 }
 
-require realpath(ROOT_PATH . 'Libraries/Tracy/tracy.'.PHPEXT);
+require realpath(ROOT_PATH . 'Libraries/Tracy/tracy.php');
 use Tracy\Debugger;
 
 Debugger::enable();

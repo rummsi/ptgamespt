@@ -28,6 +28,15 @@
  *
  */
 
+class lostpassword {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang;
+
 $mailData = array(
     'recipient' => NULL,
     'sender' => 'no-reply',
@@ -108,3 +117,7 @@ EOF;
 $parse = $lang;
 $page = parsetemplate(gettemplate('Index/lostpassword'), $parse);
 display($page, $lang['ResetPass']);
+        
+    }
+
+}

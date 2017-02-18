@@ -28,6 +28,15 @@
  *
  */
 
+class login {
+    
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $game_config;
+
 define('LOGIN'   , true);
 
 includeLang('login');
@@ -101,3 +110,6 @@ EOF;
     }
 }
 
+}
+
+}
