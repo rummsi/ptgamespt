@@ -20,13 +20,13 @@ function f(target_url,win_name) {
 
 	<td height="1px" colspan="2" style="background-color:#FFFFFF"></td>
 </tr><tr>
-	<td colspan="2"><div><a href="game.php?page=buildings" accesskey="b" target="{mf}">{Buildings}</a></div></td>
+	<td colspan="2"><div><a href="game.php?page=BatimentBuildingPage" accesskey="b" target="{mf}">{Buildings}</a></div></td>
 </tr><tr>
-	<td colspan="2"><div><a href="game.php?page=buildings&mode=research" accesskey="r" target="{mf}">{Research}</a></div></td>
+	<td colspan="2"><div><a href="game.php?page=ResearchBuildingPage" accesskey="r" target="{mf}">{Research}</a></div></td>
 </tr><tr>
-	<td colspan="2"><div><a href="game.php?page=buildings&mode=fleet" accesskey="f" target="{mf}">{Shipyard}</a></div></td>
+	<td colspan="2"><div><a href="game.php?page=FleetBuildingPage" accesskey="f" target="{mf}">{Shipyard}</a></div></td>
 </tr><tr>
-	<td colspan="2"><div><a href="game.php?page=buildings&mode=defense" accesskey="d" target="{mf}">{Defense}</a></div></td>
+	<td colspan="2"><div><a href="game.php?page=DefensesBuildingPage" accesskey="d" target="{mf}">{Defense}</a></div></td>
 </tr><tr>
 	<td colspan="2"><div><a href="game.php?page=officier" accesskey="o" target="{mf}">{Officiers}</a></div></td>
 </tr><tr>

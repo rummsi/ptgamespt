@@ -27,11 +27,16 @@
  * documentation for further information about customizing XNova.
  *
  */
-
-function BatimentBuildingPage (&$CurrentPlanet, $CurrentUser) {
+/*
+function BatimentBuildingPage (&$planetrow, $user) {
 	global $lang, $resource, $reslist, $dpath, $game_config, $_GET;
+*/
+	includeLang('buildings');
 
-	CheckPlanetUsedFields ( $CurrentPlanet );
+	// Mise a jour de la liste de construction si necessaire
+	UpdatePlanetBatimentQueueList ( $planetrow, $user );
+	$IsWorking = HandleTechnologieBuild ( $planetrow, $user );
+	CheckPlanetUsedFields ( $planetrow );
 
 	// Tables des batiments possibles par type de planete
 	$Allowed['1'] = array(  1,  2,  3,  4, 12, 14, 15, 21, 22, 23, 24, 31, 33, 34, 44);
@@ -49,7 +54,7 @@ function BatimentBuildingPage (&$CurrentPlanet, $CurrentUser) {
 			if ( !strchr ( $Element, " ") ) {
 				if ( !strchr ( $Element, ",") ) {
 				if ( !strchr ( $Element, ";") ) {
-					if (in_array( trim($Element), $Allowed[$CurrentPlanet['planet_type']])) {
+					if (in_array( trim($Element), $Allowed[$planetrow['planet_type']])) {
 						$bDoItNow = true;
 					} else {
 						$bThisIsCheated = true;
@@ -70,37 +75,37 @@ function BatimentBuildingPage (&$CurrentPlanet, $CurrentUser) {
 			switch($TheCommand){
 				case 'cancel':
 					// Interrompre le premier batiment de la queue
-					CancelBuildingFromQueue ( $CurrentPlanet, $CurrentUser );
+					CancelBuildingFromQueue ( $planetrow, $user );
 					break;
 				case 'remove':
 					// Supprimer un element de la queue (mais pas le premier)
 					// $RemID -> element de la liste a supprimer
-					RemoveBuildingFromQueue ( $CurrentPlanet, $CurrentUser, $ListID );
+					RemoveBuildingFromQueue ( $planetrow, $user, $ListID );
 					break;
 				case 'insert':
 					// Insere un element dans la queue
-					AddBuildingToQueue ( $CurrentPlanet, $CurrentUser, $Element, true );
+					AddBuildingToQueue ( $planetrow, $user, $Element, true );
 					break;
 				case 'destroy':
 					// Detruit un batiment deja construit sur la planete !
-					AddBuildingToQueue ( $CurrentPlanet, $CurrentUser, $Element, false );
+					AddBuildingToQueue ( $planetrow, $user, $Element, false );
 					break;
 				default:
 					break;
 			} // switch
 		} elseif ($bThisIsCheated == true) {
-			ResetThisFuckingCheater ( $CurrentUser['id'] );
+			ResetThisFuckingCheater ( $user['id'] );
 		}
 	}
 
-	SetNextQueueElementOnTop ( $CurrentPlanet, $CurrentUser );
+	SetNextQueueElementOnTop ( $planetrow, $user );
 
-	$Queue = ShowBuildingQueue ( $CurrentPlanet, $CurrentUser );
+	$Queue = ShowBuildingQueue ( $planetrow, $user );
 
 	// On enregistre ce que l'on a modifi� dans planet !
-	BuildingSavePlanetRecord ( $CurrentPlanet );
+	BuildingSavePlanetRecord ( $planetrow );
 	// On enregistre ce que l'on a eventuellement modifi� dans users
-	BuildingSaveUserRecord ( $CurrentUser );
+	BuildingSaveUserRecord ( $user );
 
 	if ($Queue['lenght'] < MAX_BUILDING_QUEUE_SIZE) {
 		$CanBuildElement = true;
@@ -111,33 +116,33 @@ function BatimentBuildingPage (&$CurrentPlanet, $CurrentUser) {
 	$SubTemplate         = gettemplate('Game/buildings_builds_row');
 	$BuildingPage        = "";
 	foreach($lang['tech'] as $Element => $ElementName) {
-		if (in_array($Element, $Allowed[$CurrentPlanet['planet_type']])) {
-			$CurrentMaxFields      = CalculateMaxPlanetFields($CurrentPlanet);
-			if ($CurrentPlanet["field_current"] < ($CurrentMaxFields - $Queue['lenght'])) {
+		if (in_array($Element, $Allowed[$planetrow['planet_type']])) {
+			$CurrentMaxFields      = CalculateMaxPlanetFields($planetrow);
+			if ($planetrow["field_current"] < ($CurrentMaxFields - $Queue['lenght'])) {
 				$RoomIsOk = true;
 			} else {
 				$RoomIsOk = false;
 			}
 
-			if (IsTechnologieAccessible($CurrentUser, $CurrentPlanet, $Element)) {
-				$HaveRessources        = IsElementBuyable ($CurrentUser, $CurrentPlanet, $Element, true, false);
+			if (IsTechnologieAccessible($user, $planetrow, $Element)) {
+				$HaveRessources        = IsElementBuyable ($user, $planetrow, $Element, true, false);
 				$parse                 = array();
 				$parse['dpath']        = $dpath;
 				$parse['i']            = $Element;
-				$BuildingLevel         = $CurrentPlanet[$resource[$Element]];
+				$BuildingLevel         = $planetrow[$resource[$Element]];
 				$parse['nivel']        = ($BuildingLevel == 0) ? "" : " (". $lang['level'] ." ". $BuildingLevel .")";
 				$parse['n']            = $ElementName;
 				$parse['descriptions'] = $lang['res']['descriptions'][$Element];
-				$ElementBuildTime      = GetBuildingTime($CurrentUser, $CurrentPlanet, $Element);
+				$ElementBuildTime      = GetBuildingTime($user, $planetrow, $Element);
 				$parse['time']         = ShowBuildTime($ElementBuildTime);
-				$parse['price']        = GetElementPrice($CurrentUser, $CurrentPlanet, $Element);
-				$parse['rest_price']   = GetRestPrice($CurrentUser, $CurrentPlanet, $Element);
+				$parse['price']        = GetElementPrice($user, $planetrow, $Element);
+				$parse['rest_price']   = GetRestPrice($user, $planetrow, $Element);
 				$parse['click']        = '';
-				$NextBuildLevel        = $CurrentPlanet[$resource[$Element]] + 1;
+				$NextBuildLevel        = $planetrow[$resource[$Element]] + 1;
 
 				if ($Element == 31) {
 					// Sp�cial Laboratoire
-					if ($CurrentUser["b_tech_planet"] != 0 &&     // Si pas 0 y a une recherche en cours
+					if ($user["b_tech_planet"] != 0 &&     // Si pas 0 y a une recherche en cours
 						$game_config['BuildLabWhileRun'] != 1) {  // Variable qui contient le parametre
 						// On verifie si on a le droit d'evoluer pendant les recherches (Setting dans config)
 						$parse['click'] = "<font color=#FF0000>". $lang['in_working'] ."</font>";
@@ -149,19 +154,19 @@ function BatimentBuildingPage (&$CurrentPlanet, $CurrentUser) {
 					if ($Queue['lenght'] == 0) {
 						if ($NextBuildLevel == 1) {
 							if ( $HaveRessources == true ) {
-								$parse['click'] = "<a href=\"game.php?page=buildings&cmd=insert&building=". $Element ."\"><font color=#00FF00>". $lang['BuildFirstLevel'] ."</font></a>";
+								$parse['click'] = "<a href=\"game.php?page=BatimentBuildingPage&cmd=insert&building=". $Element ."\"><font color=#00FF00>". $lang['BuildFirstLevel'] ."</font></a>";
 							} else {
 								$parse['click'] = "<font color=#FF0000>". $lang['BuildFirstLevel'] ."</font>";
 							}
 						} else {
 							if ( $HaveRessources == true ) {
-								$parse['click'] = "<a href=\"game.php?page=buildings&cmd=insert&building=". $Element ."\"><font color=#00FF00>". $lang['BuildNextLevel'] ." ". $NextBuildLevel ."</font></a>";
+								$parse['click'] = "<a href=\"game.php?page=BatimentBuildingPage&cmd=insert&building=". $Element ."\"><font color=#00FF00>". $lang['BuildNextLevel'] ." ". $NextBuildLevel ."</font></a>";
 							} else {
 								$parse['click'] = "<font color=#FF0000>". $lang['BuildNextLevel'] ." ". $NextBuildLevel ."</font>";
 							}
 						}
 					} else {
-						$parse['click'] = "<a href=\"game.php?page=buildings&cmd=insert&building=". $Element ."\"><font color=#00FF00>". $lang['InBuildQueue'] ."</font></a>";
+						$parse['click'] = "<a href=\"game.php?page=BatimentBuildingPage&cmd=insert&building=". $Element ."\"><font color=#00FF00>". $lang['InBuildQueue'] ."</font></a>";
 					}
 				} elseif ($RoomIsOk && !$CanBuildElement) {
 					if ($NextBuildLevel == 1) {
@@ -189,14 +194,14 @@ function BatimentBuildingPage (&$CurrentPlanet, $CurrentUser) {
 		$parse['BuildList']        = "";
 	}
 
-    $parse['planet_field_current'] = $CurrentPlanet["field_current"];
-    $parse['planet_field_max']     = $CurrentPlanet['field_max'] + ($CurrentPlanet[$resource[33]] * 5);
-    $parse['field_libre']          = $parse['planet_field_max']  - $CurrentPlanet['field_current'];
+    $parse['planet_field_current'] = $planetrow["field_current"];
+    $parse['planet_field_max']     = $planetrow['field_max'] + ($planetrow[$resource[33]] * 5);
+    $parse['field_libre']          = $parse['planet_field_max']  - $planetrow['field_current'];
 
 	$parse['BuildingsList']        = $BuildingPage;
 
 	$page                         .= parsetemplate(gettemplate('Game/buildings_builds'), $parse);
 
 	Game::display($page, $lang['Builds']);
-}
+//}
 ?>
