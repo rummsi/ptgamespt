@@ -69,11 +69,6 @@ abstract class AbstractIndexPage {
     }
 
     function message($mes, $title = 'Error', $dest = "", $time = "3", $color = 'orange') {
-        if (define('LOGIN')){
-            $parse['-style-'] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/styles.css\">\n";
-            $parse['-style-'] .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/about.css\">\n";
-            
-        }
         $parse['color'] = $color;
         $parse['title'] = $title;
         $parse['mes'] = $mes;
