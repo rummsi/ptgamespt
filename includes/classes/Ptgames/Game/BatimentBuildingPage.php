@@ -187,7 +187,7 @@ function BatimentBuildingPage (&$planetrow, $user) {
 
 	// Faut il afficher la liste de construction ??
 	if ($Queue['lenght'] > 0) {
-		$parse['BuildListScript']  = InsertBuildListScript ( "buildings" );
+		$parse['BuildListScript']  = InsertBuildListScript ( "BatimentBuildingPage" );
 		$parse['BuildList']        = $Queue['buildlist'];
 	} else {
 		$parse['BuildListScript']  = "";

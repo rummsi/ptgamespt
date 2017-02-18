@@ -85,13 +85,13 @@ foreach ($planet as $p) {
 
 	foreach ($resource as $i => $res) {
 		if (in_array($i, $reslist['build']))
-			$data['text'] = ($p[$resource[$i]]    == 0) ? '-' : "<a href=\"game.php?page=buildings&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>";
+			$data['text'] = ($p[$resource[$i]]    == 0) ? '-' : "<a href=\"game.php?page=BatimentBuildingPage&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>";
 		elseif (in_array($i, $reslist['tech']))
-			$data['text'] = ($user[$resource[$i]] == 0) ? '-' : "<a href=\"game.php?page=buildings&mode=research&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$user[$resource[$i]]}</a>";
+			$data['text'] = ($user[$resource[$i]] == 0) ? '-' : "<a href=\"game.php?ResearchBuildingPage&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$user[$resource[$i]]}</a>";
 		elseif (in_array($i, $reslist['fleet']))
-			$data['text'] = ($p[$resource[$i]]    == 0) ? '-' : "<a href=\"game.php?page=buildings&mode=fleet&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>";
+			$data['text'] = ($p[$resource[$i]]    == 0) ? '-' : "<a href=\"game.php?page=FleetBuildingPage&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>";
 		elseif (in_array($i, $reslist['defense']))
-			$data['text'] = ($p[$resource[$i]]    == 0) ? '-' : "<a href=\"game.php?page=buildings&mode=defense&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>";
+			$data['text'] = ($p[$resource[$i]]    == 0) ? '-' : "<a href=\"game.php?page=DefensesBuildingPage&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>";
 
 		$r[$i] .= parsetemplate($row2, $data);
 	}
