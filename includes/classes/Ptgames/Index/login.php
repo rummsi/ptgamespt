@@ -28,8 +28,8 @@
  *
  */
 
-class login {
-    
+class login extends AbstractIndexPage {
+
     function __construct() {
         $this->show();
     }
@@ -106,7 +106,7 @@ EOF;
         $page = $PlayersOnline['onlinenow']."/".$Count['players'];
         die ( $page );
     } else {
-        display($page, $lang['Login']);
+        $this->display($page, $lang['Login']);
     }
 }
 

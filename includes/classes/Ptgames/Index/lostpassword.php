@@ -28,7 +28,7 @@
  *
  */
 
-class lostpassword {
+class lostpassword extends AbstractIndexPage {
 
     function __construct() {
         $this->show();
@@ -116,7 +116,7 @@ EOF;
 
 $parse = $lang;
 $page = parsetemplate(gettemplate('Index/lostpassword'), $parse);
-display($page, $lang['ResetPass']);
+$this->display($page, $lang['ResetPass']);
         
     }
 

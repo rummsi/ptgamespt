@@ -28,7 +28,7 @@
  *
  */
 
-class reg {
+class reg extends AbstractIndexPage {
 
     function __construct() {
         $this->show();
@@ -36,7 +36,7 @@ class reg {
 
     function show() {
         global $lang, $game_config;
-        
+
 //on demarre la session qui ne sers ici que pour le code de secu
 if(!isset($_SESSION)) 
     { 
@@ -281,7 +281,7 @@ $_SESSION['secu'] = $_SESSION['nombre1'] + $_SESSION['nombre2'];
     $parse['servername'] = '<img src="images/xnova.png" align="top" border="0" >';
     $page = parsetemplate(gettemplate('Index/registry_form'), $parse);
 }
-    display ($page, $lang['registry'], false);
+    $this->display ($page, $lang['registry'], false);
         
     }
 

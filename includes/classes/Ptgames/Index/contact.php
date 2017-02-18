@@ -28,7 +28,7 @@
  *
  */
 
-class contact {
+class contact extends AbstractIndexPage {
 
     function __construct() {
         $this->show();
@@ -56,7 +56,7 @@ class contact {
 	}
 
 	$page = parsetemplate($BodyTPL, $parse);
-	display($page, $lang['ctc_title'], false);
+	$this->display($page, $lang['ctc_title'], false);
         
     }
 
