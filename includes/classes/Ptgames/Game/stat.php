@@ -28,7 +28,7 @@
  *
  */
 
-class stat extends AbstractGamePage {
+class Stat extends AbstractGamePage {
 
     function __construct() {
         $this->show();

@@ -28,7 +28,7 @@
  *
  */
 
-class techtree extends AbstractGamePage {
+class Techtree extends AbstractGamePage {
 
     function __construct() {
         $this->show();

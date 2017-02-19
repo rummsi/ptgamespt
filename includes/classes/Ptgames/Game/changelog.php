@@ -28,7 +28,7 @@
  *
  */
 
-class changelog extends AbstractGamePage {
+class Changelog extends AbstractGamePage {
 
     function __construct() {
         $this->show();

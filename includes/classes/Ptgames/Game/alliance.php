@@ -28,7 +28,7 @@
  *
  */
 
-class alliance extends AbstractGamePage {
+class Alliance extends AbstractGamePage {
 
     function __construct() {
         $this->show();

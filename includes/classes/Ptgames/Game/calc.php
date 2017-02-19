@@ -28,30 +28,39 @@
  *
  */
 
+class Calc extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $dpath;
+
 $v = '0.6c'; /* Version de la Calculadora */
 
-$edff = array();
-$invv = array();
-$hann = array();
-$deff = array();
+$edf = array();
+$inv = array();
+$han = array();
+$def = array();
 
-$edf = GetInFile('edf.txt');
+$edf = $this->GetInFile('Libraries/calc/edf.txt');
 $edf_v = array_fill(0, count($edf), array(0, 0, 0, 0));
 
-$inv = GetInFile('inv.txt');
+$inv = $this->GetInFile('Libraries/calc/inv.txt');
 $inv_v = array_fill(0, count($inv), array(0, 0, 0, 0));
 
-$han = GetInFile('han.txt');
+$han = $this->GetInFile('Libraries/calc/han.txt');
 $han_v = array_fill(0, count($han), array(0, 0, 0, 0));
 
-$def = GetInFile('def.txt');
+$def = $this->GetInFile('Libraries/calc/def.txt');
 $def_v = array_fill(0, count($def), array(0, 0, 0, 0));
 
-LoadCookies();
+$this->LoadCookies();
 
 if (!empty($_POST['reset'])) {
     foreach($_COOKIE as $elm => $con) {
-        setcoookie($elm, '');
+        $this->setcoookie($elm, '');
     }
 
     $_POST = array();
@@ -63,7 +72,7 @@ if (!empty($_POST['suma'])) {
     if (!empty($_POST['han'])) setcoookie('han', serialize($_POST['han']), time()+60*60*24*30);
     if (!empty($_POST['def'])) setcoookie('def', serialize($_POST['def']), time()+60*60*24*30);
 
-    LoadCookies();
+$this->LoadCookies();
 
     for($i = 0; $i < count($edf); $i++) {
         if (!empty($edff)) {
@@ -105,6 +114,92 @@ if (!empty($_POST['suma'])) {
         }
     }
 }
+
+$page = '
+            <form method="POST" action="http://'.$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'].'">';
+
+$tot = $this->SumaTodo();
+$to = array_fill(0, 4, 0);
+
+for ($a = 0; $a < 4; $a++) {
+    switch ($a) {
+        case 0:
+            $titulo = 'Geb&auml;de';
+            $loc = true;
+
+            $c = 'edf'; $d = 'edff';
+            $t = $edf;
+            $t_v = $edf_v;
+
+            break;
+        case 1:
+            $titulo = 'Forschung';
+            $loc = true;
+
+            $c = 'inv'; $d = 'invv';
+            $t = $inv;
+            $t_v = $inv_v;
+
+            break;
+        case 2:
+            $titulo = 'Flotte';
+            $loc = false;
+
+            $c = 'han'; $d = 'hann';
+            $t = $han;
+            $t_v = $han_v;
+
+            break;
+        case 3:
+            $titulo = 'Flotte';
+            $loc = false;
+
+            $c = 'def'; $d = 'deff';
+            $t = $def;
+            $t_v = $def_v;
+
+            break;
+    }
+$page .= '
+                <table border="0" cellpadding="2" cellspacing="1" width="90%">
+                    <tr>
+                        <td class="c" style="width: 30%"><b>'.$titulo.'</b></td>
+                        <td class="c" style="width: 10%"><b>'.$loc == true ? "Stufe" : "Anzahl".'</b></td>
+                        <td class="c" style="width: 15%"><b><span style="color: green">Metall</span></b></td>
+                        <td class="c" style="width: 15%"><b><span style="color: blue">Kristall</span></b></td>
+                        <td class="c" style="width: 15%"><b><span style="color: darkred">Deuterium</span></b></td>
+                        <td class="c" style="width: 10%"><b>Punkte</b></td>
+                    </tr>';
+    for($i = 0; $i < count($t); $i++) {
+$page .= '
+                    <tr>
+                        <th style="width: 30%">' . $t[$i][0] . '</td>
+                        <th style="text-align: center; width: 10%"><input type="text" name="' . $c . '[]" value="' . !empty(${$d}[$i]) ? ${$d}[$i]: 0 . '" style="width: 30px;"></th>
+                        <th style="width: 15%"><span style="color: green">' . number_format($t_v[$i][0], 0, ',', '.') . '</span></th>
+                        <th style="width: 15%"><span style="color: blue">' . number_format($t_v[$i][1], 0, ',', '.') . '</span></th>
+                        <th style="width: 15%"><span style="color: darkred">' . number_format($t_v[$i][2], 0, ',', '.') . '</span></th>
+                        <th style="width: 10%">' . number_format($t_v[$i][3], 0, ',', '.') . ' (' . round((100 * $t_v[$i][3]) / $tot) . '%)</th>
+                    </tr>';
+        $to[$a] += $t_v[$i][3];
+    }
+$page .= '
+                    <tr>
+                        <td colspan="4">&nbsp;</td>
+                        <td class="c">Summe: </th>
+                        <th>' . $to[$a] . ' (' . round((100 * $to[$a]) / $tot) . '%)</th>
+                    </tr>
+                </table><br />';
+}
+$page .= '
+                <input type="submit" name="suma" value="Berechen">
+                <input type="submit" name="reset" value="Zur&uuml;cksetzen">
+                <br /><br />
+                Punkte: '.number_format($tot, 0, '.', '').'
+            </form>';
+
+$this->display($page,"Calc");
+        
+    }
 
 function og_pow($v, $lvl, $x) {
     $t = 0;
@@ -171,116 +266,11 @@ function LoadCookies() {
 }
 
 function setcoookie($a, $b, $c = '') {
-    @setcookie($a, $b, $c);
+    setcookie($a, $b, $c);
 
     $_COOKIE[$a] = $b;
 }
 
-?>
-<html>
-
-    <head>
-        <title>OGame Clone</title>
-        <link rel="stylesheet" type="text/css" href="<?php echo $dpath?>formate.css">
-    </head>
-
-    <center>
-
-
-        <body>
-            <form method="POST" action="http://<?php echo $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']?>">
-<?php
-
-$tot = SumaTodo();
-$to = array_fill(0, 4, 0);
-
-for ($a = 0; $a < 4; $a++) {
-    switch ($a) {
-        case 0:
-            $titulo = 'Geb&auml;de';
-            $loc = true;
-
-            $c = 'edf'; $d = 'edff';
-            $t = $edf;
-            $t_v = $edf_v;
-
-            break;
-        case 1:
-            $titulo = 'Forschung';
-            $loc = true;
-
-            $c = 'inv'; $d = 'invv';
-            $t = $inv;
-            $t_v = $inv_v;
-
-            break;
-        case 2:
-            $titulo = 'Flotte';
-            $loc = false;
-
-            $c = 'han'; $d = 'hann';
-            $t = $han;
-            $t_v = $han_v;
-
-            break;
-        case 3:
-            $titulo = 'Flotte';
-            $loc = false;
-
-            $c = 'def'; $d = 'deff';
-            $t = $def;
-            $t_v = $def_v;
-
-            break;
-    }
-
-?>
-                <table border="0" cellpadding="2" cellspacing="1" width="90%">
-                    <tr>
-                        <td class="c" style="width: 30%"><b><?=$titulo?></b></td>
-                        <td class="c" style="width: 10%"><b><?=$loc == true ? 'Stufe' : 'Anzahl'?></b></td>
-                        <td class="c" style="width: 15%"><b><span style="color: green">Metall</span></b></td>
-                        <td class="c" style="width: 15%"><b><span style="color: blue">Kristall</span></b></td>
-                        <td class="c" style="width: 15%"><b><span style="color: darkred">Deuterium</span></b></td>
-                        <td class="c" style="width: 10%"><b>Punkte</b></td>
-                    </tr>
-<?php
-    for($i = 0; $i < count($t); $i++) {
-?>
-                    <tr>
-                        <th style="width: 30%"><?=$t[$i][0]?></td>
-                        <th style="text-align: center; width: 10%"><input type="text" name="<?=$c?>[]" value="<?=!empty(${$d}[$i]) ? ${$d}[$i]: 0;?>" style="width: 30px;"></th>
-                        <th style="width: 15%"><span style="color: green"><?=number_format($t_v[$i][0], 0, ',', '.');?></span></th>
-                        <th style="width: 15%"><span style="color: blue"><?=number_format($t_v[$i][1], 0, ',', '.');?></span></th>
-                        <th style="width: 15%"><span style="color: darkred"><?=number_format($t_v[$i][2], 0, ',', '.');?></span></th>
-                        <th style="width: 10%"><?=number_format($t_v[$i][3], 0, ',', '.');?> (<?=@round((100 * $t_v[$i][3]) / $tot)?>%)</th>
-                    </tr>
-<?php
-
-        $to[$a] += $t_v[$i][3];
-    }
-?>
-                    <tr>
-                        <td colspan="4">&nbsp;</td>
-                        <td class="c">Summe: </th>
-                        <th><?=$to[$a]?> (<?=@round((100 * $to[$a]) / $tot)?>%)</th>
-                    </tr>
-                </table><br />
-<?php
 }
 
 ?>
-
-                <input type="submit" name="suma" value="Berechen">
-                <input type="submit" name="reset" value="Zur&uuml;cksetzen">
-
-                <br /><br />
-                Punkte: <?=number_format($tot, 0, '.', ''); ?>
-
-            </form>
-
-
-
-        </center>
-    </body>
-</html>

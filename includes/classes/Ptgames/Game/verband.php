@@ -28,7 +28,7 @@
  *
  */
 
-class verband extends AbstractGamePage {
+class Verband extends AbstractGamePage {
 
     function __construct() {
         $this->show();

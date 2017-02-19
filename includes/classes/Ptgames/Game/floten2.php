@@ -28,7 +28,7 @@
  *
  */
 
-class floten2 extends AbstractGamePage {
+class Floten2 extends AbstractGamePage {
 
     function __construct() {
         $this->show();

@@ -28,7 +28,7 @@
  *
  */
 
-class fleetshortcut extends AbstractGamePage {
+class Fleetshortcut extends AbstractGamePage {
 
     function __construct() {
         $this->show();

@@ -28,7 +28,7 @@
  *
  */
 
-class imperium extends AbstractGamePage {
+class Imperium extends AbstractGamePage {
 
     function __construct() {
         $this->show();

@@ -28,7 +28,7 @@
  *
  */
 
-class records extends AbstractGamePage {
+class Records extends AbstractGamePage {
 
     function __construct() {
         $this->show();

@@ -28,7 +28,7 @@
  *
  */
 
-class fleetback extends AbstractGamePage {
+class Fleetback extends AbstractGamePage {
 
     function __construct() {
         $this->show();

@@ -354,7 +354,7 @@ class infos extends AbstractGamePage {
         global $lang, $user, $planetrow, $gid;
 
 	$gid  = $_GET['gid'];
-	$page = ShowBuildingInfoPage ($user, $planetrow, $gid);
+	$page = $this->ShowBuildingInfoPage ($user, $planetrow, $gid);
 
 	$this->display ($page, $lang['nfo_page_title']);
         

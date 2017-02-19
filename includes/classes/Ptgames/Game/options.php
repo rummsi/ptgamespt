@@ -28,7 +28,7 @@
  *
  */
 
-class options extends AbstractGamePage {
+class Options extends AbstractGamePage {
 
     function __construct() {
         $this->show();

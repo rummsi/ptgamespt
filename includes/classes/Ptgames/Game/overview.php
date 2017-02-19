@@ -28,7 +28,7 @@
  *
  */
 
-class overview extends AbstractGamePage {
+class Overview extends AbstractGamePage {
 
     function __construct() {
         $this->show();

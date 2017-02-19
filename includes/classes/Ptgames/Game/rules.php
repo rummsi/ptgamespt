@@ -28,7 +28,7 @@
  *
  */
 
-class rules extends AbstractGamePage {
+class Rules extends AbstractGamePage {
 
     function __construct() {
         $this->show();

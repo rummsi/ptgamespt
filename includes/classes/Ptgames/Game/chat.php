@@ -28,7 +28,7 @@
  *
  */
 
-class chat extends AbstractGamePage {
+class Chat extends AbstractGamePage {
 
     function __construct() {
         $this->show();

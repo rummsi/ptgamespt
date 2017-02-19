@@ -28,7 +28,7 @@
  *
  */
 
-class techdetails extends AbstractGamePage {
+class Techdetails extends AbstractGamePage {
 
     function __construct() {
         $this->show();

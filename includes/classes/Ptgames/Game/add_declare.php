@@ -28,7 +28,7 @@
  *
  */
 
-class add_declare extends AbstractGamePage {
+class Add_declare extends AbstractGamePage {
 
     function __construct() {
         $this->show();

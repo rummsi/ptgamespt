@@ -28,7 +28,7 @@
  *
  */
 
-class phalanx extends AbstractGamePage {
+class Phalanx extends AbstractGamePage {
 
     function __construct() {
         $this->show();

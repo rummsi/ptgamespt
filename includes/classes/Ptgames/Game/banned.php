@@ -28,7 +28,7 @@
  *
  */
 
-class banned extends AbstractGamePage {
+class Banned extends AbstractGamePage {
 
     function __construct() {
         $this->show();

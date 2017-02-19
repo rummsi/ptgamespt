@@ -85,7 +85,7 @@ abstract class AbstractGamePage {
         return parsetemplate(gettemplate('Admin/simple_header'), $parse);
     }
 
-    static function ShowLeftMenu() {
+    function ShowLeftMenu() {
         global $lang, $user, $dpath, $game_config;
 
         includeLang('leftmenu');
@@ -149,7 +149,17 @@ abstract class AbstractGamePage {
 
     function StdFooter() {
         global $parse;
-        return parsetemplate(gettemplate('Index/overall_footer'), $parse);
+        return parsetemplate(gettemplate('Game/simple_footer'), $parse);
+    }
+
+    function message($mes, $title = 'Error', $dest = "", $time = "3", $color = 'orange') {
+        $parse['color'] = $color;
+        $parse['title'] = $title;
+        $parse['mes'] = $mes;
+
+        $page = parsetemplate(gettemplate('Admin/message_body'), $parse);
+
+        $this->display($page, $title, false, (($dest != "") ? "<meta http-equiv=\"refresh\" content=\"$time;URL={$dest}\">" : ""), true);
     }
 
 }

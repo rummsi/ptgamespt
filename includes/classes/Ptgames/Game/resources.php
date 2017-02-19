@@ -28,7 +28,7 @@
  *
  */
 
-class resources extends AbstractGamePage {
+class Resources extends AbstractGamePage {
 
     function __construct() {
         $this->show();

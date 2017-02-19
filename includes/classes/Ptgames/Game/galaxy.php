@@ -28,7 +28,7 @@
  *
  */
 
-class galaxy extends AbstractGamePage {
+class Galaxy extends AbstractGamePage {
 
     function __construct() {
         $this->show();

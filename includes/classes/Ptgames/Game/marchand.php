@@ -28,7 +28,7 @@
  *
  */
 
-class marchand extends AbstractGamePage {
+class Marchand extends AbstractGamePage {
 
     function __construct() {
         $this->show();

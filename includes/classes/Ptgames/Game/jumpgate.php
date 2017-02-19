@@ -28,7 +28,7 @@
  *
  */
 
-class jumpgate extends AbstractGamePage {
+class Jumpgate extends AbstractGamePage {
 
     function __construct() {
         $this->show();

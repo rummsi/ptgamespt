@@ -28,7 +28,7 @@
  *
  */
 
-class officier extends AbstractGamePage {
+class Officier extends AbstractGamePage {
 
     function __construct() {
         $this->show();

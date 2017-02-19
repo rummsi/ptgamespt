@@ -28,7 +28,7 @@
  *
  */
 
-class messages extends AbstractGamePage {
+class Messages extends AbstractGamePage {
 
     function __construct() {
         $this->show();

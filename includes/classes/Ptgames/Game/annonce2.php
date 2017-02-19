@@ -28,7 +28,7 @@
  *
  */
 
-class annonce2 extends AbstractGamePage {
+class Annonce2 extends AbstractGamePage {
 
     function __construct() {
         $this->show();

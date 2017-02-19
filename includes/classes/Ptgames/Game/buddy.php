@@ -28,7 +28,7 @@
  *
  */
 
-class buddy extends AbstractGamePage {
+class Buddy extends AbstractGamePage {
 
     function __construct() {
         $this->show();

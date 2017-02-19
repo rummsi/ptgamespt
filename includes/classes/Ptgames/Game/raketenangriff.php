@@ -28,7 +28,7 @@
  *
  */
 
-class raketenangriff extends AbstractGamePage {
+class Raketenangriff extends AbstractGamePage {
 
     function __construct() {
         $this->show();

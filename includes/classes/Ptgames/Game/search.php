@@ -28,7 +28,7 @@
  *
  */
 
-class search extends AbstractGamePage {
+class Search extends AbstractGamePage {
 
     function __construct() {
         $this->show();
