@@ -28,6 +28,15 @@
  *
  */
 
+class floten1 extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $planetrow, $reslist, $resource, $fleet;
+
 	includeLang('fleet');
 
 	$speed = array(10 => 100,
@@ -84,7 +93,7 @@
 	}
 
 	if (!$fleet['fleetlist']) {
-		message($lang['fl_unselectall'], $lang['fl_error'], "fleet." . PHPEXT, 1);
+            $this->message($lang['fl_unselectall'], $lang['fl_error'], "fleet." . PHPEXT, 1);
 	} else {
 		$speedallsmin = min($speedalls);
 	}
@@ -276,7 +285,11 @@
 	$page .= "</form>";
 	$page .= "<script>javascript:shortInfo(); </script>";
 
-	Game::display($page, $lang['fl_title']);
+	$this->display($page, $lang['fl_title']);
+        
+    }
+
+}
 
 // Updated by Chlorel. 16 Jan 2008 (String extraction, bug corrections, code uniformisation
 // Created by Perberos. All rights reversed (C) 2006

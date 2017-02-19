@@ -28,6 +28,15 @@
  *
  */
 
+class floten2 extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $planetrow, $pricelist;
+
 	includeLang('fleet');
 
 	$galaxy     = intval($_POST['galaxy']);
@@ -273,7 +282,11 @@
 	$page .= "</table>\n";
 	$page .= "</form></center>\n";
 
-	Game::display($page, $lang['fl_title']);
+	$this->display($page, $lang['fl_title']);
+        
+    }
+
+}
 
 // Updated by Chlorel. 16 Jan 2008 (String extraction, bug corrections, code uniformisation)
 // Created by Perberos. All rights reversed (C) 2006

@@ -39,8 +39,9 @@ abstract class AbstractGamePage {
         $DisplayPage .= "<center>\n" . $page . "\n</center>\n";
         // Affichage du Debug si necessaire
         if (isset($user['authlevel']) && in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
-            if ($game_config['debug'] == 1)
+            if ($game_config['debug'] == 1) {
                 $debug->echo_log();
+            }
         }
 
         $DisplayPage .= $this->StdFooter();
@@ -93,8 +94,7 @@ abstract class AbstractGamePage {
         $parse['lm_tx_game'] = $game_config['game_speed'] / 2500;
         $parse['lm_tx_fleet'] = $game_config['fleet_speed'] / 2500;
         $parse['lm_tx_queue'] = MAX_FLEET_OR_DEFS_PER_ROW;
-        $SubFrame = parsetemplate(gettemplate('Game/serv_infos'), $parse);
-        $parse['server_info'] = $SubFrame;
+        $parse['server_info'] = parsetemplate(gettemplate('Game/serv_infos'), $parse);
         $parse['XNovaRelease'] = VERSION;
         $parse['dpath'] = $dpath;
         $parse['forum_url'] = $game_config['forum_url'];

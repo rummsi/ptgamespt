@@ -28,9 +28,18 @@
  *
  */
 
+class annonce extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 $users   = doquery("SELECT * FROM {{table}} WHERE id='".$user['id']."';", 'users');
 $annonce = doquery("SELECT * FROM {{table}} ", 'annonce');
-$action  = $_GET['action'];
+$action  = filter_input(INPUT_GET, 'action');
 
 if ($action == 5) {
 	$metalvendre = $_POST['metalvendre'];
@@ -58,15 +67,15 @@ metals='{$metalsouhait}',
 cristals='{$cristalsouhait}',
 deuts='{$deutsouhait}'" , "annonce");
 
-	$page2 .= <<<HTML
+	$page2 = '
 <center>
 <br>
 <p>Votre Annonce a bien &eacute;t&eacute; enregistr&eacute;e !</p>
 <br><p><a href="game.php?page=annonce">Retour aux annonces</a></p>
 
-HTML;
+';
 
-	Game::display($page2);
+	$this->display($page2);
 }
 
 if ($action != 5) {
@@ -94,7 +103,7 @@ if ($action != 5) {
 		$page2 .= '</th><th>';
 		$page2 .= $b["metala"];
 		$page2 .= '</th><th>';
-		$page2 .= $b["gcristala"];
+		$page2 .= isset($b["gcristala"]);
 		$page2 .= '</th><th>';
 		$page2 .= $b["deuta"];
 		$page2 .= '</th><th>';
@@ -113,7 +122,11 @@ if ($action != 5) {
 </table>
 </HTML>";
 
-	Game::display($page2);
+	$this->display($page2);
+}
+        
+    }
+
 }
 
 // Créer par Tom1991 Copyright 2008

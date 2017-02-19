@@ -27,10 +27,16 @@
  * documentation for further information about customizing XNova.
  *
  */
-/*
-function BatimentBuildingPage (&$planetrow, $user) {
-	global $lang, $resource, $reslist, $dpath, $game_config, $_GET;
-*/
+
+class BatimentBuildingPage extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $planetrow, $user, $dpath, $resource;
+        
 	includeLang('buildings');
 
 	// Mise a jour de la liste de construction si necessaire
@@ -200,8 +206,11 @@ function BatimentBuildingPage (&$planetrow, $user) {
 
 	$parse['BuildingsList']        = $BuildingPage;
 
-	$page                         .= parsetemplate(gettemplate('Game/buildings_builds'), $parse);
+	$page                         = parsetemplate(gettemplate('Game/buildings_builds'), $parse);
 
-	Game::display($page, $lang['Builds']);
-//}
+	$this->display($page, $lang['Builds']);
+        
+    }
+
+}
 ?>

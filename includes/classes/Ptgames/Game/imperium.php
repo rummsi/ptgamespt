@@ -28,6 +28,15 @@
  *
  */
 
+class imperium extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $reslist, $resource, $dpath;
+
 includeLang('imperium');
 
 	$Order = ( $user['planet_sort_order'] == 1 ) ? "DESC" : "ASC" ;
@@ -118,8 +127,12 @@ foreach ($reslist['defense'] as $a => $i) {
 	$parse['defense_row'] .= "<tr>" . parsetemplate($row2, $data) . $r[$i] . "</tr>";
 }
 
-$page .= parsetemplate(gettemplate('Game/imperium_table'), $parse);
+$page = parsetemplate(gettemplate('Game/imperium_table'), $parse);
 
-Game::display($page, $lang['Imperium'], false);
+$this->display($page, $lang['Imperium'], false);
+        
+    }
+
+}
 // Created by Perberos. All rights reserved (C) 2006
 ?>

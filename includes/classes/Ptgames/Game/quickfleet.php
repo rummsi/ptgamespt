@@ -28,6 +28,15 @@
  *
  */
 
+class quickfleet extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $planetrow, $resource, $game_config;
+
 includeLang('fleet');
 
 	$Mode   = $_GET['mode'];
@@ -159,7 +168,11 @@ includeLang('fleet');
 
 
 
-	Game::display ( $page, "QuickFleet" );
+	$this->display ( $page, "QuickFleet" );
+        
+    }
+
+}
 
 // Updated by Chlorel Jan 22 2008 (all code just hold the table and the idea)
 // Created by Perberos. All rights reversed (C) 2006

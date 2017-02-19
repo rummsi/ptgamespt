@@ -28,6 +28,15 @@
  *
  */
 
+class records extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $resource;
+
 $cacheFile = ROOT_PATH . '/cache/' . basename(__FILE__) . '.cache';
 $timeDelay = 21600; // 21600s = 6h
 
@@ -125,7 +134,7 @@ if(!file_exists($cacheFile) || (time() - filemtime($cacheFile)) > $timeDelay)
     }
 
     $page = parsetemplate($recordTpl, $parse);
-    Game::display($page, $lang['rec_title']);
+    $this->display($page, $lang['rec_title']);
 
     $data = ob_get_contents();
     ob_end_flush();
@@ -135,4 +144,8 @@ if(!file_exists($cacheFile) || (time() - filemtime($cacheFile)) > $timeDelay)
 else
 {
     echo file_get_contents($cacheFile);
+}
+        
+    }
+
 }

@@ -28,6 +28,15 @@
  *
  */
 
+class phalanx extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	includeLang('overview');
 	includeLang('phalanx');
 
@@ -132,6 +141,10 @@
 		$page = parsetemplate( $PageTPL, $parse );
 	}
 
-	Game::display ($page, $lang['sys_phalanx'], false, '', false);
+	$this->display ($page, $lang['sys_phalanx'], false, '', false);
+        
+    }
+
+}
 
 ?>

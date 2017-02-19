@@ -28,6 +28,12 @@
  *
  */
 
+class marchand extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
 function ModuleMarchand ( $CurrentUser, &$CurrentPlanet ) {
 	global $lang, $_POST;
 
@@ -142,8 +148,15 @@ function ModuleMarchand ( $CurrentUser, &$CurrentPlanet ) {
 	return  $Page;
 }
 
-	$Page = ModuleMarchand ( $user, $planetrow );
-	Game::display ( $Page, $lang['mod_marchand'], true, '', false );
+    function show() {
+        global $lang, $user, $planetrow;
+
+	$Page = $this->ModuleMarchand ( $user, $planetrow );
+	$this->display ( $Page, $lang['mod_marchand'], true, '', false );
+        
+    }
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

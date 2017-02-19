@@ -28,6 +28,12 @@
  *
  */
 
+class resources extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
 function BuildRessourcePage ( $CurrentUser, $CurrentPlanet ) {
 	global $lang, $ProdGrid, $resource, $reslist, $game_config, $_POST;
 
@@ -264,8 +270,15 @@ function BuildRessourcePage ( $CurrentUser, $CurrentPlanet ) {
 	return $page;
 }
 
-	$Page = BuildRessourcePage ( $user, $planetrow );
-	Game::display( $Page, $lang['Resources'] );
+    function show() {
+        global $lang, $user, $planetrow;
+
+	$Page = $this->BuildRessourcePage ( $user, $planetrow );
+	$this->display( $Page, $lang['Resources'] );
+        
+    }
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

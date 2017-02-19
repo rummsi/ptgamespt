@@ -28,6 +28,15 @@
  *
  */
 
+class flotenajax extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $planetrow, $user;
+
 	includeLang('galaxy');
 	includeLang('fleet');
 
@@ -271,4 +280,8 @@
 	$ResultMessage .= $CurrentFlyingFleets ." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
 
 	die ( $ResultMessage );
+        
+    }
+
+}
 ?>

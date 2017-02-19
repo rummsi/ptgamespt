@@ -47,12 +47,12 @@ function doquery($query, $table, $fetch = false)
             $config['global']['database']['options']['username'],
             $config['global']['database']['options']['password'],
             $config['global']['database']['options']['database'])
-                or trigger_error(mysqli_error() . "$query<br />" . PHP_EOL, E_USER_WARNING);
+                or trigger_error(mysqli_error(Database::$dbHandle) . "$query<br />" . PHP_EOL, E_USER_WARNING);
     }
     $sql = str_replace("{{table}}", "{$config['global']['database']['table_prefix']}{$table}", $query);
 
     if (false === ($sqlQuery = mysqli_query(Database::$dbHandle,$sql))) {
-        trigger_error(mysqli_error() . PHP_EOL . "<br /><pre></code>$sql<code></pre><br />" . PHP_EOL, E_USER_WARNING);
+        trigger_error(mysqli_error(Database::$dbHandle) . PHP_EOL . "<br /><pre></code>$sql<code></pre><br />" . PHP_EOL, E_USER_WARNING);
     }
 
     if($fetch) {

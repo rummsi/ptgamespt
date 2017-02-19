@@ -28,6 +28,15 @@
  *
  */
 
+class buddy extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	includeLang('buddy');
 
 $a = $_GET['a'];
@@ -60,13 +69,13 @@ if ( $s == 1 && isset( $_GET['bid'] ) ) {
 
 	if ( !$buddy ) {
 		if ( strlen( $_POST['text'] ) > 5000 ) {
-			message( "Le texte ne doit pas faire plus de 5000 caract&egrave;res !", "Erreur" );
+			$this->message( "Le texte ne doit pas faire plus de 5000 caract&egrave;res !", "Erreur" );
 		}
 		$text = mysqli_real_escape_string( Database::$dbHandle, strip_tags( $_POST['text'] ) );
 		doquery( "INSERT INTO {{table}} SET sender={$uid}, owner={$u}, active=0, text='{$text}'", 'buddy' );
-		message( $lang['Request_sent'], $lang['Buddy_request'], 'game.php?page=buddy' );
+		$this->message( $lang['Request_sent'], $lang['Buddy_request'], 'game.php?page=buddy' );
 	} else {
-		message( $lang['A_request_exists_already_for_this_user'], $lang['Buddy_request'] );
+		$this->message( $lang['A_request_exists_already_for_this_user'], $lang['Buddy_request'] );
 	}
 }
 
@@ -102,9 +111,9 @@ if ( $a == 2 && isset( $u ) ) {
 		</center>
 		</body>
 		</html>";
-		Game::display( $page, 'buddy' );
+		$this->display( $page, 'buddy' );
 	} elseif ( $u["id"] == $user["id"] ) {
-		message( $lang['You_cannot_ask_yourself_for_a_request'], $lang['Buddy_request'] );
+		$this->message( $lang['You_cannot_ask_yourself_for_a_request'], $lang['Buddy_request'] );
 	}
 }
 // con a indicamos las solicitudes y con e las distiguimos
@@ -221,6 +230,10 @@ $page .= "
 	</table>
 	</center>";
 
-Game:display ( $page, $lang['Buddy_list'], false );
+$this->display ( $page, $lang['Buddy_list'], false );
+        
+    }
+
+}
 // Created by Perberos. All rights reversed (C) 2006
 ?>

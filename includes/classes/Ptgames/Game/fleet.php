@@ -28,6 +28,15 @@
  *
  */
 
+class fleet extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $resource, $planetrow, $reslist, $CurrentShipSpeed, $pricelist;
+
 	$maxfleet  = doquery("SELECT COUNT(fleet_owner) AS `actcnt` FROM {{table}} WHERE `fleet_owner` = '".$user['id']."';", 'fleets', true);
 
 	$MaxFlyingFleets     = $maxfleet['actcnt'];
@@ -213,7 +222,7 @@
 	$page .= "</tr>";
 
 	if (!$planetrow) {
-		message($lang['fl_noplanetrow'], $lang['fl_error']);
+            $this->message($lang['fl_noplanetrow'], $lang['fl_error']);
 	}
 
 	// Prise des coordonnées sur la ligne de commande
@@ -276,7 +285,11 @@
 	$page .= "</form>";
 	$page .= "</center>";
 
-	Game::display($page, $lang['fl_title']);
+	$this->display($page, $lang['fl_title']);
+        
+    }
+
+}
 
 // Updated by Chlorel. 16 Jan 2008 (String extraction, bug corrections, code uniformisation
 // Created by Perberos. All rights reversed (C) 2006

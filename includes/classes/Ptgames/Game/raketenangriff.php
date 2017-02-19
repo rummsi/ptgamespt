@@ -28,17 +28,23 @@
  *
  */
 
+class raketenangriff extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $game_config;
+
 $planet    = doquery("SELECT * FROM {{table}} WHERE `id` = '".$user['current_planet']."';", 'planets', true);
 $iraks = $planet['interplanetary_misil'];
-
-
 
 $g = intval($_GET['galaxy']);
 $s = intval($_GET['system']);
 $i = intval($_GET['planet']);
 $anz = intval($_POST['SendMI']);
 $pziel = $_POST['Target'];
-
 
 $currentplanet = doquery("SELECT * FROM {{table}} WHERE id={$user['current_planet']}",'planets',true);
 
@@ -50,12 +56,11 @@ $tempvar3 = doquery("SELECT * FROM {{table}} WHERE galaxy = ".$g." AND
 			planet_type = 1", 'planets');
 
 
-
 if ($planet['silo'] < 4) {
 	$error = 1;
 
 }
-elseif ($user['impulse_motor_tech'] == 0) {;
+elseif ($user['impulse_motor_tech'] == 0) {
 	$error = 1;
 
 }
@@ -72,21 +77,18 @@ elseif ((!is_numeric($pziel) && $pziel != "all") OR ($pziel < 0 && $pziel > 7 &&
 	$error = 1;
 }
 
-
-
 if ($error == 1) {
-	message('Du hast entweder zu wenig Interplanetarraketen, der Planet auf den zu schiessen willst existiert nicht oder du hast nicht die n&ouml;tige Reichweite oder Technik.', 'Fehler');
+	$this->message('Du hast entweder zu wenig Interplanetarraketen, der Planet auf den zu schiessen willst existiert nicht oder du hast nicht die n&ouml;tige Reichweite oder Technik.', 'Fehler');
 	exit();
 }
 
 $iraks_anzahl = $iraks;
 
-if ($pziel == "all")
+if ($pziel == "all"){
 	$pziel = 0;
-else
+}else{
 	$pziel = intval($pziel);
-
-
+}
 
 $planet = doquery("SELECT * FROM {{table}} WHERE galaxy = ".$g." AND
 			system = ".$s." AND
@@ -96,9 +98,6 @@ $planet = doquery("SELECT * FROM {{table}} WHERE galaxy = ".$g." AND
 $ziel_id = $planet['id_owner'];
 
 $select = doquery("SELECT * FROM {{table}} WHERE id = ".$ziel_id, 'users', true);
-
-
-
 
  $verteidiger_panzerung = $select['defence_tech'];
  $angreifer_waffen = $user['military_tech'];
@@ -135,15 +134,7 @@ $select = doquery("SELECT * FROM {{table}} WHERE id = ".$ziel_id, 'users', true)
 
  	);
 
-
-
-
-
-
-
 $flugzeit = round(((30 + (60 * $tempvar1)) * 2500) / $game_config['game_speed']);
-
-
 
 /*
 include("./includes/raketenangriff.php");
@@ -164,10 +155,6 @@ $irak = raketenangriff($verteidiger_panzerung, $angreifer_waffen, $iraks, $def, 
 		9 => 503
 	);
 
-
-
-
-
 foreach ($irak['verbleibt'] as $id => $anzahl) {
 	if ($id < 10) {
 
@@ -175,9 +162,7 @@ foreach ($irak['verbleibt'] as $id => $anzahl) {
 
 		doquery("UPDATE {{table}} SET ".$x." = '".$anzahl."' WHERE id = ".$ziel_id, 'planets');
 
-
 	}
-
 
 }
 */
@@ -195,7 +180,6 @@ doquery("INSERT INTO {{table}} SET
 		`anzahl` = '".$anz."',
 		`primaer` = '".$primaerziel."'", 'iraks');
 
-
 doquery("UPDATE {{table}} SET interplanetary_misil = '".($iraks_anzahl - $anz)."' WHERE id = '".$user['current_planet']."'", 'planets');
 
 	$dpath = (!$user["dpath"]) ? DEFAULT_SKINPATH : $user["dpath"];
@@ -205,15 +189,13 @@ if ($anz == 1)
 else
 	$n = "n";
 
-
-?>
+$page = '
 <html>
 <head>
 <title>Attaque par missiles interplanetaire</title>
 <link rel="SHORTCUT ICON" href="favicon.ico">
-<link rel="stylesheet" type="text/css" href="<?php echo $dpath ?>/formate.css" />
-<meta http-equiv="refresh" content="3; URL=game.php?page=galaxy&mode=3&galaxy=<?php echo $g; ?>&system=<?php echo $s; ?>&target=<?php echo $i; ?>">
-
+<link rel="stylesheet" type="text/css" href="'.$dpath.'/formate.css" />
+<meta http-equiv="refresh" content="3; URL=game.php?page=galaxy&mode=3&galaxy='.$g.'&system='.$s.'&target='.$i.'">
 
 </head>
 <body>
@@ -229,7 +211,7 @@ else
          <td class="c" colspan="1">Attaque par missiles interplanetaire</td>
 	</tr>
         <tr>
-	<td class="l"><?php echo "<b>".$anz."</b> missiles interplanetaire ".$n." sont".$n." partit !"; ?>
+	<td class="l">'."<b>".$anz."</b> missiles interplanetaire ".$n." sont".$n." partit !".'
         </tr>
        </tbody></table>
       </td>
@@ -238,10 +220,13 @@ else
 
 </form>
 
+ </body></html>';
 
- </body></html>
-<?php
+$this->display($page,"");
+        
+    }
 
+}
 
 // Copyright (c) 2007 by -= MoF =- for Deutsches UGamela Forum
 // 05.12.2007 - 11:45

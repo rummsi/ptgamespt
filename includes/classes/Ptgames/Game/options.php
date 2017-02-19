@@ -28,6 +28,15 @@
  *
  */
 
+class options extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
     includeLang('options');
 
     $lang['PHP_SELF'] = 'options.' . PHPEXT;
@@ -59,11 +68,11 @@
                  WHERE id = '{$id['id']}' AND `planet_type` = 1 ", 'planets');}
 
           $dpath = (!$user["dpath"]) ? DEFAULT_SKINPATH : $user["dpath"];
-          message($lang['succeful_save'], $lang['Options'],"game.php?page=options",1);
+          $this->message($lang['succeful_save'], $lang['Options'],"game.php?page=options",1);
        }else{
        $urlaubs_modus = "1";
        $dpath = (!$user["dpath"]) ? DEFAULT_SKINPATH : $user["dpath"];
-       message($lang['You_cant_exit_vmode'], $lan['Error'] ,"game.php?page=options",1);
+       $this->message($lang['You_cant_exit_vmode'], $lan['Error'] ,"game.php?page=options",1);
        }
     }
     if ($_POST && $mode == "change") { // Array ( [db_character]
@@ -180,7 +189,7 @@
              `urlaubs_until` = '$time'
              WHERE `id` = '$iduser' LIMIT 1", "users");
              }  else {
-             message ( 'Verifiez vos flottes, technologies et batiments','<center><font color=\"red\">Vous avez des actions en cours</font></center>'  );
+             $this->message ( 'Verifiez vos flottes, technologies et batiments','<center><font color=\"red\">Vous avez des actions en cours</font></center>'  );
              }
 
           $query = doquery("SELECT * FROM {{table}} WHERE id_owner = '{$user['id']}'", 'planets');
@@ -241,7 +250,7 @@
              $newpass = md5($_POST["newpass1"]);
              doquery("UPDATE {{table}} SET `password` = '{$newpass}' WHERE `id` = '{$user['id']}' LIMIT 1", "users");
              setcookie(COOKIE_NAME, "", time()-100000, "/", "", 0); //le da el expire
-             message($lang['succeful_changepass'], $lang['changue_pass'],"index.php",1);
+             $this->message($lang['succeful_changepass'], $lang['changue_pass'],"index.php",1);
           }
        }
        if ($user['username'] != $_POST["db_character"]) {
@@ -249,10 +258,10 @@
           if (!$query) {
              doquery("UPDATE {{table}} SET username='{$username}' WHERE id='{$user['id']}' LIMIT 1", "users");
              setcookie(COOKIE_NAME, "", time()-100000, "/", "", 0); //le da el expire
-             message($lang['succeful_changename'], $lang['changue_name'],"index.php",1);
+             $this->message($lang['succeful_changename'], $lang['changue_name'],"index.php",1);
           }
        }
-       message($lang['succeful_save'], $lang['Options'],"game.php?page=options",1);
+       $this->message($lang['succeful_save'], $lang['Options'],"game.php?page=options",1);
     } else {
        $parse = $lang;
 
@@ -301,11 +310,15 @@
 
        if($user['urlaubs_modus']){
 
-           Game::display(parsetemplate(gettemplate('Game/options_body_vmode'), $parse), 'Options', false);
+           $this->display(parsetemplate(gettemplate('Game/options_body_vmode'), $parse), 'Options', false);
        }else{
-           Game::display(parsetemplate(gettemplate('Game/options_body'), $parse), 'Options', false);
+           $this->display(parsetemplate(gettemplate('Game/options_body'), $parse), 'Options', false);
        }
        die();
     }
+        
+    }
+
+}
 
     ?>

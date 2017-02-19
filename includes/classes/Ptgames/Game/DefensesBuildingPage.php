@@ -29,6 +29,15 @@
  */
 
 require_once ROOT_PATH . 'includes/classes/Legacies/Empire/Shipyard.php';
+
+class DefensesBuildingPage extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $resource, $dpath, $planetrow, $user;
 /*
 function DefensesBuildingPage ( &$planetrow, $user ) {
     global $lang, $resource, $dpath;
@@ -41,7 +50,7 @@ function DefensesBuildingPage ( &$planetrow, $user ) {
 	$IsWorking = HandleTechnologieBuild ( $planetrow, $user );
     // S'il n'y a pas de Chantier
     if (!isset($planetrow[$resource[Legacies_Empire::ID_BUILDING_SHIPYARD]]) || $planetrow[$resource[Legacies_Empire::ID_BUILDING_SHIPYARD]] == 0) {
-        message($lang['need_hangar'], $lang['tech'][Legacies_Empire::ID_BUILDING_SHIPYARD]);
+        $this->message($lang['need_hangar'], $lang['tech'][Legacies_Empire::ID_BUILDING_SHIPYARD]);
         return;
     }
 
@@ -80,13 +89,13 @@ function DefensesBuildingPage ( &$planetrow, $user ) {
 
             // Imagette + Link vers la page d'info
             $PageTable .= "<th class=l>";
-            $PageTable .= "<a href=infos.".PHPEXT."?gid=".$shipId.">";
+            $PageTable .= "<a href=game.php?page=infos&gid=".$shipId.">";
             $PageTable .= "<img border=0 src=\"".$dpath."gebaeude/".$shipId.".gif\" align=top width=120 height=120></a>";
             $PageTable .= "</th>";
 
             // Description
             $PageTable .= "<td class=l>";
-            $PageTable .= "<a href=infos.".PHPEXT."?gid=".$shipId.">".$shipIdName."</a> ".$shipIdNbre."<br>";
+            $PageTable .= "<a href=game.php?page=infos&gid=".$shipId.">".$lang['tech'][$shipId]."</a> ".$shipIdNbre."<br>";
             $PageTable .= "".$lang['res']['descriptions'][$shipId]."<br>";
             // On affiche le 'prix' avec eventuellement ce qui manque en ressource
             $PageTable .= GetElementPrice($user, $planetrow, $shipId, false);
@@ -139,11 +148,13 @@ function DefensesBuildingPage ( &$planetrow, $user ) {
     // Et la liste de constructions en cours dans $BuildQueue;
     $parse['buildinglist'] = $BuildQueue;
     // fragmento de template
-    $page .= parsetemplate(gettemplate('Game/buildings_defense'), $parse);
+    $page = parsetemplate(gettemplate('Game/buildings_defense'), $parse);
 
-    Game::display($page, $lang['Defense']);
+    $this->display($page, $lang['Defense']);
+        
+    }
 
-//}
+}
 // Version History
 // - 1.0 Modularisation
 // - 1.1 Correction mise en place d'une limite max d'elements constructibles par ligne

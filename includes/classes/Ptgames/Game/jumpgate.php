@@ -28,6 +28,12 @@
  *
  */
 
+class jumpgate extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
 function DoFleetJump ( $CurrentUser, $CurrentPlanet ) {
 	global $lang, $resource;
 
@@ -111,8 +117,15 @@ function DoFleetJump ( $CurrentUser, $CurrentPlanet ) {
 	return $RetMessage;
 }
 
-	$Message = DoFleetJump($user, $planetrow);
-	message ($Message, $lang['tech'][43], "game.php?page=infos&gid=43", 4);
+    function show() {
+        global $lang, $user, $planetrow;
+        
+	$Message = $this->DoFleetJump($user, $planetrow);
+	$this->message ($Message, $lang['tech'][43], "game.php?page=infos&gid=43", 4);
+        
+    }
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

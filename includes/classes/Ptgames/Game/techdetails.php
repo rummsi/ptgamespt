@@ -28,6 +28,15 @@
  *
  */
 
+class techdetails extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $planetrow, $resource, $game_config;
+
 $Id                  = $_GET['techid'];
 $PageTPL             = gettemplate('Game/techtree_details');
 $RowsTPL             = gettemplate('Game/techtree_details_rows');
@@ -47,6 +56,10 @@ if ($Id == 12) {
 $parse['Liste'] = $Liste;
 $page = parsetemplate($PageTPL, $parse);
 
-Game::display ($page, $lang['Tech'], false, '', false);
+$this->display ($page, $lang['Tech'], false, '', false);
+        
+    }
+
+}
 
 ?>

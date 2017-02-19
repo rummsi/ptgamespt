@@ -28,6 +28,15 @@
  *
  */
 
+class techtree extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $resource, $requirements, $user, $planetrow;
+
 	$HeadTpl = gettemplate('Game/techtree_head');
 	$RowTpl  = gettemplate('Game/techtree_row');
 	foreach($lang['tech'] as $Element => $ElementName) {
@@ -65,7 +74,11 @@
 	$parse['techtree_list'] = $page;
 	$page                   = parsetemplate(gettemplate('Game/techtree_body'), $parse);
 
-	Game::display($page, $lang['Tech']);
+	$this->display($page, $lang['Tech']);
+        
+    }
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

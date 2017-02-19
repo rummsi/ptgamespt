@@ -28,6 +28,15 @@
  *
  */
 
+class messages extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $messfields, $game_config;
+
 include(ROOT_PATH . 'includes/functions/BBcodeFunction.' . PHPEXT);
 
 if(!isset($user['authlevel'])) {
@@ -70,18 +79,18 @@ while ($CurMess = mysqli_fetch_array($UsrMess, MYSQLI_ASSOC)) {
 			// -------------------------------------------------------------------------------------------------------
 			// Envoi d'un messages
 			if ( !is_numeric( $OwnerID ) ) {
-				message ($lang['mess_no_ownerid'], $lang['mess_error']);
+                            $this->message ($lang['mess_no_ownerid'], $lang['mess_error']);
 			}
 
 			$OwnerRecord = doquery("SELECT * FROM {{table}} WHERE `id` = '".strval($OwnerID)."';", 'users', true);
 
 			if (!$OwnerRecord) {
-				message ($lang['mess_no_owner']  , $lang['mess_error']);
+				$this->message ($lang['mess_no_owner']  , $lang['mess_error']);
 			}
 
 			$OwnerHome   = doquery("SELECT * FROM {{table}} WHERE `id_planet` = '". $OwnerRecord["id_planet"] ."';", 'galaxy', true);
 			if (!$OwnerHome) {
-				message ($lang['mess_no_ownerpl'], $lang['mess_error']);
+				$this->message ($lang['mess_no_ownerpl'], $lang['mess_error']);
 			}
 
 			if ($_POST) {
@@ -330,7 +339,11 @@ $Message = trim ( nl2br ( strip_tags ( $_POST['text'], '<br>' ) ) ); }
 			break;
 	}
 
-	Game::display($page, $lang['mess_pagetitle']);
+	$this->display($page, $lang['mess_pagetitle']);
+        
+    }
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

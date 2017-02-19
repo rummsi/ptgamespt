@@ -28,6 +28,12 @@
  *
  */
 
+class officier extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
 function ShowOfficierPage ( &$CurrentUser ) {
 	global $lang, $resource, $reslist, $_GET;
 
@@ -104,8 +110,15 @@ function ShowOfficierPage ( &$CurrentUser ) {
 	return $page;
 }
 
-	$page = ShowOfficierPage ( $user );
-	Game::display($page, $lang['officier']);
+    function show() {
+        global $lang, $user;
+
+	$page = $this->ShowOfficierPage ( $user );
+	$this->display($page, $lang['officier']);
+        
+    }
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

@@ -28,6 +28,15 @@
  *
  */
 
+class chat extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	includeLang('chat');
 	$BodyTPL = gettemplate('Game/chat_body');
 
@@ -35,7 +44,11 @@
 	$parse = $lang;
 
 	$page = parsetemplate($BodyTPL, $parse);
-	Game::display($page, $lang['Chat'], false);
+	$this->display($page, $lang['Chat'], false);
+        
+    }
+
+}
 
 // Shoutbox by e-Zobar - Copyright XNova Team 2008
 ?>

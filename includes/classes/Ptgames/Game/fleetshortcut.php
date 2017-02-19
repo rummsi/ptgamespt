@@ -28,6 +28,15 @@
  *
  */
 
+class fleetshortcut extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 $mode = $_GET['mode'];
 $a = $_GET['a'];
 /*
@@ -44,7 +53,7 @@ if(isset($_GET['mode'])){
 		$r = strip_tags($_POST[n]).",".intval($_POST[g]).",".intval($_POST[s]).",".intval($_POST[p]).",".intval($_POST[t])."\r\n";
 		$user['fleet_shortcut'] .= $r;
 		doquery("UPDATE {{table}} SET fleet_shortcut='{$user[fleet_shortcut]}' WHERE id={$user[id]}","users");
-		message("Le raccourcis a &eacute;t&eacute; enregistr&eacute; !","Enregistrment","game.php?page=fleetshortcut");
+		$this->message("Le raccourcis a &eacute;t&eacute; enregistr&eacute; !","Enregistrment","game.php?page=fleetshortcut");
 	}
 	$page = "<form method=POST><table border=0 cellpadding=0 cellspacing=1 width=519>
 	<tr height=20>
@@ -73,7 +82,7 @@ elseif(isset($_GET['a'])){
 			unset($scarray[$a]);
 			$user['fleet_shortcut'] =  implode("\r\n",$scarray);
 			doquery("UPDATE {{table}} SET fleet_shortcut='{$user[fleet_shortcut]}' WHERE id={$user[id]}","users");
-			message("Shortcut wurde gel&ouml;scht","Gel&ouml;scht","game.php?page=fleetshortcut");
+			$this->message("Shortcut wurde gel&ouml;scht","Gel&ouml;scht","game.php?page=fleetshortcut");
 		}
 		else{
 			$r = explode(",",$scarray[$a]);
@@ -85,7 +94,7 @@ elseif(isset($_GET['a'])){
 			$scarray[$a] = implode(",",$r);
 			$user['fleet_shortcut'] =  implode("\r\n",$scarray);
 			doquery("UPDATE {{table}} SET fleet_shortcut='{$user[fleet_shortcut]}' WHERE id={$user[id]}","users");
-			message("Le raccourcis a &eacute;t&eacute; &eacute;dit&eacute; !.","Editer","game.php?page=fleetshortcut");
+			$this->message("Le raccourcis a &eacute;t&eacute; &eacute;dit&eacute; !.","Editer","game.php?page=fleetshortcut");
 		}
 	}
 	if($user['fleet_shortcut']){
@@ -113,7 +122,7 @@ elseif(isset($_GET['a'])){
 		<th><input type=reset value=\"Reset\"> <input type=submit value=\"Enregistrer\"> <input type=submit name=delete value=\"Supprimer\">";
 		$page .= "</th></tr>";
 
-	}else{$page .= message("Le raccourcis a &eacute;t&eacute; enregistr&eacute; !","Enregistrer","game.php?page=fleetshortcut");}
+	}else{$page .= $this->message("Le raccourcis a &eacute;t&eacute; enregistr&eacute; !","Enregistrer","game.php?page=fleetshortcut");}
 
 	$page .= '<tr><td colspan=2 class=c><a href=game.php?page=fleetshortcut>Retour</a></td></tr></tr></table></form>';
 
@@ -154,7 +163,11 @@ else{
 
 	$page .= '<tr><td colspan=2 class=c><a href=game.php?page=fleet>Retour</a></td></tr></tr></table>';
 }
-Game::display($page,"Shortcutmanager");
+$this->display($page,"Shortcutmanager");
+        
+    }
+
+}
 
 // Created by Perberos. All rights reversed (C) 2006
 ?>

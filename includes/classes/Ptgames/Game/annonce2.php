@@ -28,11 +28,20 @@
  *
  */
 
+class annonce2 extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 $actions = $_GET['action'];
 
 if($actions == 2)
 {
-$page .=<<<HTML
+$page ='
 <center>
 <br>
 <table width="600">
@@ -51,8 +60,12 @@ $page .=<<<HTML
 
 <form>
 </table>
-HTML;
+';
 
-Game::display($page);
+$this->display($page);
+}
+        
+    }
+
 }
 ?>

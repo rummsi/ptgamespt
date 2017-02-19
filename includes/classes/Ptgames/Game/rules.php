@@ -28,6 +28,15 @@
  *
  */
 
+class rules extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $game_config;
+
 	includeLang('rules');
 
 	$parse = $lang;
@@ -36,7 +45,11 @@
 	$PageTPL  = gettemplate('Game/rules_body');
 	$page     = parsetemplate( $PageTPL, $parse);
 
-	Game::display($page, $lang['rules'], false);
+	$this->display($page, $lang['rules'], false);
+        
+    }
+
+}
 
 
 ?>

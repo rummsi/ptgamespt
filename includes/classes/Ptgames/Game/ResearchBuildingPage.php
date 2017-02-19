@@ -27,6 +27,15 @@
  * documentation for further information about customizing XNova.
  *
  */
+
+class ResearchBuildingPage extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+	global $lang, $resource, $reslist, $dpath, $game_config, $_GET, $planetrow, $user;
 /*
 function ResearchBuildingPage (&$planetrow, $user, $IsWorking['OnWork'], $IsWorking['WorkOn'])
 {
@@ -42,7 +51,7 @@ function ResearchBuildingPage (&$planetrow, $user, $IsWorking['OnWork'], $IsWork
 	$bContinue         = true;
 	// Deja est qu'il y a un laboratoire sur la planete ???
 	if ($planetrow[$resource[31]] == 0) {
-		message($lang['no_laboratory'], $lang['Research']);
+            $this->message($lang['no_laboratory'], $lang['Research']);
 	}
 	// Ensuite ... Est ce que la labo est en cours d'upgrade ?
 	if (!CheckLabSettingsInQueue ( $planetrow )) {
@@ -124,7 +133,7 @@ function ResearchBuildingPage (&$planetrow, $user, $IsWorking['OnWork'], $IsWork
 
 	$TechRowTPL = gettemplate('Game/buildings_research_row');
 	$TechScrTPL = gettemplate('Game/buildings_research_script');
-
+        $TechnoList = '';
 	foreach($lang['tech'] as $Tech => $TechName) {
 		if ($Tech > 105 && $Tech <= 199) {
 			if ( IsTechnologieAccessible($user, $planetrow, $Tech)) {
@@ -204,10 +213,13 @@ function ResearchBuildingPage (&$planetrow, $user, $IsWorking['OnWork'], $IsWork
 	$PageParse                = $lang;
 	$PageParse['noresearch']  = $NoResearchMessage;
 	$PageParse['technolist']  = $TechnoList;
-	$Page                    .= parsetemplate(gettemplate('Game/buildings_research'), $PageParse);
+	$Page                    = parsetemplate(gettemplate('Game/buildings_research'), $PageParse);
 
-	Game::display( $Page, $lang['Research'] );
-//}
+	$this->display( $Page, $lang['Research'] );
+        
+    }
+
+}
 
 // History revision
 // 1.0 - Release initiale / modularisation / Reecriture / Commentaire / Mise en forme

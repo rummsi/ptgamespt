@@ -28,6 +28,15 @@
  *
  */
 
+class notes extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 $dpath = (!$user["dpath"]) ? DEFAULT_SKINPATH : $user["dpath"];
 
 $a = $_GET['a'];
@@ -48,7 +57,7 @@ if($_POST["s"] == 1 || $_POST["s"] == 2){//Edicion y agregar notas
 
 	if($_POST["s"] ==1){
 		doquery("INSERT INTO {{table}} SET owner={$user['id']}, time=$time, priority=$priority, title='$title', text='$text'","notes");
-		message($lang['NoteAdded'], $lang['Please_Wait'],'game.php?page=notes',"3");
+		$this->message($lang['NoteAdded'], $lang['Please_Wait'],'game.php?page=notes',"3");
 	}elseif($_POST["s"] == 2){
 		/*
 		  pequeño query para averiguar si la nota que se edita es del propio jugador
@@ -59,7 +68,7 @@ if($_POST["s"] == 1 || $_POST["s"] == 2){//Edicion y agregar notas
 		if(!$note_query){ error($lang['notpossiblethisway'],$lang['Notes']); }
 
 		doquery("UPDATE {{table}} SET time=$time, priority=$priority, title='$title', text='$text' WHERE id=$id","notes");
-		message($lang['NoteUpdated'], $lang['Please_Wait'], 'game.php?page=notes', "3");
+		$this->message($lang['NoteUpdated'], $lang['Please_Wait'], 'game.php?page=notes', "3");
 	}
 
 }
@@ -83,7 +92,7 @@ elseif($_POST){//Borrar
 	}
 	if($deleted){
 		$mes = ($deleted == 1) ? $lang['NoteDeleted'] : $lang['NoteDeleteds'];
-		message($mes,$lang['Please_Wait'],'game.php?page=notes',"3");
+		$this->message($mes,$lang['Please_Wait'],'game.php?page=notes',"3");
 	}else{header("Location: game.php?page=notes");}
 
 }else{//sin post...
@@ -106,7 +115,7 @@ elseif($_POST){//Borrar
 
 		$page .= parsetemplate(gettemplate('Game/notes_form'), $parse);
 
-		Game::display($page,$lang['Notes'],false);
+		$this->display($page,$lang['Notes'],false);
 
 	}
 	elseif($_GET["a"] == 2){//editar
@@ -115,7 +124,7 @@ elseif($_POST){//Borrar
 		*/
 		$note = doquery("SELECT * FROM {{table}} WHERE owner={$user['id']} AND id=$n",'notes',true);
 
-		if(!$note){ message($lang['notpossiblethisway'],$lang['Error']); }
+		if(!$note){ $this->message($lang['notpossiblethisway'],$lang['Error']); }
 
 		$cntChars = strlen($note['text']);
 
@@ -133,7 +142,7 @@ elseif($_POST){//Borrar
 
 		$page .= parsetemplate(gettemplate('Game/notes_form'), $parse);
 
-		Game::display($page,$lang['Notes'],false);
+		$this->display($page,$lang['Notes'],false);
 
 	}
 	else{//default
@@ -142,6 +151,7 @@ elseif($_POST){//Borrar
 		//Loop para crear la lista de notas que el jugador tiene
 		$count = 0;
 		$parse=$lang;
+                $list = '';
 		while($note = mysqli_fetch_array($notes_query, MYSQLI_ASSOC)){
 			$count++;
 			//Colorea el titulo dependiendo de la prioridad
@@ -166,9 +176,13 @@ elseif($_POST){//Borrar
 		$parse = $lang;
 		$parse['BODY_LIST'] = $list;
 		//fragmento de template
-		$page .= parsetemplate(gettemplate('Game/notes_body'), $parse);
+		$page = parsetemplate(gettemplate('Game/notes_body'), $parse);
 
-		Game::display($page,$lang['Notes'],false);
+		$this->display($page,$lang['Notes'],false);
 	}
+}
+        
+    }
+
 }
 ?>

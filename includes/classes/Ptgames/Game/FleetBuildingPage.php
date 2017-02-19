@@ -29,6 +29,15 @@
  */
 
 require_once ROOT_PATH . 'includes/classes/Legacies/Empire/Shipyard.php';
+
+class FleetBuildingPage extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $resource, $dpath, $planetrow, $user;
 /*
 function FleetBuildingPage(&$planetrow, &$user)
 {
@@ -42,7 +51,7 @@ function FleetBuildingPage(&$planetrow, &$user)
 	$IsWorking = HandleTechnologieBuild ( $planetrow, $user );
     // S'il n'y a pas de Chantier
     if (!isset($planetrow[$resource[Legacies_Empire::ID_BUILDING_SHIPYARD]]) || $planetrow[$resource[Legacies_Empire::ID_BUILDING_SHIPYARD]] == 0) {
-        message($lang['need_hangar'], $lang['tech'][Legacies_Empire::ID_BUILDING_SHIPYARD]);
+        $this->message($lang['need_hangar'], $lang['tech'][Legacies_Empire::ID_BUILDING_SHIPYARD]);
         return;
     }
 
@@ -71,6 +80,7 @@ function FleetBuildingPage(&$planetrow, &$user)
     // Construction de la page du Chantier (car si j'arrive ici ... c'est que j'ai tout ce qu'il faut pour ...
     $tableIndex = 0;
     $types = include ROOT_PATH . 'includes/data/types.php';
+    $PageTable = "";
     foreach ($types[Legacies_Empire::TYPE_SHIP] as $shipId) {
         if ($shipyard->checkAvailability($shipId)) {
             // Disponible à la construction
@@ -89,13 +99,13 @@ function FleetBuildingPage(&$planetrow, &$user)
 
             // Imagette + Link vers la page d'info
             $PageTable .= "<th class=l>";
-            $PageTable .= "<a href=infos.".PHPEXT."?gid=".$shipId.">";
+            $PageTable .= "<a href=game.php?page=infos&gid=".$shipId.">";
             $PageTable .= "<img border=0 src=\"".$dpath."gebaeude/".$shipId.".gif\" align=top width=120 height=120></a>";
             $PageTable .= "</th>";
 
             // Description
             $PageTable .= "<td class=l>";
-            $PageTable .= "<a href=infos.".PHPEXT."?gid=".$shipId.">".$shipIdName."</a> ".$shipIdNbre."<br />";
+            $PageTable .= "<a href=game.php?page=infos&gid=".$shipId.">".$lang['tech'][$shipId]."</a> ".$shipIdNbre."<br />";
             $PageTable .= "".$lang['res']['descriptions'][$shipId]."<br />";
             // On affiche le 'prix' avec eventuellement ce qui manque en ressource
             $PageTable .= GetElementPrice($user, $planetrow, $shipId, false);
@@ -145,7 +155,10 @@ function FleetBuildingPage(&$planetrow, &$user)
     $parse['buildlist']    = $PageTable;
     // Et la liste de constructions en cours dans $BuildQueue;
     $parse['buildinglist'] = $BuildQueue;
-    $page .= parsetemplate(gettemplate('Game/buildings_fleet'), $parse);
+    $page = parsetemplate(gettemplate('Game/buildings_fleet'), $parse);
 
-    Game::display($page, $lang['Fleet']);
-//}
+    $this->display($page, $lang['Fleet']);
+        
+    }
+
+}

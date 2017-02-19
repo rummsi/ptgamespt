@@ -28,7 +28,15 @@
  *
  */
 
-$searchtext = mysqli_real_escape_string(Database::$dbHandle, $_POST['searchtext']);
+class search extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 $type = $_POST['type'];
 
 $dpath = (!$user["dpath"]) ? DEFAULT_SKINPATH : $user["dpath"];
@@ -126,5 +134,9 @@ $lang['searchtext'] = $searchtext;
 $lang['search_results'] = $search_results;
 //esto es algo repetitivo ... w
 $page = parsetemplate(gettemplate('Game/search_body'), $lang);
-Game::display($page,$lang['Search']);
+$this->display($page,$lang['Search']);
+        
+    }
+
+}
 ?>

@@ -28,6 +28,15 @@
  *
  */
 
+class galaxy extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $resource;
+
     includeLang('galaxy');
 
     $CurrentPlanet = doquery("SELECT * FROM {{table}} WHERE `id` = '". $user['current_planet'] ."';", 'planets', true);
@@ -148,7 +157,11 @@
 
     $page .= "</tbody></table></div>";
 
-    Game::display ($page, $lang[''], false, '', false);
+    $this->display ($page, $lang[''], false, '', false);
+        
+    }
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

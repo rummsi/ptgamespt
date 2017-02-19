@@ -344,10 +344,23 @@ function ShowBuildingInfoPage ($CurrentUser, $CurrentPlanet, $BuildID) {
 // Tout le reste ne sert qu'a la calculer :)
 //
 
+class infos extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $planetrow, $gid;
+
 	$gid  = $_GET['gid'];
 	$page = ShowBuildingInfoPage ($user, $planetrow, $gid);
 
-	Game::display ($page, $lang['nfo_page_title']);
+	$this->display ($page, $lang['nfo_page_title']);
+        
+    }
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

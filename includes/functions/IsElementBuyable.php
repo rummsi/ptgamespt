@@ -48,7 +48,7 @@ function IsElementBuyable ($CurrentUser, $CurrentPlanet, $Element, $Incremental 
 
     $cost = array();
     foreach ($array as $ResType) {
-        if ($pricelist[$Element][$ResType] != 0) {
+        if (isset($pricelist[$Element][$ResType]) != 0) {
             if ($Incremental) {
                 $cost[$ResType] = bcmul($pricelist[$Element][$ResType], bcpow($pricelist[$Element]['factor'], $level), 0);
             } else {

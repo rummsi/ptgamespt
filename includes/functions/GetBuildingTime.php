@@ -57,7 +57,7 @@ function GetBuildingTime ($user, $planet, $Element) {
 				$lablevel = 0;
 				for ($lab = 1; $lab <= $intergal_lab; $lab++) {
 					asort($techlevel);
-					$lablevel += $techlevel[$lab - 1];
+					$lablevel += @$techlevel[$lab - 1];
 				}
 			}
 		}

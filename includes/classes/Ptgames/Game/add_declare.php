@@ -28,9 +28,18 @@
  *
  */
 
+class add_declare extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 		includeLang('admin');
 
-		$mode      = $_POST['mode'];
+		$mode      = filter_input(INPUT_POST, 'mode');
 
 		$PageTpl   = gettemplate("Game/add_declare");
 		$parse     = $lang;
@@ -45,7 +54,8 @@
 
 			$QryDeclare  = "INSERT INTO {{table}} SET ";
 			$QryDeclare .= "`declarator` = '". $declarator ."', ";
-			$QryDeclare .= "`declarator_name` = '". $declarator_name ."', ";			$QryDeclare .= "`declared_1` = '". $decl1 ."', ";
+			$QryDeclare .= "`declarator_name` = '". $declarator_name ."', ";
+                        $QryDeclare .= "`declared_1` = '". $decl1 ."', ";
 			$QryDeclare .= "`declared_2` = '". $decl2 ."', ";
 			$QryDeclare .= "`declared_3` = '". $decl3 ."', ";
 			$QryDeclare .= "`reason`     = '". $reason1 ."' ";
@@ -57,7 +67,10 @@
 		}
 		$Page = parsetemplate($PageTpl, $parse);
 
-		Game::display ($Page, "Declaration d\'IP partagee", false, '', true);
+		$this->display ($Page, "Declaration d\'IP partagee", false, '', true);
+        
+    }
 
+}
 
 ?>

@@ -28,6 +28,15 @@
  *
  */
 
+class fleetback extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	includeLang('fleet');
 
 	$BoxTitle   = $lang['fl_error'];
@@ -81,7 +90,11 @@
 		}
 	}
 
-	message ("<font color=\"".$TxtColor."\">". $BoxMessage ."</font>", $BoxTitle, "fleet.". PHPEXT, 2);
+	$this->message ("<font color=\"".$TxtColor."\">". $BoxMessage ."</font>", $BoxTitle, "fleet.". PHPEXT, 2);
+        
+    }
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

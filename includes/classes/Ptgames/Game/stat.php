@@ -28,6 +28,15 @@
  *
  */
 
+class stat extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $game_config;
+
 	includeLang('stat');
 
 	$parse = $lang;
@@ -204,7 +213,11 @@
 
 	$page = parsetemplate( gettemplate('Game/stat_body'), $parse );
 
-	Game::display($page, $lang['stat_title']);
+	$this->display($page, $lang['stat_title']);
+        
+    }
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // History version

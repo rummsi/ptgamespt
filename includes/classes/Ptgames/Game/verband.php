@@ -28,6 +28,15 @@
  *
  */
 
+class verband extends AbstractGamePage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $planetrow, $resource, $game_config;
+
 	includeLang('fleet');
 
 	$fleetid = $_POST['fleetid'];
@@ -40,13 +49,13 @@
 	$query = doquery("SELECT * FROM {{table}} WHERE fleet_id = '" . $fleetid . "'", 'fleets');
 
 	if (mysqli_num_rows($query) != 1) {
-		message('Cette flotte n\'existe pas (ou plus)!', 'Erreur');
+            $this->message('Cette flotte n\'existe pas (ou plus)!', 'Erreur');
 	}
 
 	$daten = mysqli_fetch_array($query, MYSQLI_ASSOC);
 
 	if ($daten['fleet_start_time'] <= time() || $daten['fleet_end_time'] < time() || $daten['fleet_mess'] == 1) {
-		message('Votre flotte est d�j� sur le chemin du retour!', 'Erreur');
+		$this->message('Votre flotte est d�j� sur le chemin du retour!', 'Erreur');
 	}
 
 	if (!isset($_POST['send'])) {
@@ -102,7 +111,7 @@
 		, 'aks');
 
 		if (mysqli_num_rows($aks) != 1) {
-			message('AKS nicht gefunden!', 'Fehler');
+			$this->message('AKS nicht gefunden!', 'Fehler');
 		}
 		$aks = mysqli_num_rows($aks);
 	}
@@ -285,7 +294,7 @@
 			<th>-</th>
 		  </tr>';
 	if (!$planetrow) {
-		message('WTF! FEHLER!', 'ERROR');
+		$this->message('WTF! FEHLER!', 'ERROR');
 	} //uno nunca sabe xD
 	$galaxy = intval($_GET['galaxy']);
 	$system = intval($_GET['system']);
@@ -367,6 +376,10 @@
 } else {
 }
 
-Game::display($page, "Flotten");
+$this->display($page, "Flotten");
+        
+    }
+
+}
 
 ?>
