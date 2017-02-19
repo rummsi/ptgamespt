@@ -28,9 +28,22 @@
  *
  */
 
+class Logout extends AbstractIndexPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $game_config;
+
 includeLang('logout');
 
 session_destroy();
 setcookie('nova-cookie', NULL, 0);
 
-message($lang['see_you'], $lang['session_closed'], 'index.php');
+$this->message($lang['see_you'], $lang['session_closed'], 'index.php');
+
+}
+
+}

@@ -28,7 +28,7 @@
  *
  */
 
-class reg extends AbstractIndexPage {
+class Reg extends AbstractIndexPage {
 
     function __construct() {
         $this->show();

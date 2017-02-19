@@ -28,7 +28,7 @@
  *
  */
 
-class contact extends AbstractIndexPage {
+class Contact extends AbstractIndexPage {
 
     function __construct() {
         $this->show();

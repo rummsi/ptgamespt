@@ -28,7 +28,7 @@
  *
  */
 
-class login extends AbstractIndexPage {
+class Login extends AbstractIndexPage {
 
     function __construct() {
         $this->show();

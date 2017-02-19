@@ -28,7 +28,7 @@
  *
  */
 
-class lostpassword extends AbstractIndexPage {
+class Lostpassword extends AbstractIndexPage {
 
     function __construct() {
         $this->show();
