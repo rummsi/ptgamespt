@@ -28,10 +28,19 @@
  *
  */
 
+class Overview extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $dpath;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
 		includeLang('admin');
 
-		if ($_GET['cmd'] == 'sort') {
+		if (isset($_GET['cmd']) == 'sort') {
 			$TypeSort = $_GET['type'];
 		} else {
 			$TypeSort = "id";
@@ -42,14 +51,15 @@
 
 		$parse                      = $lang;
 		$parse['dpath']             = $dpath;
-		$parse['mf']                = $mf;
+		$parse['mf']                = '_self';
 		$parse['adm_ov_data_yourv'] = colorRed(VERSION);
 
 		$Last15Mins = doquery("SELECT * FROM {{table}} WHERE `onlinetime` >= '". (time() - 15 * 60) ."' ORDER BY `". $TypeSort ."` ASC;", 'users');
 		$Count      = 0;
 		$Color      = "lime";
+		$parse['adm_ov_data_table'] = '';
 		while ( $TheUser = mysqli_fetch_array($Last15Mins, MYSQLI_ASSOC) ) {
-			if ($PrevIP != "") {
+			if (isset($PrevIP) != "") {
 				if ($PrevIP == $TheUser['user_lastip']) {
 					$Color = "red";
 				} else {
@@ -81,13 +91,13 @@
 									$Bloc['usr_xp_min']    = $TheUser['xpminier'];
 
 									if ($TheUser['urlaubs_modus'] == 1) {
-											$Bloc['state_vacancy']  = "<img src=\"../images/true.png\" >";
+											$Bloc['state_vacancy']  = "<img src=\"images/true.png\" >";
 									} else {
-											$Bloc['state_vacancy']  = "<img src=\"../images/false.png\">";
+											$Bloc['state_vacancy']  = "<img src=\"images/false.png\">";
 									}
 
 									if ($TheUser['bana'] == 1) {
-											$Bloc['is_banned']  = "<img src=\"../images/banned.png\" >";
+											$Bloc['is_banned']  = "<img src=\"images/banned.png\" >";
 									} else {
 											$Bloc['is_banned']  = $lang['is_banned_lang'];
 									}
@@ -103,9 +113,13 @@
 		$parse['adm_ov_data_count']  = $Count;
 		$Page = parsetemplate($PageTPL, $parse);
 
-		Game::display ( $Page, $lang['sys_overview'], false, '', true);
+		$this->display ( $Page, $lang['sys_overview'], false, '', true);
 	} else {
-		AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 ?>

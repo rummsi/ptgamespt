@@ -27,6 +27,7 @@ define('INSIDE' , true);
 define('INSTALL' , false);
 define('IN_ADMIN', true);
 require_once dirname(__FILE__) . '/common.php';
+require_once realpath(ROOT_PATH . 'Libraries/Ptgames/AbstractAdminPage.php');
 
 $page = filter_input(INPUT_GET, 'page');
 $mode1 = filter_input(INPUT_GET, 'mode');

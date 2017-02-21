@@ -120,7 +120,7 @@ include(ROOT_PATH . 'rak.'.PHPEXT);
 if (!defined('IN_ADMIN')) {
     $dpath = (isset($user['dpath']) && !empty($user["dpath"])) ? $user['dpath'] : DEFAULT_SKINPATH;
 } else {
-    $dpath = '../' . DEFAULT_SKINPATH;
+    $dpath = DEFAULT_SKINPATH;
 }
 
 
