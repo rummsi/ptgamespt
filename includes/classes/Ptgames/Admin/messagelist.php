@@ -28,6 +28,15 @@
  *
  */
 
+class Messagelist extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
 		includeLang('admin/messagelist');
 
@@ -133,11 +142,15 @@
 
 		if (isset($_POST['delit'])) {
 			doquery ("DELETE FROM {{table}} WHERE `message_id` = '". $_POST['delit'] ."';", 'messages');
-			AdminMessage ( $lang['mlst_mess_del'] ." ( ". $_POST['delit'] ." )", $lang['mlst_title'], "./messagelist.".PHPEXT, 3);
+			$this->AdminMessage ( $lang['mlst_mess_del'] ." ( ". $_POST['delit'] ." )", $lang['mlst_title'], "./messagelist.".PHPEXT, 3);
 		}
-		Game::display ($display, $lang['mlst_title'], false, '', true);
+		$this->display ($display, $lang['mlst_title'], false, '', true);
 	} else {
-		message($lang['sys_noalloaw'], $lang['sys_noaccess']);
+            $this->message($lang['sys_noalloaw'], $lang['sys_noaccess']);
 	}
+        
+    }
+
+}
 
 ?>

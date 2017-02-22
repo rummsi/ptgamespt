@@ -28,6 +28,15 @@
  *
  */
 
+class ShowFlyingFleets extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
 		includeLang('admin/fleets');
 		$PageTPL            = gettemplate('Admin/fleet_body');
@@ -36,10 +45,14 @@
 		$parse['flt_table'] = BuildFlyingFleetTable ();
 
 		$page               = parsetemplate( $PageTPL, $parse );
-		Game::display ( $page, $lang['flt_title'], false, '', true);
+		$this->display ( $page, $lang['flt_title'], false, '', true);
 
 	} else {
-		AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 ?>

@@ -28,6 +28,15 @@
  *
  */
 
+class Paneladmina extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $resource;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
 
     includeLang('admin/adminpanel');
@@ -104,7 +113,7 @@
 
             case 'usr_level':
                 if (!isset($_GET['s']) || !isset($_SESSION['CSRF']) || $_GET['s'] !== $_SESSION['CSRF']) {
-                    AdminMessage(
+                    $this->AdminMessage(
                         'One have tried to overcome administration privilleges.',
                         'Hacking attempt');
                     break;
@@ -114,13 +123,13 @@
                 $level  = isset($_GET['authlvl']) ? mysqli_real_escape_string(Database::$dbHandle, $_GET['authlvl']) : '';
 
                 if ($level >= $user['authlevel'] && $user['authlevel'] != LEVEL_ADMIN) {
-                    AdminMessage('Not enough privilleges to promote user.', $lang['adm_mod_level']);
+                    $this->AdminMessage('Not enough privilleges to promote user.', $lang['adm_mod_level']);
                     break;
                 }
 
                 $userData = doquery("SELECT id FROM {{table}} WHERE `username` = '".$player."';", 'users', true);
                 if (empty($user)) {
-                    AdminMessage('No such user.', $lang['adm_mod_level']);
+                    $this->AdminMessage('No such user.', $lang['adm_mod_level']);
                     break;
                 }
 
@@ -128,7 +137,7 @@
                 $message    = $lang['adm_mess_lvl1']. " ". $player ." ".$lang['adm_mess_lvl2'];
                 $message   .= "<font color=\"red\">".$lang['adm_usr_level'][$level]."</font>!";
 
-                AdminMessage($message, $lang['adm_mod_level']);
+                $this->AdminMessage($message, $lang['adm_mod_level']);
                 break;
 
             case 'ip_search':
@@ -182,7 +191,11 @@
     }
 
     $page = parsetemplate( $PanelMainTPL, $parse );
-    Game::display( $page, $lang['panel_mainttl'], false, '', true );
+    $this->display( $page, $lang['panel_mainttl'], false, '', true );
 } else {
-    message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+    $this->message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+}
+        
+    }
+
 }

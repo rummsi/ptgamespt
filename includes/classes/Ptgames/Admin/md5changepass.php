@@ -28,6 +28,15 @@
  *
  */
 
+class Md5changepass extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
 		includeLang('admin/changepass');
 
@@ -48,9 +57,13 @@
 		$PageTpl = gettemplate("Admin/changepass");
 		$Page    = parsetemplate( $PageTpl, $parse);
 
-		Game::display( $Page, $lang['md5_title'], false, '', true );
+		$this->display( $Page, $lang['md5_title'], false, '', true );
 	} else {
-		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 ?>

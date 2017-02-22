@@ -28,12 +28,22 @@
  *
  */
 
+class Moonlist extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
 		includeLang('overview');
 
 		$parse = $lang;
 		$query = doquery("SELECT * FROM {{table}} WHERE planet_type='3'", "planets");
 		$i = 0;
+                $parse['moon'] = "";
 		while ($u = mysqli_fetch_array($query, MYSQLI_NUM)) {
 			$parse['moon'] .= "<tr>"
 			. "<td class=b><center><b>" . $u[0] . "</center></b></td>"
@@ -46,13 +56,17 @@
 			$i++;
 		}
 
-		if ($i == "1")
+		if ($i == "1"){
 			$parse['moon'] .= "<tr><th class=b colspan=6>Il y a qu'une seule lune</th></tr>";
-		else
+                }else{
 			$parse['moon'] .= "<tr><th class=b colspan=6>Il y a {$i} lunes</th></tr>";
-
-                    Game::display(parsetemplate(gettemplate('Admin/moonlist_body'), $parse), 'Lunalist' , false, '', true);
+                }
+                    $this->display(parsetemplate(gettemplate('Admin/moonlist_body'), $parse), 'Lunalist' , false, '', true);
 	} else {
-		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 ?>

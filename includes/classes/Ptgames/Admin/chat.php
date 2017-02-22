@@ -28,6 +28,15 @@
  *
  */
 
+class Chat extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 includeLang('admin');
 $parse = $lang;
 
@@ -49,14 +58,18 @@ $parse = $lang;
 			$parse['msg_list'] .= stripslashes("<tr><th class=b>" . date('h:i:s', $e['timestamp']) . "</th>".
 			"<th class=b>". $e['user'] . "</th>".
 			"<td class=b>" . nl2br($e['message']) . "</td>".
-			"<th class=b><a href=?delete=".$e['messageid']."><img src=\"../images/r1.png\" border=\"0\"></a></th></tr>");
+			"<th class=b><a href=?delete=".$e['messageid']."><img src=\"images/r1.png\" border=\"0\"></a></th></tr>");
 		}
 		$parse['msg_list'] .= "<tr><th class=b colspan=4>{$i} ".$lang['adm_ch_nbs']."</th></tr>";
 
-		Game::display(parsetemplate(gettemplate('Admin/chat_body'), $parse), "Chat", false, '', true);
+		$this->display(parsetemplate(gettemplate('Admin/chat_body'), $parse), "Chat", false, '', true);
 
 	} else {
-		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 ?>

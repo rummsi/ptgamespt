@@ -28,6 +28,15 @@
  *
  */
 
+class Statbuilder extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $game_config;
+
 include(ROOT_PATH . 'admin/statfunctions.' . PHPEXT);
 
 
@@ -43,7 +52,8 @@ if (strtolower(substr(PHP_SAPI, 0, 3)) == 'cli' || in_array($user['authlevel'], 
 
 	while ($CurUser = mysqli_fetch_assoc($GameUsers)) {
 		// Recuperation des anciennes statistiques
-		$OldStatRecord  = doquery ("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `id_owner` = '".$CurUser['id']."';",'statpoints');
+		$OldStatRecord1  = doquery ("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `id_owner` = '".$CurUser['id']."';",'statpoints');
+		$OldStatRecord = $OldStatRecord1->fetch_array(MYSQLI_ASSOC);
 		if ($OldStatRecord) {
 			$OldTotalRank = $OldStatRecord['total_rank'];
 			$OldTechRank  = $OldStatRecord['tech_rank'];
@@ -186,7 +196,8 @@ if (strtolower(substr(PHP_SAPI, 0, 3)) == 'cli' || in_array($user['authlevel'], 
 
 	while ($CurAlly = mysqli_fetch_assoc($GameAllys)) {
 		// Recuperation des anciennes statistiques
-		$OldStatRecord  = doquery ("SELECT * FROM {{table}} WHERE `stat_type` = '2' AND `id_owner` = '".$CurAlly['id']."';",'statpoints');
+		$OldStatRecord1  = doquery ("SELECT * FROM {{table}} WHERE `stat_type` = '2' AND `id_owner` = '".$CurAlly['id']."';",'statpoints');
+		$OldStatRecord = $OldStatRecord1->fetch_array(MYSQLI_ASSOC);
 		if ($OldStatRecord) {
 			$OldTotalRank = $OldStatRecord['total_rank'];
 			$OldTechRank  = $OldStatRecord['tech_rank'];
@@ -256,9 +267,13 @@ if (strtolower(substr(PHP_SAPI, 0, 3)) == 'cli' || in_array($user['authlevel'], 
 		doquery ( $QryInsertStats , 'statpoints');
 	}
 
-	AdminMessage ( $lang['adm_done'], $lang['adm_stat_title'] );
+	$this->AdminMessage ( $lang['adm_done'], $lang['adm_stat_title'] );
 
 } else {
-	AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+    $this->AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+}
+        
+    }
+
 }
 

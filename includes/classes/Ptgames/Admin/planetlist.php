@@ -28,11 +28,21 @@
  *
  */
 
+class Planetlist extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
 
 		$parse = $lang;
 		$query = doquery("SELECT * FROM {{table}} WHERE planet_type='1'", "planets");
 		$i = 0;
+                $parse['planetes'] = "";
 		while ($u = mysqli_fetch_array($query, MYSQLI_NUM)) {
 			$parse['planetes'] .= "<tr>"
 			. "<td class=b><center><b>" . $u[0] . "</center></b></td>"
@@ -44,15 +54,19 @@
 			$i++;
 		}
 
-		if ($i == "1")
+		if ($i == "1"){
 			$parse['planetes'] .= "<tr><th class=b colspan=5>Il y a qu'une seule plan&egrave;te</th></tr>";
-		else
+                }else{
 			$parse['planetes'] .= "<tr><th class=b colspan=5>Il y a {$i} plan&egrave;tes</th></tr>";
-
-                    Game::display(parsetemplate(gettemplate('Admin/planetlist_body'), $parse), 'Planetlist', false, '', true);
+                }
+                    $this->display(parsetemplate(gettemplate('Admin/planetlist_body'), $parse), 'Planetlist', false, '', true);
 	} else {
-		message($lang['sys_noalloaw'], $lang['sys_noaccess']);
+            $this->message($lang['sys_noalloaw'], $lang['sys_noaccess']);
 	}
+        
+    }
+
+}
 
 // Created by e-Zobar. All rights reversed (C) XNova Team 2008
 ?>

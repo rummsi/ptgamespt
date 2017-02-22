@@ -28,6 +28,15 @@
  *
  */
 
+class Add_money extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
 		includeLang('admin');
 
@@ -50,13 +59,17 @@
 			$QryUpdatePlanet .= "`id` = '". $id ."' ";
 			doquery( $QryUpdatePlanet, "planets");
 
-			AdminMessage ( $lang['adm_am_done'], $lang['adm_am_ttle'] );
+			$this->AdminMessage ( $lang['adm_am_done'], $lang['adm_am_ttle'] );
 		}
 		$Page = parsetemplate($PageTpl, $parse);
 
-		Game::display ($Page, $lang['adm_am_ttle'], false, '', true);
+		$this->display ($Page, $lang['adm_am_ttle'], false, '', true);
 	} else {
-		AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 ?>

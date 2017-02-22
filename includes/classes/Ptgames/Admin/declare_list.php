@@ -28,6 +28,15 @@
  *
  */
 
+class Declare_list extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
     if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
 		includeLang('admin');
 		if ($_GET['cmd'] == 'dele') {
@@ -49,7 +58,7 @@
 		$i                     = 0;
 		$Color                 = "lime";
 		while ($u = mysqli_fetch_assoc ($query) ) {
-			if ($PrevIP != "") {
+			if (isset($PrevIP) != "") {
 				if ($PrevIP == $u['declarator']) {
 					$Color = "red";
 				} else {
@@ -70,10 +79,14 @@
 		$parse['adm_ul_count'] = $i;
 
 		$page = parsetemplate( $PageTPL, $parse );
-		Game::display( $page, "Liste des joueurs ayant declare une IP collective", false, '', true);
+		$this->display( $page, "Liste des joueurs ayant declare une IP collective", false, '', true);
 	} else {
-		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 // Created by e-Zobar. All rights reversed (C) XNova Team 2008
 ?>

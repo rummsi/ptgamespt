@@ -28,17 +28,26 @@
  *
  */
 
+class Activeplanet extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $dpath;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
 		includeLang('admin');
 
 		$parse          = $lang;
 		$parse['dpath'] = $dpath;
-		$parse['mf']    = $mf;
+		$parse['mf']    = '_self';
 
 		$PageTPL        = gettemplate('Admin/activeplanet_body');
 		$AllActivPlanet = doquery("SELECT * FROM {{table}} WHERE `last_update` >= '". (time()-15 * 60) ."' ORDER BY `id` ASC", 'planets');
 		$Count          = 0;
-
+		$parse['online_list'] = "";
 		while ($ActivPlanet = mysqli_fetch_array($AllActivPlanet, MYSQLI_ASSOC)) {
 			$parse['online_list'] .= "<tr>";
 			$parse['online_list'] .= "<td class=b><center><b>". $ActivPlanet['name'] ."</b></center></td>";
@@ -53,9 +62,13 @@
 		$parse['online_list'] .= "</tr>";
 
 		$page = parsetemplate( $PageTPL	, $parse );
-		Game::display( $page, $lang['adm_pl_title'], false, '', true );
+		$this->display( $page, $lang['adm_pl_title'], false, '', true );
 	} else {
-		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 ?>

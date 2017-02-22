@@ -28,7 +28,14 @@
  *
  */
 
-define('IN_ADMIN', true);
+class Userlist extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
 
     if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
 		includeLang('admin');
@@ -68,7 +75,7 @@ define('IN_ADMIN', true);
 			$Bloc['adm_ul_data_lconn']  = gmdate ( "d/m/Y G:i:s", $u['onlinetime'] );
 			$Bloc['adm_ul_data_banna']  = ( $u['bana'] == 1 ) ? "<a href # title=\"". gmdate ( "d/m/Y G:i:s", $u['banaday']) ."\">". $lang['adm_ul_yes'] ."</a>" : $lang['adm_ul_no'];
 			$Bloc['adm_ul_data_detai']  = ""; // Lien vers une page de details genre Empire
-			$Bloc['adm_ul_data_actio']  = "<a href=\"admin.php?page=userlist&cmd=dele&user=".$u['id']."\"><img src=\"../images/r1.png\"></a>"; // Lien vers actions 'effacer'
+			$Bloc['adm_ul_data_actio']  = "<a href=\"admin.php?page=userlist&cmd=dele&user=".$u['id']."\"><img src=\"images/r1.png\"></a>"; // Lien vers actions 'effacer'
 
 
 			$PrevIP                     = $u['user_lastip'];
@@ -78,9 +85,13 @@ define('IN_ADMIN', true);
 		$parse['adm_ul_count'] = $i;
 
 		$page = parsetemplate( $PageTPL, $parse );
-		Game::display( $page, $lang['adm_ul_title'], false, '', true);
+		$this->display( $page, $lang['adm_ul_title'], false, '', true);
 	} else {
-		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 ?>

@@ -28,6 +28,15 @@
  *
  */
 
+class Multi extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
 		includeLang('admin/multi');
 
@@ -51,10 +60,14 @@
 		$parse['adm_mt_count'] = $i;
 
 		$page = parsetemplate( $PageTPL, $parse );
-		Game::display( $page, $lang['adm_mt_title'], false, '', true);
+		$this->display( $page, $lang['adm_mt_title'], false, '', true);
 
 	} else {
-		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 ?>

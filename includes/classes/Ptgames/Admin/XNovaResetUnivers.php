@@ -28,7 +28,29 @@
  *
  */
 
+class XNovaResetUnivers extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 includeLang('admin');
+
+	$mode      = $_POST['mode'];
+	$PageTpl   = gettemplate("Admin/reset_body");
+	$parse     = $lang;
+
+	if ($mode == 'reset') {
+            $this->XNovaResetUnivers ( $user );
+	} else {
+		$Page = parsetemplate($PageTpl, $parse);
+		$this->display ($Page, $lang['Reset'], false, '', true);
+	}
+        
+    }
 
 function XNovaResetUnivers ( $CurrentUser ) {
 	global $lang;
@@ -112,22 +134,13 @@ function XNovaResetUnivers ( $CurrentUser ) {
 		doquery("DROP TABLE {{table}}", 'planets_s');
 		doquery("DROP TABLE {{table}}", 'users_s');
 
-		AdminMessage ( $TransUser . $lang['adm_rz_done'], $lang['adm_rz_ttle'] );
+		$this->AdminMessage ( $TransUser . $lang['adm_rz_done'], $lang['adm_rz_ttle'] );
 	} else {
-		AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
 	return $Page;
 }
 
-	$mode      = $_POST['mode'];
-	$PageTpl   = gettemplate("Admin/reset_body");
-	$parse     = $lang;
-
-	if ($mode == 'reset') {
-		XNovaResetUnivers ( $user );
-	} else {
-		$Page = parsetemplate($PageTpl, $parse);
-		Game::display ($Page, $lang['Reset'], false, '', true);
-	}
+}
 
 ?>

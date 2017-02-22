@@ -28,6 +28,15 @@
  *
  */
 
+class Unbanned extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user, $dpath;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
 
 		$parse['dpath'] = $dpath;
@@ -41,12 +50,16 @@
 			$nam = $_POST['nam'];
 			doquery("DELETE FROM {{table}} WHERE who2='{$nam}'", 'banned');
 			doquery("UPDATE {{table}} SET bana=0, banaday=0 WHERE username='{$nam}'", "users");
-			message("Le joueur {$nam} a bien &eacute;t&eacute; d&eacute;banni!", 'Information');
+			$this->message("Le joueur {$nam} a bien &eacute;t&eacute; d&eacute;banni!", 'Information');
 		}
 
-		Game::display(parsetemplate(gettemplate('Admin/unbanned'), $parse), "Overview", false, '', true);
+		$this->display(parsetemplate(gettemplate('Admin/unbanned'), $parse), "Overview", false, '', true);
 	} else {
-		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 ?>

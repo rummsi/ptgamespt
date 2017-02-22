@@ -28,6 +28,15 @@
  *
  */
 
+class Errors extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 includeLang('admin');
 $parse = $lang;
 
@@ -57,9 +66,13 @@ $parse = $lang;
 			<th class=b colspan=5>". $i ." ". $lang['adm_er_nbs'] ."</th>
 		</tr>";
 
-		Game::display(parsetemplate(gettemplate('Admin/errors_body'), $parse), "Bledy", false, '', true);
+		$this->display(parsetemplate(gettemplate('Admin/errors_body'), $parse), "Bledy", false, '', true);
 	} else {
-		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 ?>

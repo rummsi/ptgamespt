@@ -28,6 +28,15 @@
  *
  */
 
+class Add_moon extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR))) {
 		includeLang('admin/addmoon');
 
@@ -53,12 +62,16 @@
 
 			CreateOneMoonRecord ( $Galaxy, $System, $Planet, $Owner, $MoonID, $MoonName, 20 );
 
-			AdminMessage ( $lang['addm_done'], $lang['addm_title'] );
+			$this->AdminMessage ( $lang['addm_done'], $lang['addm_title'] );
 		}
 		$Page = parsetemplate($PageTpl, $parse);
 
-		Game::display ($Page, $lang['addm_title'], false, '', true);
+		$this->display ($Page, $lang['addm_title'], false, '', true);
 	} else {
-		AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 ?>

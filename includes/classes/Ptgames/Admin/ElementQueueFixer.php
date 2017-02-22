@@ -28,6 +28,15 @@
  *
  */
 
+class ElementQueueFixer extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
 		includeLang('admin');
 
@@ -65,10 +74,14 @@
 			$QuitMessage = $lang['adm_done'];
 		}
 
-		AdminMessage ($QuitMessage, $lang['adm_cleaner_title']);
+		$this->AdminMessage ($QuitMessage, $lang['adm_cleaner_title']);
 
 	} else {
-		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 ?>

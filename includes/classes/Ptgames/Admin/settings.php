@@ -28,6 +28,19 @@
  *
  */
 
+class Settings extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
+	$Page = $this->DisplayGameSettingsPage ( $user );
+        
+    }
+
 function DisplayGameSettingsPage ( $CurrentUser ) {
 	global $lang, $game_config;
 
@@ -291,14 +304,14 @@ $game_config['banner_source_post'] = $_POST['banner_source_post'];
 			$PageTPL                         = gettemplate('Admin/options_body');
 			$Page                           .= parsetemplate( $PageTPL,  $parse );
 
-			Game::display ( $Page, $lang['adm_opt_title'], false, '', true );
+			$this->display ( $Page, $lang['adm_opt_title'], false, '', true );
 		}
 	} else {
-		AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
 	return $Page;
 }
 
-	$Page = DisplayGameSettingsPage ( $user );
+}
 
 ?>

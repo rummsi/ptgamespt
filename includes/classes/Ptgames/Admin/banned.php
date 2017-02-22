@@ -28,6 +28,15 @@
  *
  */
 
+class Banned extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
 		includeLang('admin');
 
@@ -72,13 +81,17 @@
 			doquery( $QryUpdateUser, 'users');
 
 			$DoneMessage       = $lang['adm_bn_thpl'] ." ". $name ." ". $lang['adm_bn_isbn'];
-			AdminMessage ($DoneMessage, $lang['adm_bn_ttle']);
+			$this->AdminMessage ($DoneMessage, $lang['adm_bn_ttle']);
 		}
 
 		$Page = parsetemplate($PageTpl, $parse);
-		Game::display( $Page, $lang['adm_bn_ttle'], false, '', true);
+		$this->display( $Page, $lang['adm_bn_ttle'], false, '', true);
 	} else {
-		AdminMessage ($lang['sys_noalloaw'], $lang['sys_noaccess']);
+            $this->AdminMessage ($lang['sys_noalloaw'], $lang['sys_noaccess']);
 	}
+        
+    }
+
+}
 
 ?>

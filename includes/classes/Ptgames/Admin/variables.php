@@ -28,15 +28,28 @@
  *
  */
 
+class Variables extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
 
 				$parse['phpinfo'] = phpinfo();
 
 		$Page = parsetemplate($PageTPL, $parse);
 
-		Game::display ( $Page, "PhpInfo", false, '', true);
+		$this->display ( $Page, "PhpInfo", false, '', true);
 	} else {
-		AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->AdminMessage ( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 ?>

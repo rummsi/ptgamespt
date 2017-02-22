@@ -28,6 +28,15 @@
  *
  */
 
+class QueryExecute extends AbstractAdminPage {
+
+    function __construct() {
+        $this->show();
+    }
+
+    function show() {
+        global $lang, $user;
+
 	if (in_array($user['authlevel'], array(LEVEL_ADMIN))) {
 		includeLang('admin/Queries');
 
@@ -36,7 +45,7 @@
 		if ($_POST['really_do_it'] == 'on') {
 
 			mysqli_query (Database::$dbHandle,$_POST['qry_sql']);
-			AdminMessage ($lang['qry_succesful'], 'Succes', '?');
+			$this->AdminMessage ($lang['qry_succesful'], 'Succes', '?');
 
 		} else {
 
@@ -46,9 +55,13 @@
 		$PageTpl = gettemplate("Admin/exec_query");
 		$Page    = parsetemplate( $PageTpl, $parse);
 
-		Game::display( $Page, $lang['qry_title'], false, '', true );
+		$this->display( $Page, $lang['qry_title'], false, '', true );
 	} else {
-		message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
+            $this->message( $lang['sys_noalloaw'], $lang['sys_noaccess'] );
 	}
+        
+    }
+
+}
 
 ?>
