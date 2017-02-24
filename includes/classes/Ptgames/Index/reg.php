@@ -45,43 +45,6 @@ if(!isset($_SESSION))
 
 includeLang('reg');
 
-function sendpassemail($emailaddress, $password)
-{
-    global $lang;
-
-    $parse['gameurl'] = GAMEURL;
-    $parse['password'] = $password;
-    $email = parsetemplate($lang['mail_welcome'], $parse);
-    $status = mymail($emailaddress, $lang['mail_title'], $email);
-    return $status;
-}
-
-function mymail($to, $title, $body, $from = '')
-{
-    $from = trim($from);
-
-    if (!$from) {
-        $from = ADMINEMAIL;
-    }
-
-    $rp = ADMINEMAIL;
-
-    $head = '';
-    $head .= "Content-Type: text/plain \r\n";
-    $head .= "Date: " . date('r') . " \r\n";
-    $head .= "Return-Path: $rp \r\n";
-    $head .= "From: $from \r\n";
-    $head .= "Sender: $from \r\n";
-    $head .= "Reply-To: $from \r\n";
-    $head .= "Organization: $org \r\n";
-    $head .= "X-Sender: $from \r\n";
-    $head .= "X-Priority: 3 \r\n";
-    $body = str_replace("\r\n", "\n", $body);
-    $body = str_replace("\n", "\r\n", $body);
-
-    return mail($to, $title, $body, $head);
-}
-
 if ($_POST) {
     $errors = 0;
     $errorlist = "";
@@ -89,7 +52,7 @@ if ($_POST) {
 //si la secu est active
 
 if ( $game_config['secu'] == 1 ){
-echo $_session['secu'];
+//echo $_SESSION['secu'];
 if (!$_POST['secu'] || $_POST['secu'] != $_SESSION['secu'] ) { $errorlist .= $lang['error_secu']; $errors++; }
 }
 
@@ -104,7 +67,7 @@ if (!$_POST['secu'] || $_POST['secu'] != $_SESSION['secu'] ) { $errorlist .= $la
         $errors++;
     }
 
-    if (preg_match("/[^A-z0-9_\-]/", $_POST['hplanet']) == 1) {
+    if (preg_match("/[^A-z0-9_\-]/", isset($_POST['hplanet'])) == 1) {
         $errorlist .= $lang['error_planetnum'];
         $errors++;
     }
@@ -124,7 +87,7 @@ if (!$_POST['secu'] || $_POST['secu'] != $_SESSION['secu'] ) { $errorlist .= $la
         $errors++;
     }
 
-    if ($_POST['rgt'] != 'on') {
+    if (isset($_POST['rgt']) != 'on') {
         $errorlist .= $lang['error_rgt'];
         $errors++;
     }
@@ -161,7 +124,7 @@ if (!$_POST['secu'] || $_POST['secu'] != $_SESSION['secu'] ) { $errorlist .= $la
         $QryInsertUser .= "`email` = '" . mysqli_real_escape_string(Database::$dbHandle, $UserEmail) . "', ";
         $QryInsertUser .= "`email_2` = '" . mysqli_real_escape_string(Database::$dbHandle, $UserEmail) . "', ";
         $QryInsertUser .= "`sex` = '" . mysqli_real_escape_string(Database::$dbHandle, $_POST['sex']) . "', ";
-		$QryInsertUser .= "`ip_at_reg` = '" . $_SERVER["REMOTE_ADDR"] . "', ";
+	$QryInsertUser .= "`ip_at_reg` = '" . $_SERVER["REMOTE_ADDR"] . "', ";
         $QryInsertUser .= "`id_planet` = '0', ";
         $QryInsertUser .= "`register_time` = '" . time() . "', ";
         $QryInsertUser .= "`password`='" . $md5newpass . "';";
@@ -252,7 +215,7 @@ if (!$_POST['secu'] || $_POST['secu'] != $_SESSION['secu'] ) { $errorlist .= $la
         doquery("UPDATE {{table}} SET `config_value` = `config_value` + '1' WHERE `config_name` = 'users_amount' LIMIT 1;", 'config');
 
         $Message = $lang['thanksforregistry'];
-        if (sendpassemail($_POST['email'], "$newpass")) {
+        if ($this->sendpassemail($_POST['email'], "$newpass")) {
             $Message .= " (" . htmlentities($_POST["email"]) . ")";
         } else {
             $Message .= " (" . htmlentities($_POST["email"]) . ")";
@@ -284,6 +247,43 @@ $_SESSION['secu'] = $_SESSION['nombre1'] + $_SESSION['nombre2'];
     $this->display ($page, $lang['registry'], false);
         
     }
+
+function sendpassemail($emailaddress, $password)
+{
+    global $lang;
+
+    $parse['gameurl'] = GAMEURL;
+    $parse['password'] = $password;
+    $email = parsetemplate($lang['mail_welcome'], $parse);
+    $status = $this->mymail($emailaddress, $lang['mail_title'], $email);
+    return $status;
+}
+
+function mymail($to, $title, $body, $from = '')
+{
+    $from = trim($from);
+
+    if (!$from) {
+        $from = ADMINEMAIL;
+    }
+
+    $rp = ADMINEMAIL;
+
+    $head = '';
+    $head .= "Content-Type: text/plain \r\n";
+    $head .= "Date: " . date('r') . " \r\n";
+    $head .= "Return-Path: $rp \r\n";
+    $head .= "From: $from \r\n";
+    $head .= "Sender: $from \r\n";
+    $head .= "Reply-To: $from \r\n";
+    $head .= "Organization: $org \r\n";
+    $head .= "X-Sender: $from \r\n";
+    $head .= "X-Priority: 3 \r\n";
+    $body = str_replace("\r\n", "\n", $body);
+    $body = str_replace("\n", "\r\n", $body);
+
+    return mail($to, $title, $body, $head);
+}
 
 }
 

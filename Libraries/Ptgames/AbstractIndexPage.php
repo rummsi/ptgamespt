@@ -73,7 +73,7 @@ abstract class AbstractIndexPage {
         $parse['title'] = $title;
         $parse['mes'] = $mes;
 
-        $page = parsetemplate(gettemplate('Admin/message_body'), $parse);
+        $page = parsetemplate(gettemplate('Index/message_body'), $parse);
 
         $this->display($page, $title, false, (($dest != "") ? "<meta http-equiv=\"refresh\" content=\"$time;URL={$dest}\">" : ""), true);
     }

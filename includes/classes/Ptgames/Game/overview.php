@@ -161,7 +161,7 @@ switch ($mode) {
                     $QryUpdateUser .= "`id` = '" . $user['id'] . "';";
                     doquery($QryUpdateUser, 'users');
                     $HaveNewLevelMineur = "<tr>";
-                    $HaveNewLevelMineur .= "<th colspan=4><a href=officier.". PHPEXT .">" . $lang['Have_new_level_mineur'] . "</a></th>";
+                    $HaveNewLevelMineur .= "<th colspan=4><a href=game.php?page=officier>" . $lang['Have_new_level_mineur'] . "</a></th>";
                 }
                 if ($XPRaid >= $XpRaidUp) {
                     $QryUpdateUser = "UPDATE {{table}} SET ";
@@ -171,7 +171,7 @@ switch ($mode) {
                     $QryUpdateUser .= "`id` = '" . $user['id'] . "';";
                     doquery($QryUpdateUser, 'users');
                     $HaveNewLevelMineur = "<tr>";
-                    $HaveNewLevelMineur .= "<th colspan=4><a href=officier.". PHPEXT .">" . $lang['Have_new_level_raid'] . "</a></th>";
+                    $HaveNewLevelMineur .= "<th colspan=4><a href=game.php?page=officier>" . $lang['Have_new_level_raid'] . "</a></th>";
                 }
             }
             // -----------------------------------------------------------------------------------------------
