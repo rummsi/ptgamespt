@@ -1,5 +1,6 @@
 {
     "require": {
-        "nette/application": "^2.4"
+        "nette/application": "^2.4",
+        "nette/bootstrap": "^2.4"
     }
 }
