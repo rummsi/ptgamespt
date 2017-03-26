@@ -108,3 +108,4 @@ include(ROOT_PATH . 'includes/functions/BuildFleetEventTable.'.PHPEXT);
 include(ROOT_PATH . 'includes/functions/ResetThisFuckingCheater.'.PHPEXT);
 include(ROOT_PATH . 'includes/functions/IsVacationMode.'.PHPEXT);
 
+require __DIR__ . '/../app/bootstrap.php';
