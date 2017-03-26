@@ -26,3 +26,6 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 $configurator = new Nette\Configurator;
+
+//$configurator->setDebugMode(TRUE);
+$configurator->enableTracy(__DIR__ . '/../log');
