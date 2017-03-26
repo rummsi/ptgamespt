@@ -141,6 +141,7 @@ class ComposerStaticInitef1a96bb20598baef34d0c3c0033cff9
         'Nette\\Iterators\\Filter' => __DIR__ . '/..' . '/nette/utils/src/Iterators/Filter.php',
         'Nette\\Iterators\\Mapper' => __DIR__ . '/..' . '/nette/utils/src/Iterators/Mapper.php',
         'Nette\\Iterators\\RecursiveFilter' => __DIR__ . '/..' . '/nette/utils/src/Iterators/RecursiveFilter.php',
+        'Nette\\Loaders\\RobotLoader' => __DIR__ . '/..' . '/nette/robot-loader/src/RobotLoader/RobotLoader.php',
         'Nette\\Localization\\ITranslator' => __DIR__ . '/..' . '/nette/utils/src/Utils/ITranslator.php',
         'Nette\\MemberAccessException' => __DIR__ . '/..' . '/nette/utils/src/Utils/exceptions.php',
         'Nette\\Neon\\Decoder' => __DIR__ . '/..' . '/nette/neon/src/Neon/Decoder.php',
